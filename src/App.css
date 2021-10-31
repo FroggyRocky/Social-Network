@@ -18,5 +18,11 @@
     grid-gap: 20px 40px
   }
   
+  .mainContent_container {
+    grid-area: profile;
+    background-color: burlywood;
+    height: 300%;
+    color: green;
+  }
 
 

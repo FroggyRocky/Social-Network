@@ -1,0 +1,20 @@
+.input {
+    margin: 15px;
+    display: inline-block;
+    position: relative;
+   
+  }
+  .input textarea {
+    resize: none;
+  }
+  .input h4 {
+    margin: 10px;
+  }
+  .input button {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 45px;
+    height: 30px;
+  }
+  

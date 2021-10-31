@@ -5,5 +5,10 @@
   }
 
 .sideBar li {
-        list-style: none;
-  }
+ list-style: none;
+  text-decoration: none;     
+}
+.sideBar a {
+text-decoration: none;
+color: black;
+}

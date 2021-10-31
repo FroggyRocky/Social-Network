@@ -4,9 +4,9 @@ export default function SideBar() {
     return (
         <section className={sideBarStyles.sideBar}>
       <ul>
-        <li>Messages</li>
-        <li>Profile</li>
-        <li>Settings</li>
+        <li><a href="/messages">Messages</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/settings">Settings</a></li>
       </ul>
     </section>
     )

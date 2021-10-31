@@ -1,8 +1,4 @@
-.profile {
-    grid-area: profile;
-    background-color: darkcyan;
-    height: 300%;
-  }
+
   .userInfo{
     display: flex;
     margin: 15px;
@@ -21,39 +17,3 @@
        border-radius: 50px;
        margin: 0 20px 0 0;
   }
-
-
-  .input {
-    margin: 15px;
-    display: inline-block;
-    position: relative;
-  }
-  .input h4 {
-    margin: 10px;
-  }
-  .input button {
-    display: block;
-    position: absolute;
-    right: 0;
-    width: 45px;
-    height: 30px;
-  }
-  .item{
-    margin: 15px;
-    display: inline-block;
-    max-width: 90vh;
-  }
-
-  .item img {
-    width: 45px;
-    height: 45px;
-       border-radius: 50px;
-       margin: 0 20px 0 0;
-       float: left;
-       
-  }
-  .likes {
-   text-align: end;
-  
-  }
-  

@@ -1,0 +1,15 @@
+.item{
+    margin: 15px;
+    display: inline-block;
+    max-width: 90vh;
+}
+  .item img {
+    width: 45px;
+    height: 45px;
+       border-radius: 50px;
+       margin: 0 20px 0 0;
+       float: left;
+  }
+  .likes {
+   text-align: end;
+  }
