@@ -6,32 +6,17 @@
     font-family: sans-serif;
     background-color: brown;
   }
-  li {
-    list-style: none;
-  }
-  .grid-container {
+  
+  .grid_container {
     max-width: 1200px;
     margin: 0 auto;
     grid-template-areas: 
     'header header'
     'side-bar profile';
     display: grid;
-    grid-template-columns: 1fr 10fr;
+    grid-template-columns: 2fr 10fr;
     grid-gap: 20px 40px
   }
   
-  .header {
-    grid-area: header;
-    height: 60px;
-    background-color: yellowgreen;
-  }
-  .side-bar {
-    grid-area: side-bar;
-    background-color:darkorange;
-    height: 300%;
-  }
-  .profile {
-    grid-area: profile;
-    background-color: darkcyan;
-    height: 300%;
-  }
+
+

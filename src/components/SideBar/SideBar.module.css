@@ -1,0 +1,9 @@
+.sideBar {
+    grid-area: side-bar;
+    background-color:darkorange;
+    height: 300%;
+  }
+
+.sideBar li {
+        list-style: none;
+  }

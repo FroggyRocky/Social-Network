@@ -1,17 +1,18 @@
-import Header from './components/header'
-import SideBar from './components/side-bar'
-import Profile from './components/profile'
-import './App.css';
-
+import Header from './components/Header/Header'
+import SideBar from './components/SideBar/SideBar'
+import Profile from './components/Profile/Profile'
 
 function App() {
   return (
-    <div className="App">
-    <div className="grid-container">
-      <Header/>
-      <SideBar/>
-      <Profile/>
-    </div>
+    <div className="grid_container">
+      <Header />
+      <SideBar />
+      <Profile />
+      <section className="posts">
+        <div>
+         
+       </div>
+      </section>
     </div>
   );
 }
