@@ -20,9 +20,8 @@
   
   .mainContent_container {
     grid-area: profile;
-    background-color: burlywood;
+    background-color:dodgerblue;
     height: 300%;
-    color: green;
   }
 
 

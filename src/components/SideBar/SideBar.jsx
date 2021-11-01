@@ -1,12 +1,25 @@
 import React from 'react';
+import {BrowserRouter as Router, Link} from "react-router-dom";
 import sideBarStyles from './SideBar.module.css'
 export default function SideBar() {
     return (
         <section className={sideBarStyles.sideBar}>
       <ul>
-        <li><a href="/messages">Messages</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/settings">Settings</a></li>
+        <li>
+          <Link to="/profile">Profile</Link>
+          </li>
+        <li>
+             <Link to="/messages">Messages</Link>
+        </li>
+        <li>
+          <Link to="/feed">Feed</Link>
+        </li>
+        <li>
+          <Link to="/music">Music</Link>
+        </li>
+        <li>
+          <Link to="/Settings">Settings</Link>
+        </li>
       </ul>
     </section>
     )
