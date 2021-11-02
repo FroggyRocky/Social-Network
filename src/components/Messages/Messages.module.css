@@ -1,0 +1,24 @@
+.messages_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.dialogues {
+    margin: 5px;
+}
+.dialogue {
+    margin: 5px;
+    display: block;
+    color: whitesmoke;
+    text-decoration: none;
+}
+.chat {
+margin: 5px;
+}
+
+.message {
+    margin: 5px;
+}
+.activeNavLink {
+    color: yellow;
+}
