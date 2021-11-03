@@ -19,7 +19,7 @@ function App() {
               <Profile />
             </Route>
             <Route path="/messages">
-              <Messages />
+              <Messages/>
             </Route>
             <Route path="/feed">
               <Feed />
