@@ -1,10 +1,9 @@
 import React from "react"
 import postsStyles from './posts.module.css'
 import Post from './post/post'
-import {posts} from './../../../Data'
-export default function Posts() {
+export default function Posts(props) {
 
-const postsComponents = posts
+const postsComponents = props.posts
 .map((post, index) => {
   return (
   <Post 

@@ -7,6 +7,7 @@ export default function UserInfo(props) {
     <div className={userInfoStyles.backImg}>
     <img src= {props.backImg} alt="" />
   </div>
+<section className={userInfoStyles.userInfo_container}>
   <div className={userInfoStyles.userInfo}>
     <div className={userInfoStyles.userAvatar}>
       <img src={props.avatar} alt="" />
@@ -19,6 +20,10 @@ export default function UserInfo(props) {
       <p>Hobbies:{props.hobbies}</p>
     </div>
   </div>
+<div className={userInfoStyles.userFriends_container}>
+
+</div>
+</section>
 </>
     )
 }

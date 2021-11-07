@@ -1,7 +1,7 @@
 .header {
     grid-area: header;
     height: 60px;
-    background-color: yellowgreen;
+    background-color: #303841;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,6 +14,11 @@
   margin: 5px 0 0 5px;
   }
 
-.nav span {
-margin: 5px;
-}
+  .main_nav {
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .additional_nav span {
+    margin-right: 5px;
+  }

@@ -1,8 +1,9 @@
 import React from 'react';
 import UserInfo from './UserInfo/UserInfo';
 import Posts from './posts/posts'
-export default function Profile() {
+export default function Profile(props) { 
   return (
+   
     <section>
       <UserInfo
       backImg = "https://www.wallpapers.net/free-download-iron-man-movie-wallpaper-for-desktop-mobiles/download/1500x500.jpg"
@@ -13,7 +14,7 @@ export default function Profile() {
       age = '30'
       hobbies = 'Create stuff, hang out in my lab'
       />
-      <Posts />
+      <Posts posts = {props.posts} />
     </section>
   )
 }

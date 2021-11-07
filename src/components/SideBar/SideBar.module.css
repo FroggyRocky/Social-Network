@@ -1,14 +1,27 @@
 .sideBar {
     grid-area: side-bar;
-    background-color:darkorange;
-    height: 300%;
-  }
+    background-color:whitesmoke;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
 
+ul {
+  background-color: #3A4750;
+  width: 100%;
+}
 .sideBar li {
- list-style: none;
-  text-decoration: none;     
+  list-style: none;
+  text-decoration: none;
+  font-size:20px;
+  padding: 30px;
 }
 .sideBar a {
 text-decoration: none;
 color: black;
+}
+
+.sideBar a:hover {
+  color: yellow;
+  text-decoration: underline;
 }

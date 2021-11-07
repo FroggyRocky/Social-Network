@@ -7,19 +7,21 @@ import Feed from './components/Feed/Feed'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import './App.css'
-function App() {
+function App(props) {
   return (
     <Router>
       <div className="grid_container">
         <Header />
-        <SideBar />
+        <SideBar friends = {props.data.sideBar} />
         <div className="mainContent_container">
           <Switch>
             <Route path="/profile">
-              <Profile />
+              <Profile posts = {props.data.posts}/>
             </Route>
             <Route path="/messages">
-              <Messages/>
+              <Messages
+               dialogues = {props.data.dialogues} 
+               messages = {props.data.messages}/>
             </Route>
             <Route path="/feed">
               <Feed />

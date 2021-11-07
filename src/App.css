@@ -4,24 +4,23 @@
   }
   body {
     font-family: sans-serif;
-    background-color: brown;
-  }
+    background-color: darkred;
+    }
   
   .grid_container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     grid-template-areas: 
     'header header'
     'side-bar profile';
     display: grid;
     grid-template-columns: 2fr 10fr;
-    grid-gap: 20px 40px
   }
   
   .mainContent_container {
     grid-area: profile;
-    background-color:dodgerblue;
-    height: 300%;
+    background-color:#3A4750;
+    min-height: 600px;
   }
 
 

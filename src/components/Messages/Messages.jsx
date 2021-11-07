@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
 import messagesStyles from './Messages.module.css'
 import { NavLink } from 'react-router-dom'
-import { messages, dialogues } from './../../Data'
 
-export default function Messages() {
-
-    const messagesComponents = messages
-        .map((message, index) => {
+export default function Messages(props) {
+    const messagesComponents = props.messages
+    .map((message, index) => {
             return <div
-                key={index} className={messagesStyles.message} id={message.id}>{message.text}
-            </div>
+                key={index} className={messagesStyles.message} id={message.id}>{message.text}</div>
 
         })
-    const dialoguesComponents = dialogues
+    const dialoguesComponents = props.dialogues
         .map((dialogue, index) => {
             let path = `/messages/${dialogue.id}`
             return <NavLink
