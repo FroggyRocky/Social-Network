@@ -16,10 +16,11 @@ function App(props) {
         <div className="mainContent_container">
           <Switch>
             <Route path="/profile">
-              <Profile posts = {props.data.posts}/>
+              <Profile addPost={props.addPost} posts = {props.data.posts}/>
             </Route>
             <Route path="/messages">
               <Messages
+               addMessage={props.addMessage}
                dialogues = {props.data.dialogues} 
                messages = {props.data.messages}/>
             </Route>

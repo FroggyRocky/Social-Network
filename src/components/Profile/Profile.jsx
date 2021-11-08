@@ -1,7 +1,7 @@
 import React from 'react';
 import UserInfo from './UserInfo/UserInfo';
 import Posts from './posts/posts'
-export default function Profile(props) { 
+export default function Profile(props) {
   return (
    
     <section>
@@ -14,7 +14,7 @@ export default function Profile(props) {
       age = '30'
       hobbies = 'Create stuff, hang out in my lab'
       />
-      <Posts posts = {props.posts} />
+      <Posts addPost={props.addPost} posts = {props.posts} />
     </section>
   )
 }
