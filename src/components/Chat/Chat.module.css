@@ -1,12 +1,10 @@
 .messages_section {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: 100px;
     height: 100%;
 }
 
 .dialogues {
-    min-height: 550px;
     padding: 5px;
     background-color: cadetblue;
 }
@@ -29,7 +27,6 @@ margin: 10px 5px 0 5px;
 .chat {
 padding: 5px;
 background-color: azure;
-min-height:550px;
 position: relative;
 }
 .chat h3 {
@@ -45,13 +42,12 @@ position: relative;
 .inputContainer {
     display: flex;
     position: absolute;
-    top: 530px;
+    bottom: 0;
     width: 90%;
 }
 .inputContainer input{
     width: 100%;
     height: 25px;
-    
 }
 .inputContainer button {
     margin-left: 10px;

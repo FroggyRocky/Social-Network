@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import sideBarStyles from './SideBar.module.css'
-export default function SideBar() {
+export default function SideBar(props) {
     return (
         <section className={sideBarStyles.sideBar}>
       <ul>

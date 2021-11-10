@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Profile from './components/Profile/Profile'
-import Messages from "./components/Messages/Messages"
+import Chat from "./components/Chat/Chat"
 import Feed from './components/Feed/Feed'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
@@ -12,17 +12,21 @@ function App(props) {
     <Router>
       <div className="grid_container">
         <Header />
-        <SideBar friends = {props.data.sideBar} />
+        <SideBar sideBarState = {props.data.sideBarPage} />
         <div className="mainContent_container">
           <Switch>
             <Route path="/profile">
-              <Profile addPost={props.addPost} posts = {props.data.posts}/>
+              <Profile 
+               registerChanges ={props.registerChanges}
+               addPost={props.addPost}
+               ProfilePageState = {props.data.ProfilePage}
+               />
             </Route>
             <Route path="/messages">
-              <Messages
+              <Chat
                addMessage={props.addMessage}
-               dialogues = {props.data.dialogues} 
-               messages = {props.data.messages}/>
+               ChatPageState = {props.data.ChatPage}
+               registerChatInputChanges = {props.registerChatInputChanges}/>
             </Route>
             <Route path="/feed">
               <Feed />

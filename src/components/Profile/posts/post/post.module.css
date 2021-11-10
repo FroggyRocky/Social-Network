@@ -1,6 +1,7 @@
-.item{
+.item {
+    display: flex;
+    align-items: center;
     margin: 15px;
-    display: inline-block;
     max-width: 90vh;
 }
   .item img {
@@ -10,6 +11,9 @@
        margin: 0 20px 0 0;
        float: left;
   }
+.postText {
+  display: inline-block;
+}
   .likes {
    text-align: end;
   }

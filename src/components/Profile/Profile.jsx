@@ -14,7 +14,11 @@ export default function Profile(props) {
       age = '30'
       hobbies = 'Create stuff, hang out in my lab'
       />
-      <Posts addPost={props.addPost} posts = {props.posts} />
+      <Posts
+      registerChanges ={props.registerChanges} 
+      addPost={props.addPost} 
+      posts = {props.ProfilePageState.posts}
+      currentInputValue = {props.ProfilePageState.currentInput.text} />
     </section>
   )
 }

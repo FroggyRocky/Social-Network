@@ -1,7 +1,6 @@
 .sideBar {
     grid-area: side-bar;
     background-color:whitesmoke;
-    height: 600px;
     display: flex;
     justify-content: center;
 }
