@@ -1,4 +1,6 @@
-import reRender from "../render";
+let reRender = () => {
+  console.log('reRendered');
+}
 
 const data = {
 ProfilePage: {
@@ -63,9 +65,9 @@ export function registerChatInputChanges(value) {
   data.ChatPage.currentInput.text = value;
   reRender(data);
 }
-export function addMessage(currentMessage) {
+export function addMessage() {
   let newMessage = {
-    text: currentMessage,
+    text: data.ChatPage.currentInput.text,
     id: data.ChatPage.messages.length + 1
   }
   data.ChatPage.messages.push(newMessage);
@@ -74,21 +76,26 @@ export function addMessage(currentMessage) {
 }
 
 ////Fucntions of ProfilePage
-export function addPost(currentValue) {
+export function addPost() {
   let newPost = {
-    text: currentValue,
+    text: data.ProfilePage.currentInput.text,
     id: data.ProfilePage.posts.length + 1,
     avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
   };
   data.ProfilePage.posts.push(newPost);
-  reRender(data);
   data.ProfilePage.currentInput.text = "";
+  reRender(data);
+  
 }
 
 export function registerChanges(value) {
 data.ProfilePage.currentInput.text = value;
+console.log(data);
 reRender(data)
 }
 
+export function subscriber(observer) {
+  reRender = observer; 
+}
 export default data;
 

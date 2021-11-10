@@ -4,11 +4,9 @@ import { NavLink } from 'react-router-dom'
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 export default function Chat(props) {
-    let newMessageRef = React.createRef()
 
     function addMessage() {
-        let currentMessageValue = newMessageRef.current.value;
-        props.addMessage(currentMessageValue)
+        props.addMessage()
     }
 
     function getChanges(event) {
@@ -40,7 +38,7 @@ export default function Chat(props) {
     const [dialogue, setCurrentDialogue] = useState();
     function getCurrentDialogue(event) {
         setCurrentDialogue(event.target.innerText)
-    }
+    };
     return (
         <section className={chatStyles.messages_section}>
             <div className={chatStyles.dialogues}>
@@ -53,7 +51,7 @@ export default function Chat(props) {
                     <input
                     value={props.ChatPageState.currentInput.text}
                     onChange={getChanges} 
-                    ref={newMessageRef} type="text" />
+                    type="text" />
                     <button onClick={addMessage}><SendOutlinedIcon fontSiza='large' color="primary" /></button>
                 </div>
             </div>

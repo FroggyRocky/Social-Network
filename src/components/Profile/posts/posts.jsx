@@ -2,11 +2,8 @@ import React from "react"
 import postsStyles from './posts.module.css'
 import Post from './post/post'
 export default function Posts(props) {
-  let textAreaEl = React.createRef();
   function getCurrentValue() {
-    let currentValue = textAreaEl.current.value;
-    props.addPost(currentValue);
-    currentValue = " ";
+    props.addPost();
   }
   function registerChanges(event) {
     let value = event.target.value;
@@ -22,7 +19,7 @@ export default function Posts(props) {
           likes={post.likes}
         />
       )
-    })
+    });
 
   return (
     <div className={postsStyles.postsSection}>
@@ -31,7 +28,6 @@ export default function Posts(props) {
         <textarea
           value={props.currentInputValue}
           onChange={registerChanges}
-          ref={textAreaEl}
           placeholder="What's new?!"
           name="" id="" cols="50" rows="2">{props.currentInputValue}</textarea>
         <button onClick={getCurrentValue}>Post</button>
