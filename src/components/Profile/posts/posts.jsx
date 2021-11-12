@@ -4,11 +4,11 @@ import Post from './post/post'
 export default function Posts(props) {
 
   function getCurrentValue() {
-    props.addPost();
+    props.dispatch({type:'ADD-POST'});
   }
   function registerChanges(event) {
     let value = event.target.value;
-    props.registerChanges(value)
+    props.dispatch({type:'UPDATE-POST-INPUT', textValue:value})
   }
   const postsComponents = props.posts
     .map((post, index) => {

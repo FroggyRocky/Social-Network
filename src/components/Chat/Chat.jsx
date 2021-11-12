@@ -6,12 +6,12 @@ import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 export default function Chat(props) {
 
     function addMessage() {
-        props.addMessage()
+        props.dispatch({type:'ADD-MESSAGE'})
     }
 
     function getChanges(event) {
     let value = event.target.value
-    props.registerChatInputChanges(value);
+    props.dispatch({type:'UPDATE-CHAT-INPUT', textValue:value});
     }
 
     const messagesComponents =

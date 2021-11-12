@@ -56,45 +56,51 @@ const store = {
       ]
     }
   },
-getState() {
-  return this._state
-},
-reRender() {
-  console.log('reRendered');
-},
+  getState() {
+    return this._state
+  },
+  reRender() {
+    console.log('reRendered');
+  },
   ////Fucntions of ChatPage
-registerChatInputChanges(value) {
-  this._state.ChatPage.currentInput.text = value;
-  this.reRender(this._state);
-},
- addMessage() {
-  let newMessage = {
-    text: this._state.ChatPage.currentInput.text,
-    id: this._state.ChatPage.messages.length + 1
-  };
-  this._state.ChatPage.messages.push(newMessage);
-  this.reRender(this._state);
-  this._state.ChatPage.currentInput.text = "";
-},
-////Fucntions of ProfilePage
-addPost() {
-  let newPost = {
-    text: this._state.ProfilePage.currentInput.text,
-    id: this._state.ProfilePage.posts.length + 1,
-    avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
-  };
-  this._state.ProfilePage.posts.push(newPost);
-  this._state.ProfilePage.currentInput.text = "";
-  this.reRender(this._state);
-},
-registerChanges(value) {
-  this._state.ProfilePage.currentInput.text = value;
-  this.reRender(this._state)
-},
-subscribe(observer) {
-  this.reRender = observer;
-}
+  registerChatInputChanges(value) {
+    this._state.ChatPage.currentInput.text = value;
+    this.reRender(this._state);
+  },
 
+  ////Fucntions of ProfilePage
+  registerChanges(value) {
+
+  },
+  subscribe(observer) {
+    this.reRender = observer;
+  },
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      let newPost = {
+        text: this._state.ProfilePage.currentInput.text,
+        id: this._state.ProfilePage.posts.length + 1,
+        avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
+      };
+      this._state.ProfilePage.posts.push(newPost);
+      this._state.ProfilePage.currentInput.text = "";
+      this.reRender(this._state);
+    } else if (action.type === 'UPDATE-POST-INPUT') {
+      this._state.ProfilePage.currentInput.text = action.textValue;
+      this.reRender(this._state)
+    } else if (action.type === 'ADD-MESSAGE') {
+      let newMessage = {
+        text: this._state.ChatPage.currentInput.text,
+        id: this._state.ChatPage.messages.length + 1
+      };
+      this._state.ChatPage.messages.push(newMessage);
+      this.reRender(this._state);
+      this._state.ChatPage.currentInput.text = "";
+    } else if (action.type === 'UPDATE-CHAT-INPUT') {
+      this._state.ChatPage.currentInput.text = action.textValue;
+      this.reRender(this._state);
+    }
+  }
 }
 
 export default store;

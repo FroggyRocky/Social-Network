@@ -9,10 +9,7 @@ const reRender = (data) => {
   <React.StrictMode>
     <App
      data = {data} 
-     addPost={store.addPost.bind(store)}
-     addMessage={store.addMessage.bind(store)}
-     registerChanges={store.registerChanges.bind(store)}
-     registerChatInputChanges = {store.registerChatInputChanges.bind(store)}/>
+     dispatch={store.dispatch.bind(store)}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

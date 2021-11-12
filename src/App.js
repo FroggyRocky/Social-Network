@@ -17,16 +17,15 @@ function App(props) {
           <Switch>
             <Route path="/profile">
               <Profile 
-               registerChanges ={props.registerChanges}
-               addPost={props.addPost}
                ProfilePageState = {props.data.ProfilePage}
+               dispatch={props.dispatch}
                />
             </Route>
             <Route path="/messages">
               <Chat
-               addMessage={props.addMessage}
                ChatPageState = {props.data.ChatPage}
-               registerChatInputChanges = {props.registerChatInputChanges}/>
+               dispatch={props.dispatch}
+               />
             </Route>
             <Route path="/feed">
               <Feed />
