@@ -2,6 +2,7 @@ import React from "react"
 import postsStyles from './posts.module.css'
 import Post from './post/post'
 export default function Posts(props) {
+
   function getCurrentValue() {
     props.addPost();
   }

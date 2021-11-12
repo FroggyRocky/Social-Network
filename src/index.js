@@ -2,25 +2,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import data from "./redux/Data"
-import {addPost, addMessage, registerChanges, registerChatInputChanges, subscriber} from './redux/Data';
+import store from "./redux/state"
 
-const reRender = (Data) => {
+const reRender = (data) => {
   return ReactDOM.render(
   <React.StrictMode>
     <App
-     data = {Data} 
-     addPost={addPost}
-     addMessage={addMessage}
-     registerChanges={registerChanges}
-     registerChatInputChanges = {registerChatInputChanges}/>
+     data = {data} 
+     addPost={store.addPost.bind(store)}
+     addMessage={store.addMessage.bind(store)}
+     registerChanges={store.registerChanges.bind(store)}
+     registerChatInputChanges = {store.registerChatInputChanges.bind(store)}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
 }
 
-reRender(data);
-subscriber(reRender)
+reRender(store.getState());
+store.subscribe(reRender)
 
 
 
