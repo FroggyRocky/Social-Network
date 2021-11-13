@@ -1,7 +1,7 @@
 import React from 'react';
 import UserInfo from './UserInfo/UserInfo';
 import Posts from './posts/posts'
-export default function Profile(props) {
+export default function Profile(props) { 
   return (
    
     <section>
@@ -16,7 +16,7 @@ export default function Profile(props) {
       />
       <Posts
       posts = {props.ProfilePageState.posts}
-      currentInputValue = {props.ProfilePageState.currentInput.text}
+      currentInputValue = {props.ProfilePageState.currentInput}
       dispatch={props.dispatch} />
     </section>
   )

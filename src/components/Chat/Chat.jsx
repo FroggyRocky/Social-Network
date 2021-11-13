@@ -2,16 +2,15 @@ import React, { useState } from 'react'
 import chatStyles from './Chat.module.css'
 import { NavLink } from 'react-router-dom'
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
-
+import {addMessageActionCreator, registerChangesActionCreator} from "./../../redux/reducers/chatReducer"
 export default function Chat(props) {
-
     function addMessage() {
-        props.dispatch({type:'ADD-MESSAGE'})
+        props.dispatch(addMessageActionCreator())
     }
 
-    function getChanges(event) {
+    function registerChanges(event) {
     let value = event.target.value
-    props.dispatch({type:'UPDATE-CHAT-INPUT', textValue:value});
+    props.dispatch(registerChangesActionCreator(value));
     }
 
     const messagesComponents =
@@ -49,8 +48,8 @@ export default function Chat(props) {
                 {messagesComponents}
                 <div className={chatStyles.inputContainer}>
                     <input
-                    value={props.ChatPageState.currentInput.text}
-                    onChange={getChanges} 
+                    value={props.ChatPageState.currentInput}
+                    onChange={registerChanges} 
                     type="text" />
                     <button onClick={addMessage}><SendOutlinedIcon fontSiza='large' color="primary" /></button>
                 </div>

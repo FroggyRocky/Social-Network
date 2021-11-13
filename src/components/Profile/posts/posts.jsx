@@ -1,14 +1,15 @@
 import React from "react"
 import postsStyles from './posts.module.css'
 import Post from './post/post'
+import { addPostActionCreator, registerChangesActionCreator } from "../../../redux/reducers/profileReducer";
 export default function Posts(props) {
 
   function getCurrentValue() {
-    props.dispatch({type:'ADD-POST'});
+    props.dispatch(addPostActionCreator());
   }
   function registerChanges(event) {
     let value = event.target.value;
-    props.dispatch({type:'UPDATE-POST-INPUT', textValue:value})
+    props.dispatch(registerChangesActionCreator(value))
   }
   const postsComponents = props.posts
     .map((post, index) => {
