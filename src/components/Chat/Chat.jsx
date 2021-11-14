@@ -2,26 +2,33 @@ import React, { useState } from 'react'
 import chatStyles from './Chat.module.css'
 import { NavLink } from 'react-router-dom'
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
-import {addMessageActionCreator, registerChangesActionCreator} from "./../../redux/reducers/chatReducer"
-export default function Chat(props) { 
+
+export default function Chat(props) {
+
+    const [dialogue, setCurrentDialogue] = useState();
+    
+    function getCurrentDialogue(event) {
+        setCurrentDialogue(event.target.innerText)
+    }; 
+    
     function addMessage() {
-        props.dispatch(addMessageActionCreator())
+        props.onAddMessage();
     }
 
     function registerChanges(event) {
-    let value = event.target.value
-    props.dispatch(registerChangesActionCreator(value));
+        let value = event.target.value
+        props.onRegisterChanges(value)
     }
-
+    
     const messagesComponents =
-        props.ChatPageState.messages
+        props.messages
             .map((message, index) => {
                 return <div
                     key={index} className={chatStyles.message} id={message.id}>{message.text}</div>
 
             })
     const dialoguesComponents =
-        props.ChatPageState.dialogues
+        props.dialogues
             .map((dialogue, index) => {
                 let path = `/messages/${dialogue.id}`
                 return <div className={chatStyles.dialogueItem}>
@@ -34,10 +41,8 @@ export default function Chat(props) {
                         activeClassName={chatStyles.activeNavLink}>{dialogue.name}</NavLink>
                 </div>
             })
-    const [dialogue, setCurrentDialogue] = useState();
-    function getCurrentDialogue(event) {
-        setCurrentDialogue(event.target.innerText)
-    };
+  
+
     return (
         <section className={chatStyles.messages_section}>
             <div className={chatStyles.dialogues}>
@@ -47,8 +52,8 @@ export default function Chat(props) {
                 <h3>{dialogue}</h3>
                 {messagesComponents}
                 <div className={chatStyles.inputContainer}>
-                    <input
-                    value={props.ChatPageState.currentInput}
+                    <input 
+                    value={props.currentInput} 
                     onChange={registerChanges} 
                     type="text" />
                     <button onClick={addMessage}><SendOutlinedIcon fontSiza='large' color="primary" /></button>

@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import store from "./redux/store"
 
-const reRender = (data) => {
+const reRender = (state) => {
   return ReactDOM.render(
   <React.StrictMode>
     <App
-     data = {data} 
-     dispatch={store.dispatch.bind(store)}/>
+     state = {state} 
+     store = {store}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

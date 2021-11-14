@@ -1,16 +1,17 @@
 import React from "react"
 import postsStyles from './posts.module.css'
-import Post from './post/post'
-import { addPostActionCreator, registerChangesActionCreator } from "../../../redux/reducers/profileReducer";
+import Post from './post/Post'
+
 export default function Posts(props) {
 
   function getCurrentValue() {
-    props.dispatch(addPostActionCreator());
+    props.onGetCurrentValue()
   }
-  function registerChanges(event) {
-    let value = event.target.value;
-    props.dispatch(registerChangesActionCreator(value))
+  function registerChanges(e){
+    let value = e.target.value
+    props.onRegisterChanges(value);
   }
+  
   const postsComponents = props.posts
     .map((post, index) => {
       return (
@@ -28,10 +29,10 @@ export default function Posts(props) {
       <div className={postsStyles.input}>
         <h4>New Post</h4>
         <textarea
-          value={props.currentInputValue}
+          value={props.currentInput}
           onChange={registerChanges}
           placeholder="What's new?!"
-          name="" id="" cols="50" rows="2">{props.currentInputValue}</textarea>
+          name="" id="" cols="50" rows="2">{props.currentInput}</textarea>
         <button onClick={getCurrentValue}>Post</button>
       </div>
       {postsComponents}
