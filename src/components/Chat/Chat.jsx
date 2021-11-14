@@ -3,7 +3,7 @@ import chatStyles from './Chat.module.css'
 import { NavLink } from 'react-router-dom'
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import {addMessageActionCreator, registerChangesActionCreator} from "./../../redux/reducers/chatReducer"
-export default function Chat(props) {
+export default function Chat(props) { 
     function addMessage() {
         props.dispatch(addMessageActionCreator())
     }

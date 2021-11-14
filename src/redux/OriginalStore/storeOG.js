@@ -1,5 +1,5 @@
-import profileReducer from "../reducers/profileReducer"
-import chatReducer from "../reducers/chatReducer"
+// import profileReducer from "../reducers/profileReducer"
+// import chatReducer from "../reducers/chatReducer"
 // import sideBarReducer from "../reducers/sideBarReducer"
 
 const store = {

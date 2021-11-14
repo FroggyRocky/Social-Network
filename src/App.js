@@ -12,7 +12,7 @@ function App(props) {
     <Router>
       <div className="grid_container">
         <Header />
-        <SideBar sideBarState = {props.data.sideBarPage} />
+        <SideBar sideBarState = {props.data.SideBarPage} />
         <div className="mainContent_container">
           <Switch>
             <Route path="/profile">

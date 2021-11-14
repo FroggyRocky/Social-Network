@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from "./redux/OriginalStore/store"
+import store from "./redux/store"
 
 const reRender = (data) => {
   return ReactDOM.render(
@@ -15,7 +15,11 @@ const reRender = (data) => {
 }
 
 reRender(store.getState());
-store.subscribe(reRender)
+
+store.subscribe(() => {
+  let state = store.getState();
+  reRender(state)
+})
 
 
 
