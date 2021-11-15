@@ -8,7 +8,7 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import './App.css'
 
-export default function App(props) {
+export default function App(props) { debugger;
   return (
     <Router>
       <div className="grid_container">
@@ -17,10 +17,10 @@ export default function App(props) {
         <div className="mainContent_container">
           <Switch>
             <Route path="/profile">
-              <Profile store={props.store}/>
+              <Profile ProfilePage={props.state.ProfilePage}/>
             </Route>
             <Route path="/messages">
-              <ChatContainer store={props.store}/>
+              <ChatContainer/>
             </Route>
             <Route path="/feed">
               <Feed />

@@ -1,8 +1,11 @@
 import React from 'react';
 import UserInfo from './UserInfo/UserInfo';
 import PostsContainer from './posts/PostsContainer'
+
+
 export default function Profile(props) { 
-const users = props.store.getState().ProfilePage.users
+
+const users = props.ProfilePage.users
 .map((user, index) => {
   return <UserInfo 
       backImg = {user.backImg}
@@ -15,12 +18,9 @@ const users = props.store.getState().ProfilePage.users
       id={index}
   />
 })
-  return (   
-    <section>
+
+return  <section>
       {users}
-      <PostsContainer
-      store={props.store}
-      />
-    </section>
-  )
-}
+      <PostsContainer/>
+    </section> 
+  }

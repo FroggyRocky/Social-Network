@@ -43,7 +43,7 @@ export default function Chat(props) {
             })
   
 
-    return (
+    return  (
         <section className={chatStyles.messages_section}>
             <div className={chatStyles.dialogues}>
                 {dialoguesComponents}
