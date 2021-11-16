@@ -28,12 +28,16 @@ switch(action.type) {
       text: state.currentInput,
       id: state.messages.length + 1
     };
-    state.messages.push(newMessage);
-    state.currentInput = "";
-    return state;
-    case UPDATE_CHAT_INPUT:
- state.currentInput = action.textValue;
-    return state;
+    let newState = {...state};
+    newState.messages = [...state.messages]
+    newState.messages.push(newMessage);
+    newState.currentInput = "";
+    return newState;
+    case UPDATE_CHAT_INPUT:{
+let newState = {...state} 
+ newState.currentInput = action.textValue;
+    return newState;
+  }
     default: 
     return state;
 }

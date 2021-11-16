@@ -25,18 +25,22 @@
   } 
  const profileReducer = (state = initialState, action) => {
    switch(action.type) {
-     case ADD_POST: 
+     case ADD_POST: {
      let newPost = {
       text: state.currentInput,
       id: state.posts.length + 1,
       avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
     };
-    state.posts.push(newPost);
-    state.currentInput = "";
-    return state
+    let newState = {...state}
+    newState.posts = [...state.posts]
+    newState.posts.push(newPost);
+    newState.currentInput = "";
+    return newState
+  }
     case UPDATE_POST_INPUT:
-    state.currentInput = action.textValue;
-    return state
+    let newState = {...state}
+    newState.currentInput = action.textValue;
+    return newState
     default:
     return state  
    }

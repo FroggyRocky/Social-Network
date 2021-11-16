@@ -4,8 +4,8 @@ import Post from './post/Post'
 
 export default function Posts(props) {
 
-  function getCurrentValue() {
-    props.onGetCurrentValue()
+  function addPost() {
+    props.onAddPost()
   }
   function registerChanges(e){
     let value = e.target.value
@@ -33,7 +33,7 @@ export default function Posts(props) {
           onChange={registerChanges}
           placeholder="What's new?!"
           name="" id="" cols="50" rows="2">{props.currentInput}</textarea>
-        <button onClick={getCurrentValue}>Post</button>
+        <button onClick={addPost}>Post</button>
       </div>
       {postsComponents}
     </div>

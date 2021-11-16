@@ -8,7 +8,7 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import './App.css'
 
-export default function App(props) { debugger;
+export default function App(props) {
   return (
     <Router>
       <div className="grid_container">
