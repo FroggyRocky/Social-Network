@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import headerStyles from './Header.module.css'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -11,9 +11,9 @@ export default function Header() {
         <img src="https://bbts1.azureedge.net/images/p/full/2017/09/8819c275-f982-4c5b-aa61-754f4c6a5402.png" alt="" srcset="" />
       </div>
       <nav className={headerStyles.main_nav}>
-<Link to="/messages"><EmailOutlinedIcon color="primary"/></Link>
-<Link to="/profile"><HomeOutlinedIcon color="primary"/></Link>
-<PeopleAltOutlinedIcon color="primary" />
+<NavLink to="/messages"><EmailOutlinedIcon color="primary"/></NavLink>
+<NavLink to="/profile"><HomeOutlinedIcon color="primary"/></NavLink>
+<NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink>
       </nav>
     <div className={headerStyles.additional_nav}>
 <span>Log out</span>

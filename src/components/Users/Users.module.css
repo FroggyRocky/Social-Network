@@ -1,0 +1,27 @@
+.search_section {
+   margin-left: 10%;
+}
+.search_section input {
+    width: 70%;
+    height: 30px;
+}
+.user_box {
+    padding: 10px 0 20px 5px
+}
+.user_box_content{
+    display: flex;
+    align-items: center; 
+}
+.user_avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 70px;
+    margin-right: 20px;
+}
+.add_button {
+    margin-top:10px
+}
+.showMore_container {
+    padding: 15px 0 10px 0;
+    margin-left:40%;
+}

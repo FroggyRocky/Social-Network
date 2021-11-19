@@ -3,9 +3,7 @@ import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Profile from './components/Profile/Profile'
 import ChatContainer from "./components/Chat/ChatContainer";
-import Feed from './components/Feed/Feed'
-import Music from './components/Music/Music'
-import Settings from './components/Settings/Settings'
+import UsersContainer from './components/Users/UsersContainer'
 import './App.css'
 
 export default function App(props) {
@@ -22,15 +20,9 @@ export default function App(props) {
             <Route path="/messages">
               <ChatContainer/>
             </Route>
-            <Route path="/feed">
-              <Feed />
-            </Route>
-            <Route path="/music">
-              <Music />
-            </Route>
-            <Route path="/settings">
-              <Settings />
-            </Route>
+          <Route path="/users">
+        <UsersContainer/>
+          </Route>
           </Switch>
         </div>
       </div>

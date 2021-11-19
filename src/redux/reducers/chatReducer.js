@@ -4,12 +4,12 @@ const initialState = {
   dialogues: [
     {
       name: 'Erlic Bachman',
-      id: 2,
+      id: 1,
       avatar: 'https://pbs.twimg.com/profile_images/461277151514222593/xYCOja56_400x400.jpeg'
     },
     {
       name: 'Gilfoyle',
-      id: 3,
+      id: 2,
       avatar: 'https://static3.srcdn.com/wordpress/wp-content/uploads/2019/07/silicon-valley-Gilfoyle---s-10-Most-Badass-Quotes-featured-image.jpg'
     }
   ],

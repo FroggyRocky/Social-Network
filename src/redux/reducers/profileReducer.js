@@ -49,9 +49,9 @@
 
 ///Action Creators
 export const addPostActionCreator = () => {
-    return ({type:'ADD-POST'})
+    return ({type:ADD_POST})
 }
 export const registerChangesActionCreator = (value) => {
-    return ({type:'UPDATE-POST-INPUT', textValue:value})
+    return ({type:UPDATE_POST_INPUT, textValue:value})
 }
 export default profileReducer;
