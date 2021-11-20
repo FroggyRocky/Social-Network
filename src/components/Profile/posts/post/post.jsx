@@ -1,4 +1,4 @@
-import React from 'react'
+
 import postStyle from './post.module.css'
 export default function Post(props) {
   return (

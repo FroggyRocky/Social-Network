@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import chatStyles from './Chat.module.css'
 import { NavLink } from 'react-router-dom'
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
@@ -56,7 +56,7 @@ export default function Chat(props) {
                     value={props.currentInput} 
                     onChange={registerChanges} 
                     type="text" />
-                    <button onClick={addMessage}><SendOutlinedIcon fontSiza='large' color="primary" /></button>
+                    <button onClick={addMessage}><SendOutlinedIcon fontSize='medium' color="primary" /></button>
                 </div>
             </div>
         </section>

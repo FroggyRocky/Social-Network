@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
 import PostsContainer from './posts/PostsContainer'
 

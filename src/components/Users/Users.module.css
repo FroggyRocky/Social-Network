@@ -1,5 +1,6 @@
 .search_section {
    margin-left: 10%;
+   margin-bottom: 5%;
 }
 .search_section input {
     width: 70%;
@@ -13,8 +14,8 @@
     align-items: center; 
 }
 .user_avatar img {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     border-radius: 70px;
     margin-right: 20px;
 }

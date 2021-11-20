@@ -1,7 +1,7 @@
-import React from 'react';
+
 import {connect} from 'react-redux'
 import Users from './Users'
-import {friendUnfriendAC} from './../../redux/reducers/usersReducer'
+import {friendUnfriendAC, getUsersAC} from './../../redux/reducers/usersReducer'
 const mapStateProps = (state) => {
     return {
         users:state.UsersPage.users,
@@ -13,7 +13,10 @@ const mapDispatchProps = (dispatch) => {
   
     return {
         friendUnfriend: (id) =>
-        dispatch(friendUnfriendAC(id)) 
+        dispatch(friendUnfriendAC(id)),
+        getUsers: (users) => {
+        dispatch(getUsersAC(users))
+        }
     }
 }
 

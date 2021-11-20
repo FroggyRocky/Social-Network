@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {addMessageActionCreator, registerChangesActionCreator} from "./../../redux/reducers/chatReducer"
 import Chat from './Chat'
 import { connect } from 'react-redux'

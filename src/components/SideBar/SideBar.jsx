@@ -1,18 +1,18 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+
+import {NavLink} from "react-router-dom";
 import sideBarStyles from './SideBar.module.css'
 export default function SideBar(props) {
     return (
         <section className={sideBarStyles.sideBar}>
       <ul>
         <li>
-          <Link to="/feed">Feed</Link>
+          <NavLink to="/feed">Feed</NavLink>
         </li>
         <li>
-          <Link to="/music">Music</Link>
+          <NavLink to="/music">Music</NavLink>
         </li>
         <li>
-          <Link to="/Settings">Settings</Link>
+          <NavLink to="/Settings">Settings</NavLink>
         </li>
       </ul>
     </section>
