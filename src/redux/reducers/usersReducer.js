@@ -1,6 +1,6 @@
 const FRIEND_UNFRIEND = "FRIEND-UNFRIEND";
 const GET_USERS = "GET-USERS"
-
+const REGISTER_CHANGES = 'REGISTER-CHANGES'
 const initialState = {
     users: [],
 searchInput: ""
@@ -14,8 +14,12 @@ case FRIEND_UNFRIEND:
       ...state,
       users: state.users.map((el) => {
       if (action.id === el.id) {
-          return {...el, followed:!el.followed}
-        } else {return {...el}}
+          return {
+            ...el, followed:!el.followed
+          }
+        } else { return {
+          ...el
+        }}
       })
     }
     case GET_USERS:
@@ -23,13 +27,18 @@ case FRIEND_UNFRIEND:
         ...state,
         users:[...state.users, ...action.users]
       }
+    case REGISTER_CHANGES: 
+    return {
+      ...state,
+      searchInput:action.textValue
+    }
     default:
       return state
 }
 }
 
 
-const friendUnfriendAC = (id) => {
+const addFriendAC = (id) => {
   return {
     type:FRIEND_UNFRIEND,
     id:id }
@@ -42,5 +51,12 @@ const getUsersAC = (users) => {
   }
 }
 
+const registerChangesAC = (value) => {
+return {
+  type:REGISTER_CHANGES,
+  textValue: value
+}
+}
+
 export default usersReducer;
-export {friendUnfriendAC, getUsersAC}
+export {addFriendAC, getUsersAC, registerChangesAC }

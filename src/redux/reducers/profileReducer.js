@@ -31,16 +31,19 @@
       id: state.posts.length + 1,
       avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
     };
-    let newState = {...state}
-    newState.posts = [...state.posts]
-    newState.posts.push(newPost);
-    newState.currentInput = "";
-    return newState
+
+  return {
+      ...state,
+      posts:[...state.posts, {...newPost}],
+      currentInput: ''
+    }
+  
   }
     case UPDATE_POST_INPUT:
-    let newState = {...state}
-    newState.currentInput = action.textValue;
-    return newState
+    return {
+      ...state,
+      currentInput:action.textValue
+    }
     default:
     return state  
    }

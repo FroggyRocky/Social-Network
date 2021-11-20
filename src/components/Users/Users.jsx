@@ -1,22 +1,34 @@
+import React from 'react'
 import UsersStyles from './Users.module.css'
 import * as axios from 'axios'
 
-export default function Users(props) { 
 
-function getData() {
-if(props.users.length === 0) {
- axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
- .then((response) => {
-     props.getUsers(response.data.items);
+class Users extends React.Component {
+
+    constructor(props) {
+        super(props)
+if(this.props.users.length === 0) {
+axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
+.then((response) => {
+this.props.onGetUsers(response.data.items);
  })
-}
-}
+}  
+    }
 
-function addFriend(id) {
-    props.friendUnfriend(id)
-}
 
-const users = props.users.map((el) => {
+    addFriend = (id) => {
+       this.props.onAddFriend(id) 
+    }
+
+    registerChanges = (e) => {
+        const value = e.target.value;
+        this.props.onRegisterChanges(value)
+    }
+
+
+render = () => {
+
+const users = this.props.users.map((el) => {
     return <div className={UsersStyles.user_box}>
         <div className={UsersStyles.user_box_content}>
     <div className={UsersStyles.user_avatar}>
@@ -28,25 +40,28 @@ const users = props.users.map((el) => {
 <span></span>
 <span></span>
 <p>{el.status}</p>
-<button className={UsersStyles.add_button} onClick={() => {addFriend(el.id)}}><h3>{el.followed ? 'UNFOLLOW' : 'FOLLOW'}</h3></button>
+<button className={UsersStyles.add_button} onClick={() => {this.addFriend(el.id)}}><h3>{el.followed ? 'UNFOLLOW' : 'FOLLOW'}</h3></button>
 </div>
         </div>
     </div>
 })
 
-    return (
+return (
 <div className={UsersStyles.container}>
     <section className={UsersStyles.search_section}>
-        <input type="text" placeholder="Search"/>
+        <input onChange={this.registerChanges} value={this.props.searchInput} type="text" placeholder="Search"/>
     </section>
 <section className={UsersStyles.friends_section}>
 {users}
 </section>
 <section className={UsersStyles.showMore_container}>
     <div className={UsersStyles.showMore_button}>
-<button onClick={getData}><h2>SHOW MORE</h2></button>
+<button><h2>SHOW MORE</h2></button>
     </div>
 </section>
 </div>
     )
 }
+}
+
+export default Users

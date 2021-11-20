@@ -1,7 +1,8 @@
 
 import {connect} from 'react-redux'
 import Users from './Users'
-import {friendUnfriendAC, getUsersAC} from './../../redux/reducers/usersReducer'
+import {addFriendAC, getUsersAC, registerChangesAC} from './../../redux/reducers/usersReducer'
+
 const mapStateProps = (state) => {
     return {
         users:state.UsersPage.users,
@@ -12,10 +13,13 @@ const mapStateProps = (state) => {
 const mapDispatchProps = (dispatch) => {
   
     return {
-        friendUnfriend: (id) =>
-        dispatch(friendUnfriendAC(id)),
-        getUsers: (users) => {
+        onAddFriend: (id) =>
+        dispatch(addFriendAC(id)),
+        onGetUsers: (users) => {
         dispatch(getUsersAC(users))
+        },
+        onRegisterChanges: (value) => {
+            dispatch(registerChangesAC(value))
         }
     }
 }
