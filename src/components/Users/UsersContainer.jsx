@@ -1,12 +1,15 @@
 
 import {connect} from 'react-redux'
 import Users from './Users'
-import {addFriendAC, getUsersAC, registerChangesAC} from './../../redux/reducers/usersReducer'
+import {addFriendAC, getUsersAC, registerChangesAC, getTotalUsersAC, showMoreAC} from './../../redux/reducers/usersReducer'
 
 const mapStateProps = (state) => {
     return {
         users:state.UsersPage.users,
-        searchInput: state.UsersPage.searchInput
+        searchInput: state.UsersPage.searchInput,
+        totalUsersCount:state.UsersPage.totalUsersCount,
+        portionCount:state.UsersPage.portionCount,
+        currentPage:state.UsersPage.currentPage
     }
 }
 
@@ -20,6 +23,12 @@ const mapDispatchProps = (dispatch) => {
         },
         onRegisterChanges: (value) => {
             dispatch(registerChangesAC(value))
+        },
+        onGetTotalUsers: (totalCount) => {
+            dispatch(getTotalUsersAC(totalCount))
+        },
+        onShowMore: (newUsers) => {
+            dispatch(showMoreAC(newUsers))
         }
     }
 }

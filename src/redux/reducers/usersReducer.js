@@ -1,8 +1,14 @@
 const FRIEND_UNFRIEND = "FRIEND-UNFRIEND";
 const GET_USERS = "GET-USERS"
-const REGISTER_CHANGES = 'REGISTER-CHANGES'
+const REGISTER_CHANGES = 'REGISTER-CHANGES';
+const GET_TOTAL_USERS = "GET-TOTAL-USERS"
+const SHOW_MORE_USERS = 'SHOW-MORE-USERS'
+
 const initialState = {
     users: [],
+totalUsersCount:0,
+portionCount:5,
+currentPage:1,
 searchInput: ""
 }
 
@@ -32,6 +38,17 @@ case FRIEND_UNFRIEND:
       ...state,
       searchInput:action.textValue
     }
+    case GET_TOTAL_USERS:
+      return {
+        ...state,
+        totalUsersCount:action.totalUsersCount
+      }
+      case SHOW_MORE_USERS:
+        return {
+          ...state,
+          currentPage:state.currentPage + 1,
+          users:[...state.users, ...action.newUsers]
+        }
     default:
       return state
 }
@@ -58,5 +75,19 @@ return {
 }
 }
 
+const getTotalUsersAC = (totalUsersCount) => {
+return {
+  type:GET_TOTAL_USERS,
+  totalUsersCount
+}
+}
+
+export const showMoreAC = (newUsers) => {
+  return {
+    type:SHOW_MORE_USERS,
+    newUsers
+  }
+}
+
 export default usersReducer;
-export {addFriendAC, getUsersAC, registerChangesAC }
+export {addFriendAC, getUsersAC, registerChangesAC, getTotalUsersAC}

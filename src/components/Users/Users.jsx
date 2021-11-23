@@ -5,17 +5,13 @@ import * as axios from 'axios'
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props)
-if(this.props.users.length === 0) {
-axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
+    componentDidMount = () => {
+axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.portionCount}`)
 .then((response) => {
 this.props.onGetUsers(response.data.items);
- })
-}  
+this.props.onGetTotalUsers(response.data.totalCount)
+ })   
     }
-
-
     addFriend = (id) => {
        this.props.onAddFriend(id) 
     }
@@ -25,15 +21,22 @@ this.props.onGetUsers(response.data.items);
         this.props.onRegisterChanges(value)
     }
 
+    showMore = () => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage + 1}&count=${this.props.portionCount}`)
+        .then((response) => {
+            this.props.onShowMore(response.data.items)
+        })
+        
+    }
 
 render = () => {
+
 
 const users = this.props.users.map((el) => {
     return <div className={UsersStyles.user_box}>
         <div className={UsersStyles.user_box_content}>
     <div className={UsersStyles.user_avatar}>
-<img src={!el.photos.small ?
-`https://cdn3.vectorstock.com/i/thumb-large/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg} alt=""` : el.photos.small} />
+<img src={!el.photos.small ? "https://dental-smile.net/public/uploads/profile_png_1113533201904221555971977765.png" : el.photos.small} alt='userAvatar' />
     </div>
     <div className={UsersStyles.information_main}>
 <h4>{el.name}</h4>
@@ -43,6 +46,7 @@ const users = this.props.users.map((el) => {
 <button className={UsersStyles.add_button} onClick={() => {this.addFriend(el.id)}}><h3>{el.followed ? 'UNFOLLOW' : 'FOLLOW'}</h3></button>
 </div>
         </div>
+
     </div>
 })
 
@@ -56,7 +60,8 @@ return (
 </section>
 <section className={UsersStyles.showMore_container}>
     <div className={UsersStyles.showMore_button}>
-<button><h2>SHOW MORE</h2></button>
+
+<button onClick={() => this.showMore() }><h2>SHOW MORE</h2></button>
     </div>
 </section>
 </div>

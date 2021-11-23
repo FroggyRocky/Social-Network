@@ -1,4 +1,3 @@
-
 import Posts from "./Posts"
 import {addPostActionCreator, registerChangesActionCreator}
 from './../../../redux/reducers/profileReducer'
