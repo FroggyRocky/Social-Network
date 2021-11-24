@@ -1,6 +1,6 @@
 import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
-import PostsContainer from './posts/PostsContainer'
+import PostsContainer from './Posts/PostsContainer'
 
 
 export default function Profile(props) { 
