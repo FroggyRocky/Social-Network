@@ -1,6 +1,6 @@
 
 import {connect} from 'react-redux'
-import Users from './Users'
+import UsersAPIContainer from './UsersAPIContainer'
 import { addFriendAC, getUsersAC, registerChangesAC,
 getTotalUsersAC, showMoreAC, isLoadingAC, isLoadingShowMoreAC} from './../../redux/reducers/usersReducer'
 
@@ -43,6 +43,6 @@ const mapDispatchProps = (dispatch) => {
     }
 }
 
-const UsersContainer = connect(mapStateProps, mapDispatchProps)(Users)
+const UsersContainer = connect(mapStateProps, mapDispatchProps)(UsersAPIContainer)
 
 export default UsersContainer;
