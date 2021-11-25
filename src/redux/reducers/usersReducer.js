@@ -3,15 +3,18 @@ const GET_USERS = "GET-USERS"
 const REGISTER_CHANGES = 'REGISTER-CHANGES';
 const GET_TOTAL_USERS = "GET-TOTAL-USERS"
 const SHOW_MORE_USERS = 'SHOW-MORE-USERS'
+const IS_LOADING_MAIN = 'IS-LOADING-MAIN'
+const IS_LOADING_SHOW_MORE = 'IS-LOADING-SHOW-MORE'
 
 const initialState = {
     users: [],
 totalUsersCount:0,
 portionCount:5,
 currentPage:1,
-searchInput: ""
+searchInput: "",
+isLoading:false,
+isLoadingShowMore:false
 }
-
 
  const usersReducer = (state=initialState, action) =>{
 switch(action.type) {
@@ -49,45 +52,37 @@ case FRIEND_UNFRIEND:
           currentPage:state.currentPage + 1,
           users:[...state.users, ...action.newUsers]
         }
+      case IS_LOADING_MAIN:
+      return {
+        ...state,
+        isLoading:!state.isLoading
+      }
+      case IS_LOADING_SHOW_MORE:
+        return {
+          ...state,
+          isLoadingShowMore:!state.isLoadingShowMore
+        }
+
     default:
       return state
 }
 }
 
 
-const addFriendAC = (id) => {
-  return {
-    type:FRIEND_UNFRIEND,
-    id:id }
-}
+const addFriendAC = (id) => ({type:FRIEND_UNFRIEND, id})
 
-const getUsersAC = (users) => {
-  return {
-    type:GET_USERS,
-    users:users
-  }
-}
+const getUsersAC = (users) => ({type:GET_USERS, users:users})
 
-const registerChangesAC = (value) => {
-return {
-  type:REGISTER_CHANGES,
-  textValue: value
-}
-}
+const registerChangesAC = (value) => ({type:REGISTER_CHANGES,textValue:value})
 
-const getTotalUsersAC = (totalUsersCount) => {
-return {
-  type:GET_TOTAL_USERS,
-  totalUsersCount
-}
-}
+const getTotalUsersAC = (totalUsersCount) => ({type:GET_TOTAL_USERS,totalUsersCount})
 
-export const showMoreAC = (newUsers) => {
-  return {
-    type:SHOW_MORE_USERS,
-    newUsers
-  }
-}
+const showMoreAC = (newUsers) => ({type:SHOW_MORE_USERS, newUsers})
+
+const isLoadingAC = () => ({type:IS_LOADING_MAIN})
+
+const isLoadingShowMoreAC = () => ({type:IS_LOADING_SHOW_MORE})
 
 export default usersReducer;
-export {addFriendAC, getUsersAC, registerChangesAC, getTotalUsersAC}
+export {addFriendAC, getUsersAC, registerChangesAC, getTotalUsersAC,
+   showMoreAC, isLoadingAC, isLoadingShowMoreAC}

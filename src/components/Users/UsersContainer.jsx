@@ -1,7 +1,8 @@
 
 import {connect} from 'react-redux'
 import Users from './Users'
-import {addFriendAC, getUsersAC, registerChangesAC, getTotalUsersAC, showMoreAC} from './../../redux/reducers/usersReducer'
+import { addFriendAC, getUsersAC, registerChangesAC,
+getTotalUsersAC, showMoreAC, isLoadingAC, isLoadingShowMoreAC} from './../../redux/reducers/usersReducer'
 
 const mapStateProps = (state) => {
     return {
@@ -9,15 +10,18 @@ const mapStateProps = (state) => {
         searchInput: state.UsersPage.searchInput,
         totalUsersCount:state.UsersPage.totalUsersCount,
         portionCount:state.UsersPage.portionCount,
-        currentPage:state.UsersPage.currentPage
+        currentPage:state.UsersPage.currentPage,
+        isLoading: state.UsersPage.isLoading,
+        isLoadingShowMore:state.UsersPage.isLoadingShowMore
     }
 }
 
 const mapDispatchProps = (dispatch) => {
   
     return {
-        onAddFriend: (id) =>
-        dispatch(addFriendAC(id)),
+        onAddFriend: (id) => {
+        dispatch(addFriendAC(id))
+        },
         onGetUsers: (users) => {
         dispatch(getUsersAC(users))
         },
@@ -29,6 +33,12 @@ const mapDispatchProps = (dispatch) => {
         },
         onShowMore: (newUsers) => {
             dispatch(showMoreAC(newUsers))
+        },
+        onIsLoadingMain: () => {
+            dispatch(isLoadingAC())
+        },
+        onIsLoadingShowMore: () => {
+            dispatch(isLoadingShowMoreAC())
         }
     }
 }
