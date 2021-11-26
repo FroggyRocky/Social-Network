@@ -5,22 +5,17 @@ import PostsContainer from './Posts/PostsContainer'
 
 export default function Profile(props) { 
 
-const users = props.ProfilePage.users
-.map((user, index) => {
-  return <UserInfo 
-      backImg = {user.backImg}
-      avatar = {user.avatar}
-      name = {user.name}
-      location = {user.location}
-      education = {user.education}
-      age = {user.age}
-      hobbies = {user.hobbies}
-      id={index}
-  />
-})
 
 return  <section>
-      {users}
+      <UserInfo 
+      backImg = {props.profile.photos.large}
+      avatar = {props.profile.photos.small}
+      fullName = {props.profile.fullName}
+      location = {props.profile.location}
+      contacts = {props.profile.contacts}
+      age = {props.profile.age}
+      aboutMe = {props.profile.aboutMe}
+      id={props.profile.userId}/>
       <PostsContainer/>
     </section> 
   }

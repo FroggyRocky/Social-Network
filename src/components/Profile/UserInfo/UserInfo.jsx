@@ -13,11 +13,11 @@ export default function UserInfo(props) {
       <img src={props.avatar} alt="" />
     </div>
     <div className={userInfoStyles.userBio}>
-      <h3>{props.name}</h3>
+      <h3>{props.fullName}</h3>
       <p>{props.location}</p>
-      <p>{props.education}</p>
+      <p>Contacts:{props.contacts.github}</p>
       <p>age:{props.age}</p>
-      <p>Hobbies:{props.hobbies}</p>
+      <p>About:{props.aboutMe}</p>
     </div>
   </div>
 <div className={userInfoStyles.userFriends_container}>

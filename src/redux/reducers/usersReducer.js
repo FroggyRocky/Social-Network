@@ -69,20 +69,20 @@ case FRIEND_UNFRIEND:
 }
 
 
-const addFriendAC = (id) => ({type:FRIEND_UNFRIEND, id})
+const onAddFriend = (id) => ({type:FRIEND_UNFRIEND, id})
 
-const getUsersAC = (users) => ({type:GET_USERS, users:users})
+const onGetUsers = (users) => ({type:GET_USERS, users:users})
 
-const registerChangesAC = (value) => ({type:REGISTER_CHANGES,textValue:value})
+const onRegisterChanges = (value) => ({type:REGISTER_CHANGES,textValue:value})
 
-const getTotalUsersAC = (totalUsersCount) => ({type:GET_TOTAL_USERS,totalUsersCount})
+const onGetTotalUsers = (totalUsersCount) => ({type:GET_TOTAL_USERS,totalUsersCount})
 
-const showMoreAC = (newUsers) => ({type:SHOW_MORE_USERS, newUsers})
+const onShowMore = (newUsers) => ({type:SHOW_MORE_USERS, newUsers})
 
-const isLoadingAC = () => ({type:IS_LOADING_MAIN})
+const onIsLoadingMain = () => ({type:IS_LOADING_MAIN})
 
-const isLoadingShowMoreAC = () => ({type:IS_LOADING_SHOW_MORE})
+const onIsLoadingShowMore = () => ({type:IS_LOADING_SHOW_MORE})
 
 export default usersReducer;
-export {addFriendAC, getUsersAC, registerChangesAC, getTotalUsersAC,
-   showMoreAC, isLoadingAC, isLoadingShowMoreAC}
+export {onAddFriend,onGetUsers,onRegisterChanges,onGetTotalUsers,
+  onShowMore,onIsLoadingMain,onIsLoadingShowMore}

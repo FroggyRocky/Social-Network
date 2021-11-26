@@ -4,7 +4,7 @@ import headerStyles from './Header.module.css'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-export default function Header() {
+export default function Header(props) {
   return (
     <header className={headerStyles.header}>
       <div className={headerStyles.img}>
@@ -12,7 +12,7 @@ export default function Header() {
       </div>
       <nav className={headerStyles.main_nav}>
 <NavLink to="/messages"><EmailOutlinedIcon color="primary"/></NavLink>
-<NavLink to="/profile"><HomeOutlinedIcon color="primary"/></NavLink>
+<NavLink onClick={() => {props.onHomeClick()}} to="/profile"><HomeOutlinedIcon color="primary"/></NavLink>
 <NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink>
       </nav>
     <div className={headerStyles.additional_nav}>
