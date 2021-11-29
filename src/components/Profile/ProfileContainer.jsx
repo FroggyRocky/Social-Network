@@ -1,25 +1,34 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import profileStyles from './Profile.module.css'
 import * as axios from 'axios'
 import { connect } from 'react-redux'
-import { onGetUserProfileData } from '../../redux/reducers/profileReducer'
+import { onGetUserProfileData, loadCurrentUserProfileData} from '../../redux/reducers/profileReducer'
 import Profile from './Profile'
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-
-        let idParams = this.props.match.params.userId;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${idParams}`)
+        this.props.loadCurrentUserProfileData()
+        let idParam = this.props.match.params.userId;
+        !idParam && this.props.loadCurrentUserProfileData()
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${idParam}`)
             .then((response) => {
+                this.props.loadCurrentUserProfileData()
                 this.props.onGetUserProfileData(response.data);
             })
     }
 
     render() {
-        return <Profile profile={!this.props.profile.userProfileData ?
-            this.props.profile.defaultProfile : this.props.profile.userProfileData} />
-
+        return <>
+         {this.props.profile.isProfileLoading ? <div className={profileStyles.preloader_container_main}><CircularProgress /></div> :
+        <Profile  profile={!this.props.profile.currentUserProfileData ?
+            this.props.profile.defaultProfile : this.props.profile.currentUserProfileData} />
+             
+        }
+    </>
     }
 
 }
@@ -28,12 +37,14 @@ const ProfileAPIContainer = withRouter(ProfileContainer)
 
 const mapStateProps = (state) => {
     return {
-        profile: state.ProfilePage
+        profile: state.ProfilePage,
     }
 }
 
 const mapDispatchProps = {
-    onGetUserProfileData
+    onGetUserProfileData,
+    loadCurrentUserProfileData
+
 }
 
 export default connect(mapStateProps, mapDispatchProps)(ProfileAPIContainer)

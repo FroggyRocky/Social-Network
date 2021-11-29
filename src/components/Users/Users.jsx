@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import * as axios from 'axios'
 import UsersStyles from './Users.module.css'
 import userImg from '../../assets/imgs/userImg.jpg'
 import CircularProgress from '@mui/material/CircularProgress';
@@ -7,7 +8,22 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Users(props) {
 
-    function addFriend(id) {
+    function addFriend(id, isFollowing) {
+        if(isFollowing) {
+            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+                withCredentials:true,
+                headers: {
+                ///API-KEY: enter api key
+                }
+            })
+        } else if (!isFollowing) {
+            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,{},{
+                withCredentials:true,
+                headers: {
+                ///'API-KEY: enter api key'
+                }
+            })
+        }
         props.onAddFriend(id)
     }
 
@@ -30,8 +46,8 @@ export default function Users(props) {
                     <span></span>
                     <p>{el.status}</p>
                     <button className={UsersStyles.add_button}
-                     onClick={() => { addFriend(el.id) }}>
-                         <h3>{el.followed ? 'UNFOLLOW' : 'FOLLOW'}</h3></button>
+                    onClick={() => { addFriend(el.id, el.followed) }}>
+                         <h3>{el.followed ? 'FOLLOW' : 'UNFOLLOW' }</h3></button>
                 </div>
             </div>
 

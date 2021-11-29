@@ -2,6 +2,7 @@ const ADD_POST = 'ADD-POST';
  const UPDATE_POST_INPUT = 'UPDATE-POST-INPUT';
  const GET_USER_PROFILE = 'GET-USER-PROFILE'
  const GET_BACK_HOME = 'GET-BACK-HOME'
+ const LOAD_CURRENT_PROFILE_DATA = "LOAD_CURRENT_PROFILE_DATA"
  const initialState =  {
    defaultProfile: {
      userId:1,
@@ -25,8 +26,9 @@ const ADD_POST = 'ADD-POST';
         avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
       }
     ],
-    userProfileData:null,
-    currentInput: ""
+    currentUserProfileData:null,
+    currentInput: "",
+    isProfileLoading:false
   }
 
  const profileReducer = (state = initialState, action) => {
@@ -51,12 +53,17 @@ const ADD_POST = 'ADD-POST';
     case GET_USER_PROFILE: 
     return {
       ...state,
-      userProfileData:action.userProfileData
+      currentUserProfileData:action.userProfileData
     }
     case GET_BACK_HOME: 
     return {
       ...state,
-      userProfileData:null
+      currentUserProfileData:null
+    }
+    case LOAD_CURRENT_PROFILE_DATA: 
+    return {
+      ...state, 
+      isProfileLoading:!state.isProfileLoading
     }
     default:
     return state  
@@ -76,7 +83,9 @@ const onGetUserProfileData = (userProfileData) => {
   return {type:GET_USER_PROFILE, userProfileData}
 }
 
-const onHomeClick = () => ({type:GET_BACK_HOME})
+const onHomeClick = () => ({type:GET_BACK_HOME});
 
-export {onAddPostActionCreator,onGetUserProfileData,onRegisterChangesActionCreator, onHomeClick}
+const loadCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
+
+export {onAddPostActionCreator,onGetUserProfileData,onRegisterChangesActionCreator, onHomeClick, loadCurrentUserProfileData}
 export default profileReducer;
