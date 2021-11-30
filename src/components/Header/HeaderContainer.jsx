@@ -4,16 +4,14 @@ import * as axios from 'axios'
 import Header from './Header'
 import { onHomeClick } from '../../redux/reducers/profileReducer'
 import { authUserData } from '../../redux/reducers/authReducer'
-
+import {authAPI} from '../../api/api'
 class HeaderAPIContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        })
-            .then((response) => {
-                if (response.data.resultCode === 0) {
-                    let { email, id, login } = response.data.data
+        authAPI()
+            .then((response) => { 
+                if (response.resultCode === 0) {
+                    let { email, id, login } = response.data
                     this.props.authUserData(email, id, login);
                 }
 
@@ -30,7 +28,7 @@ class HeaderAPIContainer extends React.Component {
 
 const mapDispatchProps = {
     onHomeClick,
-    authUserData
+    authUserData,
 }
 
 const mapStateProps = (state) => {

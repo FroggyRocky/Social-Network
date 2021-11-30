@@ -4,6 +4,7 @@ import profileStyles from './Profile.module.css'
 import * as axios from 'axios'
 import { connect } from 'react-redux'
 import { onGetUserProfileData, loadCurrentUserProfileData} from '../../redux/reducers/profileReducer'
+import {getProfile} from '../../api/api'
 import Profile from './Profile'
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -13,11 +14,11 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         this.props.loadCurrentUserProfileData()
         let idParam = this.props.match.params.userId;
-        !idParam && this.props.loadCurrentUserProfileData()
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${idParam}`)
-            .then((response) => {
-                this.props.loadCurrentUserProfileData()
-                this.props.onGetUserProfileData(response.data);
+        !idParam && this.props.loadCurrentUserProfileData();
+        getProfile(idParam)
+            .then((data) => { 
+            this.props.loadCurrentUserProfileData()
+            this.props.onGetUserProfileData(data);
             })
     }
 

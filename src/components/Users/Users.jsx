@@ -1,32 +1,23 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import * as axios from 'axios'
 import UsersStyles from './Users.module.css'
 import userImg from '../../assets/imgs/userImg.jpg'
 import CircularProgress from '@mui/material/CircularProgress';
+import {UsersAPI} from '../../api/api'
 
 
 export default function Users(props) {
 
-    function addFriend(id, isFollowing) {
-        if(isFollowing) {
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-                withCredentials:true,
-                headers: {
-                ///API-KEY: enter api key
-                }
-            })
-        } else if (!isFollowing) {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,{},{
-                withCredentials:true,
-                headers: {
-                ///'API-KEY: enter api key'
-                }
-            })
-        }
-        props.onAddFriend(id)
-    }
+    function addFriend(id, isFollowed) {
 
+        !isFollowed ?
+                    UsersAPI.friend(id)
+                    .then(res => res.data.resultCode === 0 && props.onAddFriend(id))
+                :  
+                    UsersAPI.unfriend(id)
+                .then(res => res.data.resultCode === 0 && props.onAddFriend(id))
+             }
+              
     function registerChanges(e) {
         const value = e.target.value;
         props.onRegisterChanges(value)

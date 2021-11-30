@@ -2,9 +2,9 @@ import React from 'react'
 import Users from './Users'
 import { connect } from 'react-redux'
 import * as axios from 'axios'
-import {
-    onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
-    onShowMore, onIsLoadingMain, onIsLoadingShowMore
+import {UsersAPI} from '../../api/api'
+import {onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
+onShowMore, onIsLoadingMain, onIsLoadingShowMore
 } from './../../redux/reducers/usersReducer'
 
 
@@ -12,20 +12,20 @@ class UsersAPIContainer extends React.Component {
 
     componentDidMount = () => {
         this.props.onIsLoadingMain();
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.portionCount}`)
-            .then((response) => {
+        UsersAPI.getUsers(this.props.currentPage, this.props.portionCount)
+            .then((data) => {
                 this.props.onIsLoadingMain();
-                this.props.onGetUsers(response.data.items);
-                this.props.onGetTotalUsers(response.data.totalCount)
+                this.props.onGetUsers(data);
+                this.props.onGetTotalUsers(data.totalCount)
             })
     }
 
     showMore = () => {
         this.props.onIsLoadingShowMore()
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage + 1}&count=${this.props.portionCount}`)
-            .then((response) => {
+        UsersAPI.getUsers(this.props.currentPage+1, this.props.portionCount)
+            .then((data) => {
                 this.props.onIsLoadingShowMore();
-                this.props.onShowMore(response.data.items)
+                this.props.onShowMore(data)
             })
     }
 
