@@ -1,8 +1,11 @@
-const ADD_POST = 'ADD-POST';
+import {ProfileAPI} from '../../api/api'
+ 
+ const ADD_POST = 'ADD-POST';
  const UPDATE_POST_INPUT = 'UPDATE-POST-INPUT';
  const GET_USER_PROFILE = 'GET-USER-PROFILE'
  const GET_BACK_HOME = 'GET-BACK-HOME'
  const LOAD_CURRENT_PROFILE_DATA = "LOAD_CURRENT_PROFILE_DATA"
+
  const initialState =  {
    defaultProfile: {
      userId:1,
@@ -87,5 +90,18 @@ const onHomeClick = () => ({type:GET_BACK_HOME});
 
 const loadCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
 
-export {onAddPostActionCreator,onGetUserProfileData,onRegisterChangesActionCreator, onHomeClick, loadCurrentUserProfileData}
+export {onAddPostActionCreator, onRegisterChangesActionCreator, onHomeClick, loadProfile}
 export default profileReducer;
+
+
+const loadProfile = (idParam) => {
+  return (dispatch) => {
+    dispatch(loadCurrentUserProfileData())
+        !idParam && dispatch(loadCurrentUserProfileData())
+        ProfileAPI.getProfile(idParam)
+            .then((data) => { 
+            dispatch(loadCurrentUserProfileData())
+            dispatch(onGetUserProfileData(data))
+            })
+  }
+}

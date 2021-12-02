@@ -1,4 +1,5 @@
-import {createStore, combineReducers} from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
+import thunkMiddleWare from 'redux-thunk';
 import  profileReducer from './reducers/profileReducer'
 import chatReducer from './reducers/chatReducer';
 import sideBarReducer from './reducers/sideBarReducer'
@@ -12,7 +13,7 @@ const reducers = combineReducers({
     SideBarPage:sideBarReducer,
     UserAuth:authReducer
 })
-const store = createStore(reducers)
+const store = createStore(reducers, applyMiddleware(thunkMiddleWare))
 
 window.state = store;
 

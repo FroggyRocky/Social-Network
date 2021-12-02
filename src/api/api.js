@@ -33,12 +33,13 @@ export const authAPI = () => {
         .then(response => response.data)
     }
 
-export const getProfile = (id) => {
+
+export const ProfileAPI = {
+getProfile (id) {
     return instance.get(`profile/${id}`)
     .then((response) => {
         return response.data
     })
 
-}
-
+}}
 

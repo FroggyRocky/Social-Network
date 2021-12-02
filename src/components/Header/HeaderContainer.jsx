@@ -1,21 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as axios from 'axios'
 import Header from './Header'
 import { onHomeClick } from '../../redux/reducers/profileReducer'
-import { authUserData } from '../../redux/reducers/authReducer'
-import {authAPI} from '../../api/api'
+import {toAuth} from '../../redux/reducers/authReducer'
+
 class HeaderAPIContainer extends React.Component {
 
     componentDidMount() {
-        authAPI()
-            .then((response) => { 
-                if (response.resultCode === 0) {
-                    let { email, id, login } = response.data
-                    this.props.authUserData(email, id, login);
-                }
-
-            })
+        this.props.toAuth()
     }
 
     render() {
@@ -28,7 +20,7 @@ class HeaderAPIContainer extends React.Component {
 
 const mapDispatchProps = {
     onHomeClick,
-    authUserData,
+    toAuth
 }
 
 const mapStateProps = (state) => {

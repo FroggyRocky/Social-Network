@@ -1,3 +1,5 @@
+import { authAPI } from "../../api/api";
+
 const GET_LOGGED_USER_DATA = 'GET-LOGGED-USER-DATA';
 
 const initialState = {
@@ -26,5 +28,15 @@ switch (action.type) {
 const authUserData = (email,id,login) => 
 ({type:GET_LOGGED_USER_DATA, userData:{email,id,login}})
 
-export {authUserData};
- export default authReducer
+export default authReducer
+export {toAuth};
+
+const toAuth = ()=> {
+    return (dispatch) => {
+        authAPI()
+            .then((response) => { 
+                if (response.resultCode === 0) {
+                    let { email, id, login } = response.data
+                    dispatch(authUserData(email, id, login))
+                } })
+    }}

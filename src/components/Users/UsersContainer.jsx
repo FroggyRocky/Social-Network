@@ -1,37 +1,18 @@
 import React from 'react'
 import Users from './Users'
 import { connect } from 'react-redux'
-import * as axios from 'axios'
-import {UsersAPI} from '../../api/api'
-import {onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
-onShowMore, onIsLoadingMain, onIsLoadingShowMore, isFollowing
-} from './../../redux/reducers/usersReducer'
+import {onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
+from './../../redux/reducers/usersReducer'
 
 
 class UsersAPIContainer extends React.Component {
 
     componentDidMount = () => {
-        this.props.onIsLoadingMain();
-        UsersAPI.getUsers(this.props.currentPage, this.props.portionCount)
-            .then((data) => {
-                this.props.onIsLoadingMain();
-                this.props.onGetUsers(data);
-                this.props.onGetTotalUsers(data.totalCount)
-            })
+       this.props.loadUsers(this.props.currentPage, this.props.portionCount)
     }
-
-    showMore = () => {
-        this.props.onIsLoadingShowMore()
-        UsersAPI.getUsers(this.props.currentPage+1, this.props.portionCount)
-            .then((data) => {
-                this.props.onIsLoadingShowMore();
-                this.props.onShowMore(data)
-            })
-    }
-
 
     render() {
-        return <Users {...this.props} showMore={this.showMore} />
+        return <Users {...this.props}/>
     }
 }
 
@@ -45,14 +26,11 @@ const mapStateProps = (state) => {
         currentPage: state.UsersPage.currentPage,
         isLoading: state.UsersPage.isLoading,
         isLoadingShowMore: state.UsersPage.isLoadingShowMore,
-        disabledButtons: state.UsersPage.disabledButtons,
-    }
+        disabledButtons: state.UsersPage.disabledButtons
+        }
 }
 
-const mapDispatch = {
-    onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
-    onShowMore, onIsLoadingMain, onIsLoadingShowMore, isFollowing
-}
+const mapDispatch = { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend}
 
 export default connect(mapStateProps, mapDispatch)(UsersAPIContainer)
 

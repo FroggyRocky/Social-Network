@@ -3,27 +3,18 @@ import { NavLink } from 'react-router-dom'
 import UsersStyles from './Users.module.css'
 import userImg from '../../assets/imgs/userImg.jpg'
 import CircularProgress from '@mui/material/CircularProgress';
-import { UsersAPI } from '../../api/api'
+
 
 
 
 export default function Users(props) {
 
+    function showMore() {
+        props.showMoreUsers(props.currentPage, props.portionCount)
+     }
+
     function addFriend(id, isFollowed) {
-        props.isFollowing(id, true)
-        if (isFollowed) {
-            UsersAPI.unfriend(id)
-                .then((res) => { 
-                    res.resultCode === 0 && props.onAddFriend(id)
-                    props.isFollowing(id, false)
-                })
-        } else if (!isFollowed) {
-            UsersAPI.friend(id)
-                .then((res) => {
-                    res.resultCode === 0 && props.onAddFriend(id)
-                    props.isFollowing(id, false)
-                })
-        }
+      props.friendUnfriend(id,isFollowed)
       }
 
     function registerChanges(e) {
@@ -44,7 +35,8 @@ export default function Users(props) {
                     <span></span>
                     <span></span>
                     <p>{el.status}</p>
-                    <button disabled={props.disabledButtons.some((id) => id === el.id)} className={UsersStyles.add_button}
+                    <button disabled={props.disabledButtons.some((id) => id === el.id)} 
+                        className={UsersStyles.add_button}
                         onClick={() => { addFriend(el.id, el.followed) }}>
                         <h3>{el.followed ? 'FOLLOW' : 'UNFOLLOW'}</h3></button>
                 </div>
@@ -73,7 +65,8 @@ export default function Users(props) {
                             {props.isLoadingShowMore ?
                                 <div className={UsersStyles.preloader_additional}>
                                     <CircularProgress /></div> :
-                                <button disabled={props.isLoadingShowMore} onClick={props.showMore}><h2>SHOW MORE</h2></button>}
+                                <button disabled={props.isLoadingShowMore} 
+                                onClick={showMore}><h2>SHOW MORE</h2></button>}
                         </div>
                     </section>
                 </div>}

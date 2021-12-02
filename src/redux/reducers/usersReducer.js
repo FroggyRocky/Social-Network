@@ -1,4 +1,4 @@
-import { AccessTimeOutlined } from "@mui/icons-material";
+import {UsersAPI} from '../../api/api'
 
 const FRIEND_UNFRIEND = "FRIEND-UNFRIEND";
 const GET_USERS = "GET-USERS"
@@ -95,8 +95,50 @@ const onIsLoadingShowMore = () => ({ type: IS_LOADING_SHOW_MORE })
 
 const isFollowing = (id, isFollowing) => ({ type: IS_FOLLOWING, id, isFollowing })
 
+
 export default usersReducer;
-export {
-  onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
-  onShowMore, onIsLoadingMain, onIsLoadingShowMore, isFollowing
+export { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
+
+
+const loadUsers = (currentPage, portionCount) => {
+  return (dispatch) => {
+    dispatch(onIsLoadingMain())
+    UsersAPI.getUsers(currentPage, portionCount)
+        .then((data) => {
+            dispatch(onIsLoadingMain())
+            dispatch(onGetUsers(data));
+            dispatch(onGetTotalUsers(data.totalCount))
+        })
+  }
+}
+
+const showMoreUsers = (currentPage, portionCount) => {
+  return (dispatch) => {
+    dispatch(onIsLoadingShowMore())
+    UsersAPI.getUsers(currentPage + 1, portionCount)
+        .then((data) => {
+            dispatch(onIsLoadingShowMore())
+            dispatch(onShowMore(data))
+        })
+  }
+}
+
+
+const friendUnfriend = (id, isFollowed) => {
+  return (dispatch) => {
+    dispatch(isFollowing(id, true))
+    if (isFollowed) {
+        UsersAPI.unfriend(id)
+            .then((res) => { 
+                res.resultCode === 0 && dispatch(onAddFriend(id))
+                dispatch(isFollowing(id, false))
+            })
+    } else if (!isFollowed) {
+        UsersAPI.friend(id)
+            .then((res) => {
+                res.resultCode === 0 && dispatch(onAddFriend(id))
+                dispatch(isFollowing(id, false))
+            })
+    }
+  }
 }
