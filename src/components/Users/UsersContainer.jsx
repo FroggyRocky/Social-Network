@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import * as axios from 'axios'
 import {UsersAPI} from '../../api/api'
 import {onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
-onShowMore, onIsLoadingMain, onIsLoadingShowMore
+onShowMore, onIsLoadingMain, onIsLoadingShowMore, isFollowing
 } from './../../redux/reducers/usersReducer'
 
 
@@ -44,13 +44,14 @@ const mapStateProps = (state) => {
         portionCount: state.UsersPage.portionCount,
         currentPage: state.UsersPage.currentPage,
         isLoading: state.UsersPage.isLoading,
-        isLoadingShowMore: state.UsersPage.isLoadingShowMore
+        isLoadingShowMore: state.UsersPage.isLoadingShowMore,
+        disabledButtons: state.UsersPage.disabledButtons,
     }
 }
 
 const mapDispatch = {
     onAddFriend, onGetUsers, onRegisterChanges, onGetTotalUsers,
-    onShowMore, onIsLoadingMain, onIsLoadingShowMore
+    onShowMore, onIsLoadingMain, onIsLoadingShowMore, isFollowing
 }
 
 export default connect(mapStateProps, mapDispatch)(UsersAPIContainer)

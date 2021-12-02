@@ -17,11 +17,14 @@ export const UsersAPI = {
     .then(response => response.data.items)},
 
     friend(id) {
-    return instance.post(`follow/${id}`)},
+    return instance.post(`follow/${id}`)
+        .then(res => res.data)
+},
 
     unfriend(id) {
-    return instance.delete(`follow/${id}`)}
-
+    return instance.delete(`follow/${id}`)
+    .then(res => res.data) 
+}
 
  }
 
