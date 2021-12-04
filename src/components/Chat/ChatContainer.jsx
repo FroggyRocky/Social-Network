@@ -8,7 +8,8 @@ const mapStateToProps = (state) => {
 return {
     messages: state.ChatPage.messages,
     dialogues: state.ChatPage.dialogues,
-    currentInput: state.ChatPage.currentInput
+    currentInput: state.ChatPage.currentInput,
+    isLogged:state.Auth.isLogged
 }
 }
 

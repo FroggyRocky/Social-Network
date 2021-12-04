@@ -11,7 +11,7 @@ const reducers = combineReducers({
     ChatPage:chatReducer,
     UsersPage:usersReducer,
     SideBarPage:sideBarReducer,
-    UserAuth:authReducer
+    Auth:authReducer
 })
 const store = createStore(reducers, applyMiddleware(thunkMiddleWare))
 

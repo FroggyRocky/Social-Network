@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import profileStyles from './Profile.module.css'
 import { connect } from 'react-redux'
 import {loadProfile} from '../../redux/reducers/profileReducer'
@@ -15,6 +15,7 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        if(!this.props.isLogged) return <Redirect to='/login' />
         return <>
          {this.props.profile.isProfileLoading ? <div className={profileStyles.preloader_container_main}><CircularProgress /></div> :
         <Profile  profile={!this.props.profile.currentUserProfileData ?
@@ -31,6 +32,7 @@ const ProfileAPIContainer = withRouter(ProfileContainer)
 const mapStateProps = (state) => {
     return {
         profile: state.ProfilePage,
+        isLogged: state.Auth.isLogged
     }
 }
 

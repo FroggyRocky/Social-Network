@@ -16,7 +16,7 @@ export default function Header(props) {
 <NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink>
       </nav>
     <div className={headerStyles.additional_nav}>
-<span>{props.UserAuth.isLogged ? props.UserAuth.login : 'login'}</span>
+<span>{props.Auth.isLogged ? props.Auth.login : 'login'}</span>
     </div>
     </header>
   )

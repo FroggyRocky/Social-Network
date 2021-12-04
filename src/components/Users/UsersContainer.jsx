@@ -1,6 +1,7 @@
 import React from 'react'
 import Users from './Users'
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import {onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
 from './../../redux/reducers/usersReducer'
 
@@ -11,7 +12,7 @@ class UsersAPIContainer extends React.Component {
        this.props.loadUsers(this.props.currentPage, this.props.portionCount)
     }
 
-    render() {
+    render() { 
         return <Users {...this.props}/>
     }
 }

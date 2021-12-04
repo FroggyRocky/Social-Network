@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import {Redirect} from 'react-router-dom'
 import chatStyles from './Chat.module.css'
 import { NavLink } from 'react-router-dom'
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
@@ -42,7 +43,7 @@ export default function Chat(props) {
                 </div>
             })
   
-
+if (!props.isLogged) return <Redirect to='/login' />
     return  (
         <section className={chatStyles.messages_section}>
             <div className={chatStyles.dialogues}>

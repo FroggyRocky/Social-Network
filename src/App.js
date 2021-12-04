@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HeaderContainer from './components/Header/HeaderContainer'
 import SideBar from './components/SideBar/SideBar'
 import ProfileContainer from './components/Profile/ProfileContainer'
-import ChatContainer from "./components/Chat/ChatContainer";
+import ChatContainer from "./components/Chat/ChatContainer"
 import UsersContainer from './components/Users/UsersContainer'
+import Login from './components/Login/Login'
 import './App.css'
 
 export default function App(props) {
@@ -22,6 +23,9 @@ export default function App(props) {
             </Route>
           <Route path="/users">
         <UsersContainer/>
+          </Route>
+          <Route path = "/login">
+            <Login />
           </Route>
           </Switch>
         </div>

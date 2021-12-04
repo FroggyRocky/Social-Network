@@ -25,7 +25,7 @@ const mapDispatchProps = {
 
 const mapStateProps = (state) => {
     return {
-        UserAuth: state.UserAuth
+        Auth: state.Auth
     }
 }
 export default connect(mapStateProps, mapDispatchProps)(HeaderAPIContainer)
