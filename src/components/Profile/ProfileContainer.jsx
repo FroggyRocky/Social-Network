@@ -15,7 +15,7 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        if(!this.props.isLogged) return <Redirect to='/login' />
+       
         return <>
          {this.props.profile.isProfileLoading ? <div className={profileStyles.preloader_container_main}><CircularProgress /></div> :
         <Profile  profile={!this.props.profile.currentUserProfileData ?
@@ -27,7 +27,14 @@ class ProfileContainer extends React.Component {
 
 }
 
+
+
 const ProfileAPIContainer = withRouter(ProfileContainer)
+
+const withAuthContainer = (props) => {
+    if(!props.isLogged) return <Redirect to='/login' />
+    return <ProfileAPIContainer {...props} />
+} 
 
 const mapStateProps = (state) => {
     return {
@@ -38,9 +45,8 @@ const mapStateProps = (state) => {
 
 const mapDispatchProps = {
     loadProfile
-
 }
 
-export default connect(mapStateProps, mapDispatchProps)(ProfileAPIContainer)
+export default connect(mapStateProps, mapDispatchProps)(withAuthContainer)
 
 

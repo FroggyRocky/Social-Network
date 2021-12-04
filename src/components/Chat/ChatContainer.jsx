@@ -1,7 +1,10 @@
 
-import {addMessageActionCreator, registerChangesActionCreator} from "./../../redux/reducers/chatReducer"
+import {addMessageActionCreator, registerChangesActionCreator}
+ from "./../../redux/reducers/chatReducer"
 import Chat from './Chat'
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
+
 
 
 const mapStateToProps = (state) => {
@@ -24,6 +27,10 @@ return {
 }
 }
 
-const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(Chat)
+const withAuthContainer = (props) => {
+    if(!props.isLogged) return <Redirect to='/login' />
+    return <Chat {...props} />
+} 
+const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(withAuthContainer)
 
 export default ChatContainer;
