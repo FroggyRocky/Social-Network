@@ -1,11 +1,11 @@
 import React from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import profileStyles from './Profile.module.css'
 import { connect } from 'react-redux'
 import {loadProfile} from '../../redux/reducers/profileReducer'
 import Profile from './Profile'
 import CircularProgress from '@mui/material/CircularProgress';
-
+import withRedirect from '../../hoc/withRedirect'
 
 class ProfileContainer extends React.Component {
 
@@ -31,15 +31,11 @@ class ProfileContainer extends React.Component {
 
 const ProfileAPIContainer = withRouter(ProfileContainer)
 
-const withAuthContainer = (props) => {
-    if(!props.isLogged) return <Redirect to='/login' />
-    return <ProfileAPIContainer {...props} />
-} 
+const withRedirectProfileContainer = withRedirect(ProfileAPIContainer)
 
 const mapStateProps = (state) => {
     return {
         profile: state.ProfilePage,
-        isLogged: state.Auth.isLogged
     }
 }
 
@@ -47,6 +43,6 @@ const mapDispatchProps = {
     loadProfile
 }
 
-export default connect(mapStateProps, mapDispatchProps)(withAuthContainer)
+export default connect(mapStateProps, mapDispatchProps)(withRedirectProfileContainer)
 
 
