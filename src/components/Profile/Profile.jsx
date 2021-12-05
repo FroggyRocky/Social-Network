@@ -6,7 +6,6 @@ import backImg from '../../assets/imgs/backImg.jpg'
 
 export default function Profile(props) { 
 
-
 return <section>
       <UserInfo 
       backImg = {!props.profile.photos.large ? backImg : props.profile.photos.large}
@@ -16,7 +15,10 @@ return <section>
       contacts = {props.profile.contacts}
       age = {props.profile.age}
       aboutMe = {props.profile.aboutMe}
-      id={props.profile.userId}/>
+      id = {props.profile.userId}
+      status = {props.status}
+      setStatus={props.setStatus}
+      />
       <PostsContainer/>
     </section> 
   }

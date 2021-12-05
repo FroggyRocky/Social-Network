@@ -4,7 +4,9 @@ import {ProfileAPI} from '../../api/api'
  const UPDATE_POST_INPUT = 'UPDATE-POST-INPUT';
  const GET_USER_PROFILE = 'GET-USER-PROFILE'
  const GET_BACK_HOME = 'GET-BACK-HOME'
- const LOAD_CURRENT_PROFILE_DATA = "LOAD_CURRENT_PROFILE_DATA"
+ const LOAD_CURRENT_PROFILE_DATA = "LOAD-CURRENT-PROFILE-DATA"
+ const GET_PROFILE_STATUS = 'GET-PROFILE-STATUS'
+ const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS'
 
  const initialState =  {
    defaultProfile: {
@@ -30,6 +32,7 @@ import {ProfileAPI} from '../../api/api'
       }
     ],
     currentUserProfileData:null,
+    currentProfileStatus:"",
     currentInput: "",
     isProfileLoading:false
   }
@@ -68,6 +71,16 @@ import {ProfileAPI} from '../../api/api'
       ...state, 
       isProfileLoading:!state.isProfileLoading
     }
+    case GET_PROFILE_STATUS: 
+    return {
+      ...state,
+      currentProfileStatus:action.status
+    }
+    case SET_PROFILE_STATUS: 
+      return {
+        ...state,
+        currentProfileStatus:action.status
+      }
     default:
     return state  
    }
@@ -90,7 +103,12 @@ const onHomeClick = () => ({type:GET_BACK_HOME});
 
 const loadCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
 
-export {onAddPostActionCreator, onRegisterChangesActionCreator, onHomeClick, loadProfile}
+const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
+
+const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
+
+export {onAddPostActionCreator, onRegisterChangesActionCreator, onHomeClick,
+loadProfile, getProfileStatus,setProfileStatus}
 export default profileReducer;
 
 
@@ -103,5 +121,23 @@ const loadProfile = (idParam) => {
             dispatch(loadCurrentUserProfileData())
             dispatch(onGetUserProfileData(data))
             })
+  }
+}
+
+const getProfileStatus = (id) => {
+  return (dispatch) => {
+    ProfileAPI.getProfileStatus(id)
+    .then((res) => {
+      dispatch(getStatus(res.data))
+    })
+  }
+}
+
+const setProfileStatus = (status) => { 
+  return (dispatch) => {
+    ProfileAPI.setProfileStatus(status)
+    .then((res) => {
+      res.data.resultCode === 0 && dispatch(setStatus(status))
+    })
   }
 }

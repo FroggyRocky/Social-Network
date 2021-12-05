@@ -40,6 +40,12 @@ getProfile (id) {
     .then((response) => {
         return response.data
     })
-
-}}
+},
+getProfileStatus(id) {
+    return instance.get(`profile/status/${id}`)
+},
+setProfileStatus(status){
+    return instance.put('profile/status', {status})
+}
+}
 

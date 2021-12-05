@@ -1,10 +1,9 @@
 import React from 'react'
 import Users from './Users'
 import { connect } from 'react-redux'
-import {Redirect} from 'react-router-dom'
 import {onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
 from './../../redux/reducers/usersReducer'
-
+import withRedirect from '../../hoc/withRedirect'
 
 class UsersAPIContainer extends React.Component {
 
@@ -33,7 +32,9 @@ const mapStateProps = (state) => {
 
 const mapDispatch = { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend}
 
-export default connect(mapStateProps, mapDispatch)(UsersAPIContainer)
+const withRedirectContainer = withRedirect(UsersAPIContainer)
+
+export default connect(mapStateProps, mapDispatch)(withRedirectContainer)
 
 
 
