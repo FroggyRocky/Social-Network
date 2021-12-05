@@ -1,4 +1,5 @@
 import React from 'react'
+import {compose} from 'redux'
 import { withRouter} from 'react-router-dom'
 import profileStyles from './Profile.module.css'
 import { connect } from 'react-redux'
@@ -10,6 +11,7 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let idParam = this.props.match.params.userId;
+        if(!idParam) idParam = 21039 
         this.props.loadProfile(idParam),
         this.props.getProfileStatus(idParam)
         }
@@ -28,11 +30,6 @@ class ProfileContainer extends React.Component {
 }
 
 
-
-const ProfileAPIContainer = withRouter(ProfileContainer)
-
-
-
 const mapStateProps = (state) => {
     return {
         profile: state.ProfilePage,
@@ -46,6 +43,9 @@ const mapDispatchProps = {
     setProfileStatus
 }
 
-export default connect(mapStateProps, mapDispatchProps)(ProfileAPIContainer)
+export default compose(
+    withRouter,
+    connect(mapStateProps, mapDispatchProps))
+    (ProfileContainer)
 
 

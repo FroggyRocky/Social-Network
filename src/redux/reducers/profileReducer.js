@@ -61,11 +61,6 @@ import {ProfileAPI} from '../../api/api'
       ...state,
       currentUserProfileData:action.userProfileData
     }
-    case GET_BACK_HOME: 
-    return {
-      ...state,
-      currentUserProfileData:null
-    }
     case LOAD_CURRENT_PROFILE_DATA: 
     return {
       ...state, 
@@ -99,15 +94,13 @@ const onGetUserProfileData = (userProfileData) => {
   return {type:GET_USER_PROFILE, userProfileData}
 }
 
-const onHomeClick = () => ({type:GET_BACK_HOME});
-
 const loadCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
 
 const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
-export {onAddPostActionCreator, onRegisterChangesActionCreator, onHomeClick,
+export {onAddPostActionCreator, onRegisterChangesActionCreator,
 loadProfile, getProfileStatus,setProfileStatus}
 export default profileReducer;
 

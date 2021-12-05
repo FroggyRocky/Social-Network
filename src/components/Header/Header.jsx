@@ -12,7 +12,7 @@ export default function Header(props) {
       </div>
       <nav className={headerStyles.main_nav}>
 <NavLink to="/messages"><EmailOutlinedIcon color="primary"/></NavLink>
-<NavLink onClick={props.onHomeClick} to="/profile"><HomeOutlinedIcon color="primary"/></NavLink>
+<NavLink to="/profile/21039"><HomeOutlinedIcon color="primary"/></NavLink>
 <NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink>
       </nav>
     <div className={headerStyles.additional_nav}>

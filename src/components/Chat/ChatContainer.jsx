@@ -2,6 +2,7 @@
 import {addMessageActionCreator, registerChangesActionCreator}
  from "./../../redux/reducers/chatReducer"
 import Chat from './Chat'
+import {compose} from 'redux'
 import { connect } from 'react-redux'
 import withRedirect from "../../hoc/withRedirect"
 
@@ -24,8 +25,7 @@ return {
 }
 }
 
-const withRedirectChatContainer = withRedirect(Chat)
-
-const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(withRedirectChatContainer)
-
-export default ChatContainer;
+export default compose(
+    withRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Chat)
