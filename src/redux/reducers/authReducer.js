@@ -29,14 +29,21 @@ const authUserData = (email,id,login) =>
 ({type:GET_LOGGED_USER_DATA, userData:{email,id,login}})
 
 export default authReducer
-export {toAuth};
+export {toAuth, logIn};
 
 const toAuth = ()=> {
     return (dispatch) => {
-        authAPI()
+        authAPI.auth()
             .then((response) => { 
                 if (response.resultCode === 0) {
                     let { email, id, login } = response.data
                     dispatch(authUserData(email, id, login))
                 } })
     }}
+
+    const logIn = (email, pass, remember) => {
+        return (dispatch) => {
+            authAPI.login(email,pass,remember)
+            .then((res) => console.log(res))
+        }
+    }

@@ -3,10 +3,16 @@ import React from 'react'
 export default class UserStatus extends React.Component { 
 state = {
     isEditing:false,
-    currentInput:''
+    currentInput:""
 }
 
-
+componentDidUpdate(prevProps, prevState) {
+    if(prevProps.status != this.props.status) {
+        this.setState({
+            currentInput:this.props.status
+        })
+    }
+}
 
 editOn = () => {
     this.setState({isEditing:true})

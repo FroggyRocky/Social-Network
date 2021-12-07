@@ -4,7 +4,7 @@ import SideBar from './components/SideBar/SideBar'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import ChatContainer from "./components/Chat/ChatContainer"
 import UsersContainer from './components/Users/UsersContainer'
-import Login from './components/Login/Login'
+import Login from './components/Login/LoginContainer'
 import './App.css'
 
 export default function App(props) {

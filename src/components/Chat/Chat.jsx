@@ -1,24 +1,14 @@
 import { useState } from 'react'
 import chatStyles from './Chat.module.css'
 import { NavLink } from 'react-router-dom'
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import ChatForm from './ChatForm/ChatForm'
 
 export default function Chat(props) {
 
     const [dialogue, setCurrentDialogue] = useState();
-    
     function getCurrentDialogue(event) {
         setCurrentDialogue(event.target.innerText)
     }; 
-    
-    function addMessage() {
-        props.onAddMessage();
-    }
-
-    function registerChanges(event) {
-        let value = event.target.value
-        props.onRegisterChanges(value)
-    }
     
     const messagesComponents =
         props.messages
@@ -50,13 +40,7 @@ export default function Chat(props) {
             <div className={chatStyles.chat}>
                 <h3>{dialogue}</h3>
                 {messagesComponents}
-                <div className={chatStyles.inputContainer}>
-                    <input 
-                    value={props.currentInput} 
-                    onChange={registerChanges} 
-                    type="text" />
-                    <button onClick={addMessage}><SendOutlinedIcon fontSize='medium' color="primary" /></button>
-                </div>
+                <ChatForm addMessage = {props.addMessage} />
             </div>
         </section>
     )

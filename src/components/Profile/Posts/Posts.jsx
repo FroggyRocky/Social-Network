@@ -1,17 +1,8 @@
-
+import PostForm from './PostForm/PostForm'
 import postsStyles from './posts.module.css'
 import Post from './Post/Post'
 
-export default function Posts(props) {
-
-  function addPost() {
-    props.onAddPost()
-  }
-  function registerChanges(e){
-    let value = e.target.value
-    props.onRegisterChanges(value);
-  }
-  
+export default function Posts(props) {  
   const postsComponents = props.posts
     .map((post, index) => {
       return (
@@ -26,15 +17,7 @@ export default function Posts(props) {
 
   return (
     <div className={postsStyles.postsSection}>
-      <div className={postsStyles.input}>
-        <h4>New Post</h4>
-        <textarea
-          value={props.currentInput}
-          onChange={registerChanges}
-          placeholder="What's new?!"
-          name="" id="" cols="50" rows="2">{props.currentInput}</textarea>
-        <button onClick={addPost}>Post</button>
-      </div>
+     <PostForm />
       {postsComponents}
     </div>
   )

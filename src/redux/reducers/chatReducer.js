@@ -1,3 +1,5 @@
+import {reset} from 'redux-form'
+
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_CHAT_INPUT = 'UPDATE-CHAT-INPUT'
 const initialState = {
@@ -19,22 +21,15 @@ const initialState = {
     { text: 'Do you still study programming', id: 3 },
     { text: 'Of course', id: 4 }
   ],
-  currentInput: ""
 }
 const chatReducer = (state = initialState, action) => {
 switch(action.type) {
   case ADD_MESSAGE:
 return {
       ...state,
-      messages:[...state.messages, {text:state.currentInput, id:state.messages.length +1}],
+      messages:[...state.messages, {text:action.text, id:state.messages.length +1}],
       currentInput:''
     }
-   
-    case UPDATE_CHAT_INPUT:
-   return {
-   ...state,
-   currentInput:action.textValue
- }  
     default: 
     return state;
 }
@@ -42,9 +37,16 @@ return {
 export default chatReducer
 
 ///Action Creators
-export const addMessageActionCreator = () => {
-    return ({type:'ADD-MESSAGE'})
+const addMessageAC = (text) => {
+    return ({type:'ADD-MESSAGE', text})
 }
-export const registerChangesActionCreator = (value) => {
-    return ({type:'UPDATE-CHAT-INPUT', textValue:value})
+
+export {addMessage}
+
+const addMessage = (message) => {
+  return (dispatch) => {
+   ///api request   
+   dispatch(addMessageAC(message))
+   dispatch(reset('chat'))
+  }
 }

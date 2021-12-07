@@ -28,9 +28,14 @@ export const UsersAPI = {
 
  }
 
-export const authAPI = () => {
-     return instance.get(`/auth/me`) 
+export const authAPI = {
+    auth(){ 
+        return instance.get(`/auth/me`) 
         .then(response => response.data)
+    },
+    login(email, pass, remember){
+        return  instance.post('auth/login', {email:email, password:pass, remember:remember})
+    }
     }
 
 
