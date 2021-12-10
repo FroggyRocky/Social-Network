@@ -1,9 +1,7 @@
 import {ProfileAPI} from '../../api/api'
  
  const ADD_POST = 'ADD-POST';
- const UPDATE_POST_INPUT = 'UPDATE-POST-INPUT';
  const GET_USER_PROFILE = 'GET-USER-PROFILE'
- const GET_BACK_HOME = 'GET-BACK-HOME'
  const LOAD_CURRENT_PROFILE_DATA = "LOAD-CURRENT-PROFILE-DATA"
  const GET_PROFILE_STATUS = 'GET-PROFILE-STATUS'
  const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS'
@@ -41,20 +39,14 @@ import {ProfileAPI} from '../../api/api'
    switch(action.type) {
      case ADD_POST: 
      let newPost = {
-      text: state.currentInput,
+      text: action.postText,
       id: state.posts.length + 1,
       avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
     };
-
   return {
       ...state,
       posts:[...state.posts, {...newPost}],
       currentInput: ''
-    }
-    case UPDATE_POST_INPUT:
-    return {
-      ...state,
-      currentInput:action.textValue
     }
     case GET_USER_PROFILE: 
     return {
@@ -83,16 +75,9 @@ import {ProfileAPI} from '../../api/api'
 }
 
 ///Action Creators
-const onAddPostActionCreator = () => {
-    return ({type:ADD_POST})
-}
-const onRegisterChangesActionCreator = (value) => {
-    return ({type:UPDATE_POST_INPUT, textValue:value})
-}
+const addPost = (postText) => ({type:ADD_POST, postText})
 
-const onGetUserProfileData = (userProfileData) => {
-  return {type:GET_USER_PROFILE, userProfileData}
-}
+const onGetUserProfileData = (userProfileData) => ({type:GET_USER_PROFILE, userProfileData})
 
 const loadCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
 
@@ -100,8 +85,7 @@ const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
-export {onAddPostActionCreator, onRegisterChangesActionCreator,
-loadProfile, getProfileStatus,setProfileStatus}
+export {loadProfile, getProfileStatus,setProfileStatus, addPost}
 export default profileReducer;
 
 

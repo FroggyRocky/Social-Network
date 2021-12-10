@@ -17,7 +17,7 @@ const WithReduxForm = reduxForm({form:'post'})(PostForm)
 
 export default function PostFormContainer(props) {
     const onSubmit = (postData) => {
-        console.log(postData);
+        props.addPost(postData.postBody)
     }
     return <WithReduxForm onSubmit={onSubmit} />
 }

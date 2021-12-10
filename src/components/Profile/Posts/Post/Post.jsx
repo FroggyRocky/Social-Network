@@ -1,11 +1,11 @@
-import postStyle from './post.module.css'
+import PostStyle from './Post.module.css'
 export default function Post(props) {
   return (
-    <div className={postStyle.postItems}>
-      <div className={postStyle.item}>
+    <div className={PostStyle.postItems}>
+      <div className={PostStyle.item}>
         <img src={props.avatarIcon} alt=""/>
         <p>{props.postText}</p>
-        <p className={postStyle.likes}>{props.likes}</p>
+        <p className={PostStyle.likes}>{props.likes}</p>
       </div>
     </div>
   )

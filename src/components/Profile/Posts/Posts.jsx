@@ -1,5 +1,5 @@
 import PostForm from './PostForm/PostForm'
-import postsStyles from './posts.module.css'
+import postsStyles from './Posts.module.css'
 import Post from './Post/Post'
 
 export default function Posts(props) {  
@@ -17,7 +17,7 @@ export default function Posts(props) {
 
   return (
     <div className={postsStyles.postsSection}>
-     <PostForm />
+     <PostForm addPost={props.addPost} />
       {postsComponents}
     </div>
   )
