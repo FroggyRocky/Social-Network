@@ -22,3 +22,9 @@
   .additional_nav span {
     margin-right: 5px;
   }
+.logout {
+  cursor: pointer;
+}
+.logout:hover {
+  color: rgb(82, 82, 250);
+}

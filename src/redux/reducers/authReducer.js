@@ -29,7 +29,7 @@ const authUserData = (isLogged, email,id,login) =>
 ({type:GET_LOGGED_USER_DATA, isLogged, userData:{email,id,login}})
 
 export default authReducer
-export {toAuth, logIn};
+export {toAuth, logIn, logOut};
 
 const toAuth = () => {
     return (dispatch) => {
@@ -48,6 +48,17 @@ const toAuth = () => {
             if(res.data.resultCode === 0) {
                 dispatch(toAuth())
             }
+            })
+        }
+    }
+
+    const logOut = () => {
+        return (dispatch) => {
+            authAPI.logout()
+            .then(res => {
+                if(res.data.resultCode === 0) {
+                    dispatch(authUserData(false,null,null,null))
+                }
             })
         }
     }
