@@ -18,7 +18,7 @@ editOn = () => {
     this.setState({isEditing:true})
 }
 
-editOff = (e) => {
+editOff = () => {
     this.setState({
         isEditing:false
     })

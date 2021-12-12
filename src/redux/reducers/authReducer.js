@@ -16,7 +16,7 @@ switch (action.type) {
         return {
             ...state, 
             ...action.userData,
-            isLogged:true
+            isLogged:action.isLogged
         }
     default:
         return state
@@ -25,25 +25,29 @@ switch (action.type) {
 
 }
 
-const authUserData = (email,id,login) => 
-({type:GET_LOGGED_USER_DATA, userData:{email,id,login}})
+const authUserData = (isLogged, email,id,login) => 
+({type:GET_LOGGED_USER_DATA, isLogged, userData:{email,id,login}})
 
 export default authReducer
 export {toAuth, logIn};
 
-const toAuth = ()=> {
+const toAuth = () => {
     return (dispatch) => {
         authAPI.auth()
             .then((response) => { 
                 if (response.resultCode === 0) {
                     let { email, id, login } = response.data
-                    dispatch(authUserData(email, id, login))
+                    dispatch(authUserData(true,email, id, login))
                 } })
     }}
 
     const logIn = (email, pass, remember) => {
         return (dispatch) => {
             authAPI.login(email,pass,remember)
-            .then((res) => console.log(res))
+            .then((res) => {
+            if(res.data.resultCode === 0) {
+                dispatch(toAuth())
+            }
+            })
         }
     }

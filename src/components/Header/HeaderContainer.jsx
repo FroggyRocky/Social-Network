@@ -16,6 +16,6 @@ class HeaderAPIContainer extends React.Component {
 }
 
 const mapStateProps = (state) => {
-    return {Auth: state.Auth}}
+    return {auth: state.Auth}}
 
 export default connect(mapStateProps, {toAuth})(HeaderAPIContainer)

@@ -10,13 +10,14 @@ export default function Header(props) {
       <div className={headerStyles.img}>
         <img src="https://bbts1.azureedge.net/images/p/full/2017/09/8819c275-f982-4c5b-aa61-754f4c6a5402.png" alt=""/>
       </div>
-      <nav className={headerStyles.main_nav}>
+{ props.auth.isLogged && <nav className={headerStyles.main_nav}>
 <NavLink to="/messages"><EmailOutlinedIcon color="primary"/></NavLink>
-<NavLink to="/profile/21039"><HomeOutlinedIcon color="primary"/></NavLink>
-<NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink>
-      </nav>
+<NavLink to={`/profile/${props.auth.id}`}><HomeOutlinedIcon color="primary"/></NavLink>
+<NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink></nav>
+}
+    
     <div className={headerStyles.additional_nav}>
-<span>{props.Auth.isLogged ? props.Auth.login : 'login'}</span>
+<span>{props.auth.isLogged ? props.auth.login : 'login'}</span>
     </div>
     </header>
   )

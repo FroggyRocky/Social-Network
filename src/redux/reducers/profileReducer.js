@@ -77,26 +77,26 @@ import {ProfileAPI} from '../../api/api'
 ///Action Creators
 const addPost = (postText) => ({type:ADD_POST, postText})
 
-const onGetUserProfileData = (userProfileData) => ({type:GET_USER_PROFILE, userProfileData})
+const getUserProfileData = (userProfileData) => ({type:GET_USER_PROFILE, userProfileData})
 
-const loadCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
+const loadingCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
 
 const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
-export {loadProfile, getProfileStatus,setProfileStatus, addPost}
+export {loadCurrentProfile, getProfileStatus,setProfileStatus, addPost}
 export default profileReducer;
 
 
-const loadProfile = (idParam) => {
+const loadCurrentProfile = (idParam) => {
   return (dispatch) => {
-    dispatch(loadCurrentUserProfileData())
-        !idParam && dispatch(loadCurrentUserProfileData())
+    dispatch(loadingCurrentUserProfileData())
+        !idParam && dispatch(loadingCurrentUserProfileData())
         ProfileAPI.getProfile(idParam)
             .then((data) => { 
-            dispatch(loadCurrentUserProfileData())
-            dispatch(onGetUserProfileData(data))
+            dispatch(loadingCurrentUserProfileData())
+            dispatch(getUserProfileData(data))
             })
   }
 }
