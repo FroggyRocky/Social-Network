@@ -16,3 +16,10 @@ input {
     justify-content: center;
     margin: auto;
 }
+
+.common_error {
+    border: 1px solid red;
+    color: red;
+    padding: 5px;
+    margin: 10px 0;
+}

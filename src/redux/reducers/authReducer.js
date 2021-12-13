@@ -1,4 +1,5 @@
 import { authAPI } from "../../api/api";
+import { stopSubmit } from "redux-form";
 
 const GET_LOGGED_USER_DATA = 'GET-LOGGED-USER-DATA';
 
@@ -44,9 +45,13 @@ const toAuth = () => {
     const logIn = (email, pass, remember) => {
         return (dispatch) => {
             authAPI.login(email,pass,remember)
-            .then((res) => {
+            .then((res) => { console.log(res);
             if(res.data.resultCode === 0) {
                 dispatch(toAuth())
+            } else if(res.data.resultCode === 1 && res.data.messages.length > 0) {
+                dispatch(stopSubmit('Login',{_error:res.data.messages[0]}))
+            } else {
+                dispatch(stopSubmit('Login', {_error:'Something went wrong, try one more time'}))
             }
             })
         }
