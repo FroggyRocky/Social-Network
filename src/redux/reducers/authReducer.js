@@ -33,8 +33,8 @@ export default authReducer
 export {toAuth, logIn, logOut};
 
 const toAuth = () => {
-    return (dispatch) => {
-        authAPI.auth()
+  return  (dispatch) => {
+        return authAPI.auth()
             .then((response) => { 
                 if (response.resultCode === 0) {
                     let { email, id, login } = response.data

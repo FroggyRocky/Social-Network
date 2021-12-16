@@ -1,11 +1,11 @@
 import React from 'react'
 import {compose} from 'redux'
 import { withRouter, Redirect} from 'react-router-dom'
-import profileStyles from './Profile.module.css'
 import { connect } from 'react-redux'
 import {loadCurrentProfile, getProfileStatus, setProfileStatus} from '../../redux/reducers/profileReducer'
 import Profile from './Profile'
 import CircularProgress from '@mui/material/CircularProgress';
+import '../../App.css'
 
 class ProfileContainer extends React.Component {
 
@@ -23,9 +23,14 @@ componentDidUpdate(prevProps, prevState) {
     render() {
         if(!this.props.auth.isLogged) return <Redirect to='/login' />
         return <>
-         {this.props.profile.isProfileLoading ? <div className={profileStyles.preloader_container_main}><CircularProgress /></div> :
-        <Profile setStatus={this.props.setProfileStatus} status = {this.props.status}  profile={!this.props.profile.currentUserProfileData ?
-            this.props.profile.defaultProfile : this.props.profile.currentUserProfileData}  />
+         {this.props.profile.isProfileLoading ?
+         <div className='preloader_container_main'>
+        <CircularProgress />
+        </div> :
+        <Profile setStatus={this.props.setProfileStatus}
+         status = {this.props.status}  profile={!this.props.profile.currentUserProfileData ?
+        this.props.profile.defaultProfile :
+        this.props.profile.currentUserProfileData}  />
              
         }
     </>

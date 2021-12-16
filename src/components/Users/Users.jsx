@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import UsersStyles from './Users.module.css'
 import userImg from '../../assets/imgs/userImg.jpg'
 import CircularProgress from '@mui/material/CircularProgress';
-
+import '../../App.css'
 
 
 
@@ -49,8 +49,9 @@ export default function Users(props) {
     return (
         <>
             {props.isLoading ?
-                <div className={UsersStyles.preloader_container_main}>
-                    <CircularProgress /></div> :
+                <div className='preloader_container_main'>
+                    <CircularProgress />
+                </div> :
 
                 <div className={UsersStyles.container}>
                     <section className={UsersStyles.search_section}>

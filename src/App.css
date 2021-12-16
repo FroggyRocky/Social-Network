@@ -23,4 +23,13 @@
     min-height: 600px;
   }
 
+  .preloader_container_main {
+    height: 50%;
+    width:50%;
+    margin: auto;
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 

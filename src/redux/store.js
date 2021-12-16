@@ -5,6 +5,7 @@ import chatReducer from './reducers/chatReducer';
 import sideBarReducer from './reducers/sideBarReducer'
 import usersReducer from './reducers/usersReducer';
 import authReducer from './reducers/authReducer';
+import appInitializer from './reducers/appInitializer'
 import {reducer as formReducer} from 'redux-form'
 
 const reducers = combineReducers({
@@ -13,7 +14,8 @@ const reducers = combineReducers({
     UsersPage:usersReducer,
     SideBarPage:sideBarReducer,
     Auth:authReducer,
-    form:formReducer
+    form:formReducer,
+    AppInitializer:appInitializer
 })
 const store = createStore(reducers, applyMiddleware(thunkMiddleWare))
 
