@@ -1,45 +1,38 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 
-export default class UserStatus extends React.Component { 
-state = {
-    isEditing:false,
-    currentInput:""
-}
+export default function UserStatus(props) {
 
-componentDidUpdate(prevProps, prevState) {
-    if(prevProps.status != this.props.status) {
-        this.setState({
-            currentInput:this.props.status
-        })
+    const [isEditing, setIsEditing] = useState(false)
+    const [currentInput, setCurrentInput] = useState('')
+
+
+    useEffect(() => {
+        setCurrentInput(props.status)
+    }, [props.status])
+
+
+    function editOn () {
+        setIsEditing(true)
     }
-}
 
-editOn = () => {
-    this.setState({isEditing:true})
-}
+    function editOff () {
+        setIsEditing(false)
+        props.setStatus(currentInput)
+    }
 
-editOff = () => {
-    this.setState({
-        isEditing:false
-    })
-   this.props.setStatus(this.state.currentInput)
-}
+    function setInput (e) {
+        setCurrentInput(e.currentTarget.value)
+    }
 
-setInput = (e) => {
-    this.setState({
-        currentInput:e.currentTarget.value
-    })
-}
-
-    render() { 
-    return    <div>
-            <div >
-            {!this.state.isEditing ? 
-            <p onClick={this.editOn}>{this.props.status || 'Set Status'}</p> :
-             <input onChange={this.setInput} autoFocus={true} onBlur={this.editOff}
-              type="text" value={this.state.currentInput} />
+    return <div>
+        <div >
+            {!isEditing ?
+                <p onClick={editOn}>{props.status || 'Set Status'}</p> 
+                :
+                <input onChange={setInput} autoFocus={true} onBlur={editOff}
+                    type="text" value={currentInput} />
             }
-            </div>
         </div>
-    }
+    </div>
 }

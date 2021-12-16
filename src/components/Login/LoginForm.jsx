@@ -1,13 +1,14 @@
 import React from 'react'
 import { Field } from 'redux-form'
 import { fieldRequired, maxLengthVal, minLengthVal, emailVal } from '../FormsValidation/FormsValidation'
-import { Input } from '../FormsValidation/FieldContainers'
+import { withReduxForm } from '../FormsValidation/FieldContainers'
 import LoginStyles from './LoginForm.module.css'
 
 const maxLengthEmail = maxLengthVal('email', 40)
 const minLengthEmail = minLengthVal('email', 5)
 const maxLengthPass = maxLengthVal('password', 40)
 const minLengthPass = minLengthVal('password', 5)
+const Input = withReduxForm('input')
 
 export default function LoginForm(props) {
     return <div>
