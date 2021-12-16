@@ -54,6 +54,4 @@ return {
 }
 }
 
-export default connect(mapStateToProps,{initialize})(App)
-
-
+export default connect(mapStateToProps,{initialize})(App);
