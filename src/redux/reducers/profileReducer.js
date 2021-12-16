@@ -35,7 +35,7 @@ import {ProfileAPI} from '../../api/api'
     isProfileLoading:false
   }
 
- const profileReducer = (state = initialState, action) => {
+  export default function profileReducer (state = initialState, action) {
    switch(action.type) {
      case ADD_POST: 
      let newPost = {
@@ -85,10 +85,6 @@ const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
-export {loadCurrentProfile, getProfileStatus,setProfileStatus, addPost}
-export default profileReducer;
-
-
 const loadCurrentProfile = (idParam) => {
   return (dispatch) => {
     dispatch(loadingCurrentUserProfileData())
@@ -104,7 +100,7 @@ const loadCurrentProfile = (idParam) => {
 const getProfileStatus = (id) => {
   return (dispatch) => {
     ProfileAPI.getProfileStatus(id)
-    .then((res) => {
+    .then((res) => {  
       dispatch(getStatus(res.data))
     })
   }
@@ -118,3 +114,6 @@ const setProfileStatus = (status) => {
     })
   }
 }
+
+
+export {loadCurrentProfile, getProfileStatus,setProfileStatus, addPost}

@@ -19,7 +19,7 @@ const initialState = {
   disabledButtons: [],
 }
 
-const usersReducer = (state = initialState, action) => {
+export default function usersReducer(state = initialState, action) {
   switch (action.type) {
     case FRIEND_UNFRIEND:
       return {
@@ -95,11 +95,6 @@ const onIsLoadingShowMore = () => ({ type: IS_LOADING_SHOW_MORE })
 
 const isFollowing = (id, isFollowing) => ({ type: IS_FOLLOWING, id, isFollowing })
 
-
-export default usersReducer;
-export { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
-
-
 const loadUsers = (currentPage, portionCount) => {
   return (dispatch) => {
     dispatch(onIsLoadingMain())
@@ -142,3 +137,5 @@ const friendUnfriend = (id, isFollowed) => {
     }
   }
 }
+
+export { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }

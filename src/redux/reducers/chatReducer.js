@@ -22,7 +22,7 @@ const initialState = {
     { text: 'Of course', id: 4 }
   ],
 }
-const chatReducer = (state = initialState, action) => {
+export default function chatReducer(state = initialState, action) {
 switch(action.type) {
   case ADD_MESSAGE:
 return {
@@ -34,7 +34,6 @@ return {
     return state;
 }
 }
-export default chatReducer
 
 ///Action Creators
 const addMessageAC = (text) => {

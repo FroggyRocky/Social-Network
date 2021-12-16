@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import {loadCurrentProfile, getProfileStatus, setProfileStatus} from '../../redux/reducers/profileReducer'
 import Profile from './Profile'
 import CircularProgress from '@mui/material/CircularProgress';
+import {getStatusS} from '../../redux/reducers/Selectors'
 import '../../App.css'
 
 class ProfileContainer extends React.Component {
@@ -40,9 +41,9 @@ componentDidUpdate(prevProps, prevState) {
 
 
 const mapStateProps = (state) => {
-    return {
+    return { 
         profile: state.ProfilePage,
-        status: state.ProfilePage.currentProfileStatus,
+        status: getStatusS(state),
         auth: state.Auth
       }
 }

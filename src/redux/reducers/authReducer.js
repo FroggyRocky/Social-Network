@@ -10,7 +10,7 @@ login:null,
 isLogged:false
 }
 
-const authReducer = (state = initialState, action) => { 
+export default function authReducer (state = initialState, action) { 
 
 switch (action.type) {
     case GET_LOGGED_USER_DATA:
@@ -29,8 +29,6 @@ switch (action.type) {
 const authUserData = (isLogged, email,id,login) => 
 ({type:GET_LOGGED_USER_DATA, isLogged, userData:{email,id,login}})
 
-export default authReducer
-export {toAuth, logIn, logOut};
 
 const toAuth = () => {
   return  (dispatch) => {
@@ -67,3 +65,7 @@ const toAuth = () => {
             })
         }
     }
+
+
+    
+export {toAuth, logIn, logOut};

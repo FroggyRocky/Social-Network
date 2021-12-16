@@ -19,7 +19,7 @@ const initialState = {
 }
 
 const initializeAC = (isInitialized) => ({type:APP_INITIALIZE, isInitialized})
-export {initialize}
+
 
  const initialize = () => {
     return (dispatch) => {
@@ -31,3 +31,5 @@ export {initialize}
         
     }
 }
+
+export {initialize}

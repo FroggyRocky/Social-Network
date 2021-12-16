@@ -5,6 +5,7 @@ import {compose} from 'redux'
 import {onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
 from './../../redux/reducers/usersReducer'
 import withRedirect from '../../hoc/withRedirect'
+import {getUsersS, totalUsersCountS, portionCountS, currentPageS} from '../../redux/reducers/Selectors'
 
 class UsersAPIContainer extends React.Component {
 
@@ -18,16 +19,17 @@ class UsersAPIContainer extends React.Component {
 }
 
 const mapStateProps = (state) => {
-    return {
-        users: state.UsersPage.users,
-        searchInput: state.UsersPage.searchInput,
-        totalUsersCount: state.UsersPage.totalUsersCount,
-        portionCount: state.UsersPage.portionCount,
-        currentPage: state.UsersPage.currentPage,
-        isLoading: state.UsersPage.isLoading,
-        isLoadingShowMore: state.UsersPage.isLoadingShowMore,
-        disabledButtons: state.UsersPage.disabledButtons
-        }
+    return { 
+        users: getUsersS(state),
+        searchInput: state.UsersPage.searchInput, 
+        totalUsersCount: totalUsersCountS(state),
+        portionCount: portionCountS(state),
+        currentPage: currentPageS(state),
+        isLoading: state.UsersPage.isLoading, 
+        isLoadingShowMore: state.UsersPage.isLoadingShowMore, 
+        disabledButtons: state.UsersPage.disabledButtons 
+        } 
+    
 }
 
 const mapDispatch = { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend}
