@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -12,18 +12,18 @@ import CircularProgress from '@mui/material/CircularProgress';
 import './App.css'
 
 
-class App extends React.Component {
-  
-  componentDidMount() {
-    this.props.initialize()
-  }
+function App(props) {
 
+  useEffect(()=>{
+     props.initialize()
+  }, []) 
 
-  render() { 
-    if (this.props.isInitialized) return <Router>
-      <div className="grid_container">
+if (props.isInitialized)
+return (
+     <Router>
+      <div className={props.isLogged ? 'grid_container' : 'grid_container_unlogged'}>
         <HeaderContainer />
-        <SideBar sideBarState = {this.props.state.SideBarPage} />
+       {props.isLogged && <SideBar sideBarState = {props.state.SideBarPage}/>}
         <div className="mainContent_container">
           <Switch>
             <Route path="/profile/:userId?">
@@ -41,16 +41,20 @@ class App extends React.Component {
           </Switch>
         </div>
       </div>
-    </Router>
+    </Router>)
 
-  else if(!this.props.isInitialized) return <div className='preloader_container_main'>
+  else if(!props.isInitialized) 
+  return (
+  <div className='preloader_container_main'>
     <CircularProgress />
-    </div>
-}}
+    </div> 
+    )
+}
 
 const mapStateToProps = (state) => {
 return {
-  isInitialized:state.AppInitializer.isInitialized
+  isInitialized:state.AppInitializer.isInitialized,
+  isLogged: state.Auth.isLogged
 }
 }
 

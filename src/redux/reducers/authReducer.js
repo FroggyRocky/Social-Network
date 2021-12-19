@@ -43,7 +43,7 @@ const toAuth = () => {
     const logIn = (email, pass, remember) => {
         return (dispatch) => {
             authAPI.login(email,pass,remember)
-            .then((res) => { console.log(res);
+            .then((res) => { 
             if(res.data.resultCode === 0) {
                 dispatch(toAuth())
             } else if(res.data.resultCode === 1 && res.data.messages.length > 0) {

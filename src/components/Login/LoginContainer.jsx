@@ -3,14 +3,14 @@ import LoginForm from './LoginForm'
 import { reduxForm } from 'redux-form'
 import {logIn} from '../../redux/reducers/authReducer'
 import { connect } from 'react-redux'
-import loginStyles from './LoginForm.module.css'
+import LoginStyles from './LoginForm.module.css'
 import {Redirect} from 'react-router-dom'
 
 
 class Login extends React.Component {
 
 
-    onSubmit = (loginFormData) => {
+    onSubmit = (loginFormData) => { console.log('submit');
         const{email,pass,rememberMe} = loginFormData
         this.props.logIn(email,pass,rememberMe)
       
@@ -19,8 +19,10 @@ class Login extends React.Component {
     render() {
         
 if(this.props.isLogged) return <Redirect to='/profile'/>
-         return <div className={loginStyles.login_container}>
+         return <div className={LoginStyles.login_container}>
+    <div className={LoginStyles.login_header}>
     <h4>Login</h4>
+    </div>
     <WithReduxForm onSubmit={this.onSubmit}/>
     </div>
 }

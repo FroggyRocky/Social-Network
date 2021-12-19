@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginStyles from '../Login/LoginForm.module.css'
 
+
 function TextArea({input, meta:{error}, ...props}){
     return <div>
         <textarea {...input} {...props}></textarea>
@@ -13,7 +14,8 @@ function TextArea({input, meta:{error}, ...props}){
 const withReduxForm = (Component) => {
     const withForm = ({input, meta:{touched, error}, ...props}) => {
         return <div>
-        <Component {...input} {...props}></Component>
+        <Component id="standard-basic" label={props.placeholder} variant="outlined"
+         {...input} {...props} />
         {touched && error && <div className={LoginStyles.error}>*{error}</div>}
     </div>
     }

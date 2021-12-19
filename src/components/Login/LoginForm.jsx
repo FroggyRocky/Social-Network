@@ -3,37 +3,36 @@ import { Field } from 'redux-form'
 import { fieldRequired, maxLengthVal, minLengthVal, emailVal } from '../FormsValidation/FormsValidation'
 import { withReduxForm } from '../FormsValidation/FieldContainers'
 import LoginStyles from './LoginForm.module.css'
+import TextField from '@mui/material/TextField';
 
 const maxLengthEmail = maxLengthVal('email', 40)
 const minLengthEmail = minLengthVal('email', 5)
 const maxLengthPass = maxLengthVal('password', 40)
 const minLengthPass = minLengthVal('password', 5)
-const Input = withReduxForm('input')
+const Input = withReduxForm(TextField)
 
 export default function LoginForm(props) {
-    return <div>
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <label>Login</label>
-                <Field type='text' placeholder='email'
+    return <form onSubmit={props.handleSubmit}>
+            <div className={LoginStyles.email_input_container}>
+                <Field type='text' placeholder='Email'
                     validate={[fieldRequired, maxLengthEmail, minLengthEmail, emailVal]}
                     component={Input} name='email' />
             </div>
-            <div>
-                <label>Password</label>
-                <Field type='password' placeholder='password'
+            <div className={LoginStyles.password_input_container}>
+                <Field type='password' placeholder='Password'
                     validate={[fieldRequired, maxLengthPass, minLengthPass]}
                     component={Input} name='pass' autoComplete='on' />
-                <div>
-                    <Field type='checkbox' component='input' name='rememberMe' />remember me
+                <div className={LoginStyles.checkbox_container}>
+                    <Field type='checkbox' component='input' name='rememberMe' /> Remember me
                 </div>
                 {props.error &&
                     <div className={LoginStyles.common_error}>
                         <span>{props.error}</span>
                     </div>}
-                <button>Log in</button>
-
+            <div className={LoginStyles.button_container}>
+            <button>Log in</button>
+            <a>Register</a>
+            </div>
             </div>
         </form>
-    </div>
 }

@@ -7,6 +7,18 @@
     background-color: darkred;
     }
   
+/* IF UNLOGGED */
+    .grid_container_unlogged {
+    max-width: 1300px;
+    margin: 0 auto;
+    grid-template-areas: 
+    'header header'
+    'profile profile';
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+  }
+    
+/* IF LOGGED */
   .grid_container {
     max-width: 1300px;
     margin: 0 auto;
