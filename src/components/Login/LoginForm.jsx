@@ -5,6 +5,7 @@ import { withReduxForm } from '../FormsValidation/FieldContainers'
 import LoginStyles from './LoginForm.module.css'
 import TextField from '@mui/material/TextField';
 
+
 const maxLengthEmail = maxLengthVal('email', 40)
 const minLengthEmail = minLengthVal('email', 5)
 const maxLengthPass = maxLengthVal('password', 40)

@@ -13,11 +13,10 @@ function TextArea({input, meta:{error}, ...props}){
 
 const withReduxForm = (Component) => {
     const withForm = ({input, meta:{touched, error}, ...props}) => {
-        return <div>
-        <Component id="standard-basic" label={props.placeholder} variant="outlined"
+        return <> <Component className={LoginStyles.input} id="standard-basic" label={props.placeholder} variant="outlined"
          {...input} {...props} />
         {touched && error && <div className={LoginStyles.error}>*{error}</div>}
-    </div>
+        </>
     }
     return withForm
 }

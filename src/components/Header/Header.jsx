@@ -1,16 +1,28 @@
+import { useState } from 'react';
 import {NavLink} from 'react-router-dom'
 import headerStyles from './Header.module.css'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import LoginIcon from '@mui/icons-material/Login';
+
 
 export default function Header(props) {
 
-function logOut() {
+const [optionsModule, toggleOptionsModule] = useState(true)
+
+const logOut = () => {
   props.logOut();
 }
 
-  return (
+const moreOptions = () => {
+  toggleOptionsModule((prev) => {
+    return !prev
+  })
+}
+
+return (
     <header className={headerStyles.header}>
       <div className={headerStyles.img}>
         <img src="https://bbts1.azureedge.net/images/p/full/2017/09/8819c275-f982-4c5b-aa61-754f4c6a5402.png" alt=""/>
@@ -24,10 +36,18 @@ function logOut() {
     <div className={headerStyles.additional_nav}>
       {props.auth.isLogged ? <div>
         <span>{props.auth.login}</span>
-        <NavLink to='/login' className={headerStyles.logout} onClick={logOut}> - Logout</NavLink>
+        <div className={headerStyles.icon_moreOptions}>
+        <NavLink to='/login' className={headerStyles.moreOptions} onClick={moreOptions}>
+        <MoreVertIcon color="primary"/>
+        </NavLink>
+        </div>
         </div> 
         :
-        <NavLink to='/login'> - Login</NavLink>
+        <div className={headerStyles.icon_login}>
+        <NavLink to='/login'>
+      <LoginIcon color='primary' />
+        </NavLink>
+        </div>
          }
     </div>
     </header>

@@ -19,6 +19,7 @@ input {
     align-items: center;
     margin: 45px auto auto;
     border: 1px solid black;
+    border-radius: 15px;
 }
 
 .common_error {

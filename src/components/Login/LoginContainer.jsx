@@ -21,7 +21,7 @@ class Login extends React.Component {
 if(this.props.isLogged) return <Redirect to='/profile'/>
          return <div className={LoginStyles.login_container}>
     <div className={LoginStyles.login_header}>
-    <h4>Login</h4>
+    <h2>Login</h2>
     </div>
     <WithReduxForm onSubmit={this.onSubmit}/>
     </div>

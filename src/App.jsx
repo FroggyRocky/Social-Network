@@ -9,6 +9,8 @@ import UsersContainer from './components/Users/UsersContainer'
 import Login from './components/Login/LoginContainer'
 import { initialize } from "./redux/reducers/appInitializer";
 import CircularProgress from '@mui/material/CircularProgress';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 import './App.css'
 
 
