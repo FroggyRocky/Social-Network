@@ -19,7 +19,7 @@
   }
     
 /* IF LOGGED */
-  .grid_container {
+  .grid_container_logged {
     max-width: 1300px;
     margin: 0 auto;
     grid-template-areas: 
@@ -27,8 +27,11 @@
     'side-bar profile';
     display: grid;
     grid-template-columns: 2fr 10fr;
+    position: relative;
   }
   
+
+
   .mainContent_container {
     grid-area: profile;
     background-color:#3A4750;

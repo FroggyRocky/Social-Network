@@ -14,17 +14,53 @@
   margin: 5px 0 0 5px;
   }
 
-  .main_nav {
+  .nav_major {
     width: 20%;
     display: flex;
     justify-content: space-evenly;
   }
-  .additional_nav span {
-    margin-right: 5px;
-  }
-.logout {
-  cursor: pointer;
+.nav_minor {
+  margin-right:10px;
+  display: flex;
+  align-items: center;
 }
-.logout:hover {
-  color: rgb(82, 82, 250);
+.modelWindow_container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(8, 8, 8);
+  opacity: 0.8;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modelWindow_content {
+  width: 20%;
+  height: 40%;
+  background-color: wheat;
+  border-radius: 15px;
+}
+.action_container {
+  width: 45%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.modelWindow_content button {
+  cursor: pointer;
+  font-size: medium;
+  padding: 4px 20px;
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: turquoise;
+}
+.modelWindow_content button:hover {
+  border: 1px solid rgb(60, 122, 255);
+  background-color: rgba(187, 187, 187, 0.377);
 }

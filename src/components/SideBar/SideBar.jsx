@@ -11,9 +11,6 @@ export default function SideBar(props) {
         <li>
           <NavLink to="/music">Music</NavLink>
         </li>
-        <li>
-          <NavLink to="/Settings">Settings</NavLink>
-        </li>
       </ul>
     </section>
     )

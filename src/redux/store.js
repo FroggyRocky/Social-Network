@@ -17,6 +17,7 @@ const reducers = combineReducers({
     form:formReducer,
     AppInitializer:appInitializer
 })
+
 const store = createStore(reducers, applyMiddleware(thunkMiddleWare))
 
 window.state = store;

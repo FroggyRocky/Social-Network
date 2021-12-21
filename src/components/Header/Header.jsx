@@ -7,49 +7,68 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import LoginIcon from '@mui/icons-material/Login';
 
-
 export default function Header(props) {
 
-const [optionsModule, toggleOptionsModule] = useState(true)
+const [isModelWindowOn, toggleModelWindow] = useState(false)
+
+
 
 const logOut = () => {
   props.logOut();
+  toggleModelWindow(false) 
 }
 
-const moreOptions = () => {
-  toggleOptionsModule((prev) => {
-    return !prev
-  })
+const openModelWindow = () => {
+  toggleModelWindow(true)
 }
 
+const exitModelWindow = (e) => {
+  if(e.target.className === headerStyles.modelWindow_container) {
+    toggleModelWindow(false) 
+  }
+}
+
+
+
+if(isModelWindowOn) return <div onClick={exitModelWindow} className={headerStyles.modelWindow_container}>
+<div className={headerStyles.modelWindow_content}>
+<div className={headerStyles.action_container}>
+<button>Settings</button>
+<button onClick={logOut}>Log Out</button>
+</div>
+</div>
+</div>
 return (
     <header className={headerStyles.header}>
       <div className={headerStyles.img}>
         <img src="https://bbts1.azureedge.net/images/p/full/2017/09/8819c275-f982-4c5b-aa61-754f4c6a5402.png" alt=""/>
       </div>
-{ props.auth.isLogged && <nav className={headerStyles.main_nav}>
+{ props.auth.isLogged && <nav className={headerStyles.nav_major}>
 <NavLink to='/messages'><EmailOutlinedIcon color="primary"/></NavLink>
-<NavLink to={`/profile/${props.auth.id}`}><HomeOutlinedIcon color="primary"/></NavLink>
-<NavLink to='/users'><PeopleAltOutlinedIcon color="primary"/></NavLink></nav>
+<NavLink to={`/profile/${props.auth.id}`}>
+<HomeOutlinedIcon color="primary"/>
+</NavLink>
+<NavLink to='/users'>
+<PeopleAltOutlinedIcon color="primary"/>
+</NavLink></nav>
 }
     
-    <div className={headerStyles.additional_nav}>
-      {props.auth.isLogged ? <div>
-        <span>{props.auth.login}</span>
-        <div className={headerStyles.icon_moreOptions}>
-        <NavLink to='/login' className={headerStyles.moreOptions} onClick={moreOptions}>
-        <MoreVertIcon color="primary"/>
+      {props.auth.isLogged ? 
+      <div className={`${headerStyles.nav_minor} ${headerStyles.nav_options}`}>
+        <span><h4>{props.auth.login}</h4></span>
+        <span className={headerStyles.icon_moreOptions}>
+        <NavLink to='/login' className={headerStyles.moreOptions} >
+        <MoreVertIcon fontSize='large' onClick={openModelWindow} color="primary"/>
         </NavLink>
-        </div>
-        </div> 
+        </span>
+</div>
         :
-        <div className={headerStyles.icon_login}>
+        <div className={`${headerStyles.nav_minor} ${headerStyles.nav_login}`}>
         <NavLink to='/login'>
       <LoginIcon color='primary' />
         </NavLink>
         </div>
          }
-    </div>
     </header>
   )
 }
