@@ -6,6 +6,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import LoginIcon from '@mui/icons-material/Login';
+import ModelWindow from './ModelWindow';
 
 export default function Header(props) {
 
@@ -29,15 +30,10 @@ const exitModelWindow = (e) => {
 }
 
 
-
-if(isModelWindowOn) return <div onClick={exitModelWindow} className={headerStyles.modelWindow_container}>
-<div className={headerStyles.modelWindow_content}>
-<div className={headerStyles.action_container}>
-<button>Settings</button>
-<button onClick={logOut}>Log Out</button>
-</div>
-</div>
-</div>
+if(isModelWindowOn) return <ModelWindow
+exitModelWindowFn={exitModelWindow}
+logOutFn={logOut}
+  />
 return (
     <header className={headerStyles.header}>
       <div className={headerStyles.img}>

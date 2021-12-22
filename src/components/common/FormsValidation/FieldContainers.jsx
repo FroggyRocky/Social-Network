@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginStyles from '../Login/LoginForm.module.css'
+import LoginStyles from '../../Login/LoginForm.module.css'
 
 
 function TextArea({input, meta:{error}, ...props}){

@@ -1,8 +1,8 @@
 import React from 'react'
 import {reduxForm, Field} from 'redux-form'
 import postsStyles from '../Posts.module.css'
-import {TextArea} from '../../../FormsValidation/FieldContainers' 
-import {maxLengthVal, minLengthVal} from '../../../FormsValidation/FormsValidation'
+import {TextArea} from '../../../common/FormsValidation/FieldContainers' 
+import {maxLengthVal, minLengthVal} from '../../../common/FormsValidation/FormsValidation'
 
 const maxLength300 = maxLengthVal('post',300)
 const minLength1 = minLengthVal('post',1)

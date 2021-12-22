@@ -54,10 +54,6 @@ function App(props) {
   }
 
 
-
-
-
-
 const mapStateToProps = (state) => { 
   return {
     isInitialized: state.AppInitializer.isInitialized,
