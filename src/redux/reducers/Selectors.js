@@ -12,11 +12,9 @@ const getUsersS = (state) => {
 const totalUsersCountS = (state) => {
    return  state.UsersPage.totalUsersCount
 }
-const portionCountS = (state) => {
-    return state.UsersPage.portionCount
-}
+
 const currentPageS = (state) => {
     return state.UsersPage.currentPage
 }
 
-export {getStatusS, getUsersS, totalUsersCountS, portionCountS,currentPageS}
+export {getStatusS, getUsersS, totalUsersCountS,currentPageS}

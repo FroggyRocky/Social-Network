@@ -1,4 +1,5 @@
 import {UsersAPI} from '../../api/api'
+import { currentPageS } from './Selectors';
 
 const FRIEND_UNFRIEND = "FRIEND-UNFRIEND";
 const GET_USERS = "GET-USERS"
@@ -51,11 +52,11 @@ export default function usersReducer(state = initialState, action) {
         ...state,
         totalUsersCount: action.totalUsersCount
       }
-    case SHOW_MORE_USERS:
+    case SHOW_MORE_USERS: 
       return {
         ...state,
-        currentPage: state.currentPage + 1,
-        users: [...state.users, ...action.newUsers]
+        currentPage: action.currentPage,
+        users: [...action.newUsers]
       }
     case IS_LOADING_MAIN:
       return {
@@ -87,7 +88,7 @@ const onRegisterChanges = (value) => ({ type: REGISTER_CHANGES, textValue: value
 
 const onGetTotalUsers = (totalUsersCount) => ({ type: GET_TOTAL_USERS, totalUsersCount })
 
-const onShowMore = (newUsers) => ({ type: SHOW_MORE_USERS, newUsers })
+const changePageAC = (newUsers, currentPage) => ({ type: SHOW_MORE_USERS, newUsers, currentPage })
 
 const onIsLoadingMain = () => ({ type: IS_LOADING_MAIN })
 
@@ -95,25 +96,26 @@ const onIsLoadingShowMore = () => ({ type: IS_LOADING_SHOW_MORE })
 
 const isFollowing = (id, isFollowing) => ({ type: IS_FOLLOWING, id, isFollowing })
 
-const loadUsers = (currentPage, portionCount) => {
+const loadUsers = (currentPage) => {
   return (dispatch) => {
     dispatch(onIsLoadingMain())
-    UsersAPI.getUsers(currentPage, portionCount)
+    UsersAPI.getUsers(currentPage, initialState.portionCount )
         .then((data) => {
+            const {items, totalCount} = data
             dispatch(onIsLoadingMain())
-            dispatch(onGetUsers(data));
-            dispatch(onGetTotalUsers(data.totalCount))
+            dispatch(onGetUsers(items));
+            dispatch(onGetTotalUsers(totalCount))
         })
   }
 }
 
-const showMoreUsers = (currentPage, portionCount) => {
+const changePage = (currentPage) => {
   return (dispatch) => {
     dispatch(onIsLoadingShowMore())
-    UsersAPI.getUsers(currentPage + 1, portionCount)
-        .then((data) => {
+    UsersAPI.getUsers(currentPage, initialState.portionCount)
+        .then((data) => { 
             dispatch(onIsLoadingShowMore())
-            dispatch(onShowMore(data))
+            dispatch(changePageAC(data.items, currentPage))
         })
   }
 }
@@ -138,4 +140,4 @@ const friendUnfriend = (id, isFollowed) => {
   }
 }
 
-export { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend }
+export { onRegisterChanges, loadUsers, changePage, friendUnfriend }

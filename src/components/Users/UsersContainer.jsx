@@ -10,7 +10,7 @@ import {getUsersS, totalUsersCountS, portionCountS, currentPageS} from '../../re
 class UsersAPIContainer extends React.Component {
 
     componentDidMount = () => {
-       this.props.loadUsers(this.props.currentPage, this.props.portionCount)
+       this.props.loadUsers(this.props.currentPage)
     }
 
     render() { 
@@ -22,9 +22,6 @@ const mapStateProps = (state) => {
     return { 
         users: getUsersS(state),
         searchInput: state.UsersPage.searchInput, 
-        totalUsersCount: totalUsersCountS(state),
-        portionCount: portionCountS(state),
-        currentPage: currentPageS(state),
         isLoading: state.UsersPage.isLoading, 
         isLoadingShowMore: state.UsersPage.isLoadingShowMore, 
         disabledButtons: state.UsersPage.disabledButtons 
@@ -32,7 +29,7 @@ const mapStateProps = (state) => {
     
 }
 
-const mapDispatch = { onRegisterChanges, loadUsers, showMoreUsers, friendUnfriend}
+const mapDispatch = { onRegisterChanges, loadUsers,friendUnfriend}
 
 export default compose(
     withRedirect,

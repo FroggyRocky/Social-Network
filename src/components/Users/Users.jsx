@@ -3,15 +3,13 @@ import { NavLink } from 'react-router-dom'
 import UsersStyles from './Users.module.css'
 import userImg from '../../assets/imgs/userImg.jpg'
 import CircularProgress from '@mui/material/CircularProgress';
+import Paginator from '../common/Paginator/Paginator'
+
 import '../../App.css'
 
 
 
 export default function Users(props) {
-
-    function showMore() {
-        props.showMoreUsers(props.currentPage, props.portionCount)
-     }
 
     function addFriend(id, isFollowed) {
       props.friendUnfriend(id,isFollowed)
@@ -51,24 +49,16 @@ export default function Users(props) {
             {props.isLoading ?
                 <div className='preloader_container_main'>
                     <CircularProgress />
-                </div> :
-
+                </div> 
+                :
                 <div className={UsersStyles.container}>
                     <section className={UsersStyles.search_section}>
                         <input onChange={registerChanges} value={props.searchInput}
                             type="text" placeholder="Search" />
+                        <Paginator />
                     </section>
                     <section className={UsersStyles.friends_section}>
                         {users}
-                    </section>
-                    <section className={UsersStyles.showMore_container}>
-                        <div className={UsersStyles.showMore_button}>
-                            {props.isLoadingShowMore ?
-                                <div className={UsersStyles.preloader_additional}>
-                                    <CircularProgress /></div> :
-                                <button disabled={props.isLoadingShowMore} 
-                                onClick={showMore}><h2>SHOW MORE</h2></button>}
-                        </div>
                     </section>
                 </div>}
         </>
