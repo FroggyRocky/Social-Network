@@ -33,24 +33,26 @@ function nextPage() {
 const pagesArr = [];
 for (let i = 0; i < totalPages; i++) {pagesArr.push(i)}
     return (<div className={styles.pagination_container}>
-    {currentPortion > 1 && <div><button onClick={prevPage}>Prev</button></div>}
+    {currentPortion > 1 && <div className={styles.prevPage} onClick={prevPage}>{'<'}</div>}
         <div>
             {
                 pagesArr
-                .filter((page) => {return page >= firstPortionPage && page <= lastPortionPage})
-                .map((page) => {return <span 
-                onClick={(e)=>{
-                    changePage(e)
-                }}
-                className={styles.page}>{page}</span>})
+                .filter((page) => {
+                return page >= firstPortionPage && page <= lastPortionPage})
+                .map((page) => { return <span 
+                id={page}
+                onClick={(e)=>{changePage(e)}}
+                className={`${styles.page}
+                ${props.currentPage == page && styles.currentPage}`}>
+                {page}
+                </span>})
             }
         </div>
-    {currentPortion < totalPortions && <div><button onClick={nextPage}>Next</button></div>}
+    {currentPortion < totalPortions &&
+     <div className={styles.nextPage} onClick={nextPage}>{'>'}</div>}
         </div>
     )
 }
-
-
 
 const mapStateToProps = (state) => { 
     return {

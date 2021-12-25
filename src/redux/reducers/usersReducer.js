@@ -7,7 +7,7 @@ const REGISTER_CHANGES = 'REGISTER-CHANGES';
 const GET_TOTAL_USERS = "GET-TOTAL-USERS"
 const SHOW_MORE_USERS = 'SHOW-MORE-USERS'
 const IS_LOADING_MAIN = 'IS-LOADING-MAIN'
-const IS_LOADING_SHOW_MORE = 'IS-LOADING-SHOW-MORE'
+const PAGE_IS_LOADING = 'PAGE-IS-LOADING'
 const IS_FOLLOWING = 'IS_FOLLOWING'
 const initialState = {
   users: [],
@@ -16,7 +16,7 @@ const initialState = {
   currentPage: 1,
   searchInput: "",
   isLoading: false,
-  isLoadingShowMore: false,
+  pageIsLoading: true,
   disabledButtons: [],
 }
 
@@ -63,10 +63,10 @@ export default function usersReducer(state = initialState, action) {
         ...state,
         isLoading: !state.isLoading
       }
-    case IS_LOADING_SHOW_MORE:
+    case PAGE_IS_LOADING:
       return {
         ...state,
-        isLoadingShowMore: !state.isLoadingShowMore
+        pageIsLoading: !state.pageIsLoading
       }
     case IS_FOLLOWING:
       return {
@@ -92,7 +92,7 @@ const changePageAC = (newUsers, currentPage) => ({ type: SHOW_MORE_USERS, newUse
 
 const onIsLoadingMain = () => ({ type: IS_LOADING_MAIN })
 
-const onIsLoadingShowMore = () => ({ type: IS_LOADING_SHOW_MORE })
+const pageIsLoading = () => ({ type: PAGE_IS_LOADING })
 
 const isFollowing = (id, isFollowing) => ({ type: IS_FOLLOWING, id, isFollowing })
 
@@ -111,10 +111,10 @@ const loadUsers = (currentPage) => {
 
 const changePage = (currentPage) => {
   return (dispatch) => {
-    dispatch(onIsLoadingShowMore())
+    dispatch(pageIsLoading())
     UsersAPI.getUsers(currentPage, initialState.portionCount)
         .then((data) => { 
-            dispatch(onIsLoadingShowMore())
+            dispatch(pageIsLoading())
             dispatch(changePageAC(data.items, currentPage))
         })
   }

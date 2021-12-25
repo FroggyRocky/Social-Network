@@ -23,7 +23,7 @@ const mapStateProps = (state) => {
         users: getUsersS(state),
         searchInput: state.UsersPage.searchInput, 
         isLoading: state.UsersPage.isLoading, 
-        isLoadingShowMore: state.UsersPage.isLoadingShowMore, 
+        pageIsLoading: state.UsersPage.pageIsLoading, 
         disabledButtons: state.UsersPage.disabledButtons 
         } 
     
