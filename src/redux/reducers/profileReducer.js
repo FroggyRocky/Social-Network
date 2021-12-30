@@ -1,11 +1,13 @@
 import {ProfileAPI} from '../../api/api'
  
- const ADD_POST = 'ADD-POST';
- const GET_USER_PROFILE = 'GET-USER-PROFILE'
- const LOAD_CURRENT_PROFILE_DATA = "LOAD-CURRENT-PROFILE-DATA"
- const GET_PROFILE_STATUS = 'GET-PROFILE-STATUS'
- const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS'
- const DELETE_POST = "DELETE-POST"
+ const ADD_POST = 'social-network/reducers/profileReducer/ADD-POST';
+ const GET_USER_PROFILE = 'social-network/reducers/profileReducer/GET-USER-PROFILE'
+ const LOAD_CURRENT_PROFILE_DATA = "social-network/reducers/profileReducer/LOAD-CURRENT-PROFILE-DATA"
+ const GET_PROFILE_STATUS = 'social-network/reducers/profileReducer/GET-PROFILE-STATUS'
+ const SET_PROFILE_STATUS = 'social-network/reducers/profileReducer/SET-PROFILE-STATUS'
+ const DELETE_POST = "social-network/reducers/profileReducer/DELETE-POST"
+ const LIKE_POST  ="social-network/reducers/profileReducer/LIKE-POST"
+ const DISLIKE_POST = "social-network/reducers/profileReducer/DISLIKE-POST"
 
  const initialState =  {
    defaultProfile: {
@@ -28,7 +30,7 @@ import {ProfileAPI} from '../../api/api'
         text: 'Hanging out in my lab as always, peace!',
         id: 1,
         avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`,
-        likes:0
+        likes:0,
       }
     ],
     currentUserProfileData:null,
@@ -44,7 +46,8 @@ import {ProfileAPI} from '../../api/api'
       text: action.postText,
       id: state.posts.length + 1,
       avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`,
-      likes:0
+      likes:0,
+      isLiked:false
     };
   return {
       ...state,
@@ -58,6 +61,29 @@ import {ProfileAPI} from '../../api/api'
       return p.id !== action.id
     })
   }
+    case LIKE_POST: 
+    return {
+      ...state,
+      posts: state.posts.map( el => {
+        if(el.id === action.id) {
+          return {...el, likes:el.likes +1, isLiked:true, }
+        }
+      else {
+        return el
+      }
+      }) 
+    }
+    case DISLIKE_POST: 
+    return {
+      ...state,
+      posts: state.posts.map( el => {
+        if(el.id === action.id) {
+          return {...el, likes:el.likes - 1, isLiked: false}
+        } else {
+          return el
+        }
+      })
+    }
     case GET_USER_PROFILE: 
     return {
       ...state,
@@ -98,7 +124,9 @@ const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
+const likePost = (id) => ({type:LIKE_POST, id})
 
+const dislikePost = (id) => ({type:DISLIKE_POST, id})
 
 const loadCurrentProfile = (idParam) => {
   return (dispatch) => {
@@ -136,4 +164,16 @@ export const deletePost = (id) => {
   }
 }
 
-export {loadCurrentProfile, getProfileStatus,setProfileStatus, addPost}
+export const likeDisLikePost = (isLiked,id) => {
+  return (dispatch) => {
+      if(isLiked) {
+          dispatch(likePost(id))
+      }
+    else if (!isLiked) {
+      dispatch(dislikePost(id))
+    }
+}
+}
+
+export {loadCurrentProfile, getProfileStatus,setProfileStatus,
+addPost, likePost, dislikePost}
