@@ -30,6 +30,6 @@ margin-top: 20px;
 .likes {
 margin-left:5px;
 }
-.delete {
-  cursor: pointer;
+.like, .delete {
+  cursor:pointer
 }

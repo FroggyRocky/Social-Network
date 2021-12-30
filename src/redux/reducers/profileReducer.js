@@ -31,6 +31,7 @@ import {ProfileAPI} from '../../api/api'
         id: 1,
         avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`,
         likes:0,
+        isLiked:false
       }
     ],
     currentUserProfileData:null,
@@ -158,22 +159,22 @@ const setProfileStatus = (status) => {
   }
 }
 
-export const deletePost = (id) => {
+const deletePost = (id) => {
   return (dispatch) => {
     dispatch(deletePostAC(id))
   }
 }
 
-export const likeDisLikePost = (isLiked,id) => {
+const likeDislikePost = (isLiked,id) => {
   return (dispatch) => {
-      if(isLiked) {
+      if(!isLiked) {
           dispatch(likePost(id))
       }
-    else if (!isLiked) {
+    else if (isLiked) {
       dispatch(dislikePost(id))
     }
 }
 }
 
 export {loadCurrentProfile, getProfileStatus,setProfileStatus,
-addPost, likePost, dislikePost}
+addPost, likePost, dislikePost, likeDislikePost, deletePost}

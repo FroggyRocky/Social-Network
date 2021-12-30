@@ -2,7 +2,7 @@ import PostForm from './PostForm/PostForm'
 import styles from './Posts.module.css'
 import Post from './Post/Post'
 import {connect} from 'react-redux'
-import {addPost,deletePost} from '../../../redux/reducers/profileReducer'
+import {addPost,deletePost, likeDislikePost} from '../../../redux/reducers/profileReducer'
 
 function Posts(props) { 
    
@@ -15,8 +15,10 @@ function Posts(props) {
           avatarIcon={post.avatar}
           postText={post.text}
           likes={post.likes}
-          id={index}
+          isLiked={post.isLiked}
+          id={index + 1}
           deletePost={props.deletePost}
+          likeDislikePost={props.likeDislikePost}
         />
       )
     });
@@ -38,4 +40,4 @@ return {
 
 
 
-export default connect(mapStateToProps, {addPost, deletePost})(Posts)
+export default connect(mapStateToProps, {addPost, deletePost, likeDislikePost})(Posts)

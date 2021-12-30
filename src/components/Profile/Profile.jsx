@@ -1,6 +1,6 @@
 import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
-import PostsContainer from './Posts/PostsContainer'
+import PostsContainer from './Posts/Posts'
 import userImg from '../../assets/imgs/userImg.jpg'
 import backImg from '../../assets/imgs/backImg.jpg'
 
