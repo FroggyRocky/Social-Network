@@ -1,20 +1,35 @@
 .item {
-    display: flex;
-    align-items: center;
-    margin: 15px;
-    max-width: 90vh;
-}
-  .item img {
-    width: 45px;
-    height: 45px;
-       border-radius: 50px;
-       margin: 0 20px 0 0;
-       float: left;
-  }
-.postText {
-  display: inline-block;
-}
-  .likes {
-   text-align: end;
-  }
+display: flex;
+justify-content: space-between;
+width: 55%;
+margin-top: 20px;
 
+}
+.item img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  margin: 0 20px 0 0;
+ 
+}
+.postInfo_container {
+  display: flex;
+  align-items: center;
+}
+.postActions_container {
+  margin-left:15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.likes_container {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+.likes {
+margin-left:5px;
+}
+.delete {
+  cursor: pointer;
+}

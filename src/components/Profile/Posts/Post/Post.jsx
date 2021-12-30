@@ -1,12 +1,36 @@
-import PostStyle from './Post.module.css'
-export default function Post(props) { 
+
+import styles from "./Post.module.css";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ClearIcon from '@mui/icons-material/Clear';
+
+export default function Post(props) {
+
+
+
+
+
+
+function deletePost(id) {
+  props.deletePost(id)
+}
+
   return (
-    <div className={PostStyle.postItems}>
-      <div className={PostStyle.item}>
-        <img src={props.avatarIcon} alt=""/>
-        <p>{props.postText}</p> 
-        <p className={PostStyle.likes}>{props.likes}</p>
-      </div> 
-    </div>
-  )
+      <div className={styles.item}>
+      <section className={styles.postInfo_container}>
+        <img src={props.avatarIcon} alt="userIcon" />
+        <p>{props.postText}</p>
+      </section>
+      <section className={styles.postActions_container}>
+        <div className={styles.delete_container}>
+          <div className={styles.delete} onClick={()=>{deletePost(props.id + 1)}} >
+          <ClearIcon fontSize="small"/>
+          </div>
+        </div>
+        <div className={styles.likes_container}>
+          <FavoriteBorderIcon color='primary' fontSize="small" />
+          <p className={styles.likes}>{props.likes}</p>
+        </div>
+      </section>
+      </div>
+  );
 }

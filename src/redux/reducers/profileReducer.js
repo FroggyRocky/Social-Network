@@ -27,7 +27,8 @@ import {ProfileAPI} from '../../api/api'
       {
         text: 'Hanging out in my lab as always, peace!',
         id: 1,
-        avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
+        avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`,
+        likes:0
       }
     ],
     currentUserProfileData:null,
@@ -42,7 +43,8 @@ import {ProfileAPI} from '../../api/api'
      let newPost = {
       text: action.postText,
       id: state.posts.length + 1,
-      avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`
+      avatar: `https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg`,
+      likes:0
     };
   return {
       ...state,
