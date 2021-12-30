@@ -56,7 +56,13 @@ export default function Users(props) {
                     <section className={styles.search_section}>
                         <input onChange={registerChanges} value={props.searchInput}
                             type="text" placeholder="Search" />
-                              <Paginator />
+                             <Paginator 
+                             totalItems = {props.totalUsersCount}
+                             portionCount = {props.portionCount}
+                             currentPage={props.currentPage}
+                             changePageFn={props.changePage}
+                              />
+
                     </section>
                   
                     {props.pageIsLoading

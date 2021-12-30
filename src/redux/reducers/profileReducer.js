@@ -5,6 +5,7 @@ import {ProfileAPI} from '../../api/api'
  const LOAD_CURRENT_PROFILE_DATA = "LOAD-CURRENT-PROFILE-DATA"
  const GET_PROFILE_STATUS = 'GET-PROFILE-STATUS'
  const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS'
+ const DELETE_POST = "DELETE-POST"
 
  const initialState =  {
    defaultProfile: {
@@ -48,6 +49,13 @@ import {ProfileAPI} from '../../api/api'
       posts:[...state.posts, {...newPost}],
       currentInput: ''
     }
+  case DELETE_POST: 
+  return {
+    ...state, 
+    posts:state.posts.filter((p) => {
+      return p.id !== action.id
+    })
+  }
     case GET_USER_PROFILE: 
     return {
       ...state,
@@ -68,6 +76,7 @@ import {ProfileAPI} from '../../api/api'
         ...state,
         currentProfileStatus:action.status
       }
+    
     default:
     return state  
    }
@@ -77,6 +86,8 @@ import {ProfileAPI} from '../../api/api'
 ///Action Creators
 const addPost = (postText) => ({type:ADD_POST, postText})
 
+export const deletePostAC = (id) => ({type:DELETE_POST, id})
+
 const getUserProfileData = (userProfileData) => ({type:GET_USER_PROFILE, userProfileData})
 
 const loadingCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
@@ -84,6 +95,8 @@ const loadingCurrentUserProfileData = () => ({type:LOAD_CURRENT_PROFILE_DATA})
 const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
+
+
 
 const loadCurrentProfile = (idParam) => {
   return (dispatch) => {
@@ -115,5 +128,10 @@ const setProfileStatus = (status) => {
   }
 }
 
+export const deletePost = (id) => {
+  return (dispatch) => {
+    dispatch(deletePostAC(id))
+  }
+}
 
 export {loadCurrentProfile, getProfileStatus,setProfileStatus, addPost}

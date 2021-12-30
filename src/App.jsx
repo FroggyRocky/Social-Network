@@ -26,7 +26,7 @@ function App(props) {
         : 
         'grid_container_unlogged'}>
           <HeaderContainer />
-          {props.isLogged && <SideBar sideBarState={props.state.SideBarPage} />}
+          {props.isLogged && <SideBar />}
           <div className="mainContent_container">
             <Switch>
               <Route path="/profile/:userId?">
