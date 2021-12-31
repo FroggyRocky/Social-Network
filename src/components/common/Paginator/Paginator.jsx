@@ -10,7 +10,6 @@ export default function Paginator({pagesPortion = 10, totalItems, portionCount, 
     const lastPortionPage = currentPortion * portionCount;
     
     function changePage(e) {
-    console.log(e.target.innerText);
     changePageFn(e.target.innerText)
     
     }

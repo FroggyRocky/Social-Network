@@ -6,7 +6,6 @@
 
 .dialogues {
     padding: 5px;
-    background-color: cadetblue;
 }
 .dialogueItem {
 display: flex;
@@ -26,8 +25,8 @@ margin: 10px 5px 0 5px;
 }
 .chat {
 padding: 5px;
-background-color: azure;
 position: relative;
+color:whitesmoke ;
 }
 .chat h3 {
     text-align: center;

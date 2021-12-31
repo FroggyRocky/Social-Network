@@ -2,6 +2,7 @@ import PostForm from './PostForm/PostForm'
 import styles from './Posts.module.css'
 import Post from './Post/Post'
 import {connect} from 'react-redux'
+import {reset} from 'redux-form'
 import {addPost,deletePost, likeDislikePost} from '../../../redux/reducers/profileReducer'
 
 function Posts(props) { 
@@ -16,7 +17,7 @@ function Posts(props) {
           postText={post.text}
           likes={post.likes}
           isLiked={post.isLiked}
-          id={index + 1}
+          id={post.id}
           deletePost={props.deletePost}
           likeDislikePost={props.likeDislikePost}
         />
@@ -25,7 +26,7 @@ function Posts(props) {
 
   return (
     <div className={styles.postsSection}>
-     <PostForm addPost={props.addPost} />
+     <PostForm addPost={props.addPost} reset={props.reset} />
       {postsComponents}
     </div>
   )
@@ -38,6 +39,4 @@ return {
 
 } 
 
-
-
-export default connect(mapStateToProps, {addPost, deletePost, likeDislikePost})(Posts)
+export default connect(mapStateToProps, {addPost, deletePost, likeDislikePost,reset})(Posts)

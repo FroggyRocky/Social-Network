@@ -42,6 +42,7 @@ import {ProfileAPI} from '../../api/api'
 
   export default function profileReducer (state = initialState, action) {
    switch(action.type) {
+     
      case ADD_POST: 
      let newPost = {
       text: action.postText,

@@ -1,4 +1,3 @@
-import {useEffect} from 'react' 
 import styles from "./Post.module.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ClearIcon from '@mui/icons-material/Clear';
@@ -15,7 +14,6 @@ props.likeDislikePost(isLiked,id )
 function deletePost(id) {
   props.deletePost(id)
 }
-
 
   return (
       <div className={styles.item}>
