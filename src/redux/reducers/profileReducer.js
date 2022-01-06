@@ -5,26 +5,13 @@ import {ProfileAPI} from '../../api/api'
  const LOAD_CURRENT_PROFILE_DATA = "social-network/reducers/profileReducer/LOAD-CURRENT-PROFILE-DATA"
  const GET_PROFILE_STATUS = 'social-network/reducers/profileReducer/GET-PROFILE-STATUS'
  const SET_PROFILE_STATUS = 'social-network/reducers/profileReducer/SET-PROFILE-STATUS'
+ const SET_PHOTO = 'social-network/reducers/profileReducer/SET-PHOTO'
  const DELETE_POST = "social-network/reducers/profileReducer/DELETE-POST"
  const LIKE_POST  ="social-network/reducers/profileReducer/LIKE-POST"
  const DISLIKE_POST = "social-network/reducers/profileReducer/DISLIKE-POST"
+ 
 
  const initialState =  {
-   defaultProfile: {
-     userId:1,
-      aboutMe:'Create stuff, hang out in my lab',
-      fullName:'Tony Stark',
-       location:'Planet Earth',
-       education:'Technical Institute of Texas State(TITS)',
-       age: '30',
-      contacts: {
-        github:'https://github.com/FroggyRocky',
-      },
-       photos: {
-       large: "https://www.wallpapers.net/free-download-iron-man-movie-wallpaper-for-desktop-mobiles/download/1500x500.jpg",
-       small:"https://i.pinimg.com/280x280_RS/57/2f/38/572f38a6d9c916a32064cca023ae6586.jpg"
-       }
-   },
    posts: [
       {
         text: 'Hanging out in my lab as always, peace!',
@@ -106,6 +93,12 @@ import {ProfileAPI} from '../../api/api'
         ...state,
         currentProfileStatus:action.status
       }
+      case SET_PHOTO:
+        return {
+          ...state, 
+          currentUserProfileData: {...state.currentUserProfileData, photos:action.photos}
+
+        }
     
     default:
     return state  
@@ -126,6 +119,9 @@ const getStatus = (status) => ({type:GET_PROFILE_STATUS, status})
 
 const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
+const setPhotoSuccess = (photos) => ({type:SET_PHOTO, photos})
+
+
 const likePost = (id) => ({type:LIKE_POST, id})
 
 const dislikePost = (id) => ({type:DISLIKE_POST, id})
@@ -135,7 +131,7 @@ const loadCurrentProfile = (idParam) => {
     dispatch(loadingCurrentUserProfileData())
         !idParam && dispatch(loadingCurrentUserProfileData())
         ProfileAPI.getProfile(idParam)
-            .then((data) => { 
+            .then((data) => {
             dispatch(loadingCurrentUserProfileData())
             dispatch(getUserProfileData(data))
             })
@@ -160,6 +156,15 @@ const setProfileStatus = (status) => {
   }
 }
 
+const setPhoto = (photo) => {
+  return async (dispatch) => {
+    let response = await ProfileAPI.setPhoto(photo)
+    if(response.data.resultCode === 0) {
+            dispatch(setPhotoSuccess(response.data.data.photos));
+    }
+  }
+}
+
 const deletePost = (id) => {
   return (dispatch) => {
     dispatch(deletePostAC(id))
@@ -177,5 +182,5 @@ const likeDislikePost = (isLiked,id) => {
 }
 }
 
-export {loadCurrentProfile, getProfileStatus,setProfileStatus,
+export {loadCurrentProfile, getProfileStatus,setProfileStatus, setPhoto,
 addPost, likePost, dislikePost, likeDislikePost, deletePost}

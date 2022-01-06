@@ -1,34 +1,48 @@
-import React from 'react'
-import userInfoStyles from './UserInfo.module.css'
-import UserStatus from './UserStatus'
-export default function UserInfo(props) {
+import React from "react";
+import styles from "./UserInfo.module.css";
+import UserStatus from "./UserStatus";
+import backImg from "../../../assets/imgs/backImg.jpg";
+import avatar from "../../../assets/imgs/userImg.jpg";
+import Preloader from '../../common/Preloader/Preloader'
+
+function UserInfo({ profile, status, setStatus, setPhoto }) {
+  
+  function changeAvatar(e) {
+    let photo = e.target.files[0];
+    setPhoto(photo);
+  }
+  if (!profile)
+    return (
+      <Preloader />
+    );
 
   return (
     <>
-      <div className={userInfoStyles.backImg}>
-        <img src={props.backImg} alt="" />
+      <div className={styles.backImg}>
+        <img src={profile.photos.small || backImg} alt="" />
       </div>
-      <section className={userInfoStyles.userInfo_container}>
-        <div className={userInfoStyles.userInfo}>
-          <div className={userInfoStyles.userAvatar}>
-            <img src={props.avatar} alt="" />
-           
-          </div>
-          <div className={userInfoStyles.userBio}>
-            <div className={userInfoStyles.user_name_status_container}>
-            <h3>{props.fullName}</h3>
-            <UserStatus setStatus={props.setStatus} status={props.status} />
+      <section className={styles.userInfo_container}>
+        <div className={styles.userInfo}>
+          <div className={styles.userAvatar}>
+            <img src={profile.photos.small || avatar} alt="" />
+            <div className={styles.changeAvatar}>
+              <input onChange={changeAvatar} type="file" />
             </div>
-            <p>{props.location}</p>
-            <p>Contacts:{props.contacts.github}</p>
-            <p>age:{props.age}</p>
-            <p>About:{props.aboutMe}</p>
+          </div>
+
+          <div className={styles.userBio}>
+            <div className={styles.user_name_status_container}>
+              <h3>{profile.fullName}</h3>
+              <UserStatus setStatus={setStatus} status={status} />
+            </div>
+            <p>Contacts:{profile.contacts.github}</p>
+            <p>About:{profile.aboutMe}</p>
           </div>
         </div>
-        <div className={userInfoStyles.userFriends_container}>
-
-        </div>
+        <div className={styles.userFriends_container}></div>
       </section>
     </>
-  )
+  );
 }
+
+export default UserInfo;

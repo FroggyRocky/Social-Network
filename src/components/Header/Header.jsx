@@ -2,7 +2,7 @@ import { useState } from 'react';
 import NavMajor from './Navigation/NavMajor';
 import NavMinor from './Navigation/NavMinor';
 import ModelWindow from './ModelWindow';
-import headerStyles from './Header.module.css'
+import styles from './Header.module.css'
 
 
 export default function Header(props) {
@@ -19,7 +19,7 @@ export default function Header(props) {
   }
 
   const exitModelWindow = (e) => {
-    if (e.target.className === headerStyles.modelWindow_container) {
+    if (e.target.className === styles.modelWindow_container) {
       toggleModelWindow(false)
     }
   }
@@ -31,8 +31,8 @@ export default function Header(props) {
     logOutFn={logOut} />
 
   else return (
-    <header className={headerStyles.header}>
-      <div className={headerStyles.img}>
+    <header className={styles.header}>
+      <div className={styles.img}>
         <img src="https://bbts1.azureedge.net/images/p/full/2017/09/8819c275-f982-4c5b-aa61-754f4c6a5402.png" alt="" />
       </div>
 

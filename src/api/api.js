@@ -1,3 +1,4 @@
+import { SettingsPhoneTwoTone } from '@mui/icons-material'
 import * as axios from 'axios'
 
 const instance = axios.create({
@@ -54,6 +55,15 @@ getProfileStatus(id) {
 },
 setProfileStatus(status){
     return instance.put('profile/status', {status})
+},
+setPhoto(photo) {
+    const formData = new FormData()
+    formData.append('image', photo)
+    return instance.put('profile/photo', formData, {
+        headers:{
+            'Content-Type':'multipart/form-data'
+        }
+    } )
 }
 }
 
