@@ -28,7 +28,7 @@ export default function UserStatus(props) {
     return <div>
         <div >
             {!isEditing ?
-                <p onClick={editOn}>{props.status || 'Set Status'}</p> 
+                <p onClick={editOn}>Status: {props.status || 'Set Status'}</p> 
                 :
                 <input onChange={setInput} autoFocus={true} onBlur={editOff}
                     type="text" value={currentInput} />

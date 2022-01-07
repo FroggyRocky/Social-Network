@@ -9,7 +9,7 @@ import {ProfileAPI} from '../../api/api'
  const DELETE_POST = "social-network/reducers/profileReducer/DELETE-POST"
  const LIKE_POST  ="social-network/reducers/profileReducer/LIKE-POST"
  const DISLIKE_POST = "social-network/reducers/profileReducer/DISLIKE-POST"
- 
+ const TOGGLE_EDIT_MODE = "social-network/reducers/profileReducer/TOGGLE-EDIT-MODE"
 
  const initialState =  {
    posts: [
@@ -23,7 +23,7 @@ import {ProfileAPI} from '../../api/api'
     ],
     currentUserProfileData:null,
     currentProfileStatus:"",
-    currentInput: "",
+    isEditModeOn:false,
     isProfileLoading:false
   }
 
@@ -99,7 +99,11 @@ import {ProfileAPI} from '../../api/api'
           currentUserProfileData: {...state.currentUserProfileData, photos:action.photos}
 
         }
-    
+      case TOGGLE_EDIT_MODE: 
+      return {
+        ...state,
+        isEditModeOn:action.isEditing
+      }
     default:
     return state  
    }
@@ -109,7 +113,7 @@ import {ProfileAPI} from '../../api/api'
 ///Action Creators
 const addPost = (postText) => ({type:ADD_POST, postText})
 
-export const deletePostAC = (id) => ({type:DELETE_POST, id})
+const deletePostAC = (id) => ({type:DELETE_POST, id})
 
 const getUserProfileData = (userProfileData) => ({type:GET_USER_PROFILE, userProfileData})
 
@@ -121,10 +125,13 @@ const setStatus = (status) => ({type:SET_PROFILE_STATUS, status})
 
 const setPhotoSuccess = (photos) => ({type:SET_PHOTO, photos})
 
+const toggleEditMode = (isEditing) => ({type:TOGGLE_EDIT_MODE,isEditing})
 
 const likePost = (id) => ({type:LIKE_POST, id})
 
 const dislikePost = (id) => ({type:DISLIKE_POST, id})
+
+
 
 const loadCurrentProfile = (idParam) => {
   return (dispatch) => {
@@ -165,6 +172,7 @@ const setPhoto = (photo) => {
   }
 }
 
+
 const deletePost = (id) => {
   return (dispatch) => {
     dispatch(deletePostAC(id))
@@ -183,4 +191,4 @@ const likeDislikePost = (isLiked,id) => {
 }
 
 export {loadCurrentProfile, getProfileStatus,setProfileStatus, setPhoto,
-addPost, likePost, dislikePost, likeDislikePost, deletePost}
+addPost, likePost, dislikePost, likeDislikePost, deletePost, deletePostAC, toggleEditMode}

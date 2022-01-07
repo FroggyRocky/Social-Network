@@ -7,6 +7,7 @@ import {
   getProfileStatus,
   setProfileStatus,
   setPhoto,
+  toggleEditMode
 } from "../../redux/reducers/profileReducer";
 import Profile from "./Profile";
 import Preloader from "../common/Preloader/Preloader";
@@ -41,6 +42,8 @@ class ProfileContainer extends React.Component {
             status={this.props.status}
             profile={this.props.profile.currentUserProfileData}
             setPhoto={this.props.setPhoto}
+            isEditModeOn={this.props.profile.isEditModeOn}
+            toggleEditMode={this.props.toggleEditMode}
           />
         )}
       </>
@@ -61,6 +64,7 @@ const mapDispatchProps = {
   getProfileStatus,
   setProfileStatus,
   setPhoto,
+  toggleEditMode
 };
 
 export default compose(

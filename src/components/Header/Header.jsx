@@ -26,9 +26,20 @@ export default function Header(props) {
 
 ////RENDER
 
-  if (isModelWindowOn) return <ModelWindow
+  if (isModelWindowOn) return <> <ModelWindow
     exitModelWindowFn={exitModelWindow}
     logOutFn={logOut} />
+     <header className={styles.header}>
+      <div className={styles.img}>
+        <img src="https://bbts1.azureedge.net/images/p/full/2017/09/8819c275-f982-4c5b-aa61-754f4c6a5402.png" alt="" />
+      </div>
+
+      {props.auth.isLogged && <NavMajor auth={props.auth} />}
+
+      <NavMinor auth={props.auth} openModelWindowFn={openModelWindow} />
+
+    </header>
+  </>
 
   else return (
     <header className={styles.header}>

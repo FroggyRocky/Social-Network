@@ -4,42 +4,59 @@ import UserStatus from "./UserStatus";
 import backImg from "../../../assets/imgs/backImg.jpg";
 import avatar from "../../../assets/imgs/userImg.jpg";
 import Preloader from '../../common/Preloader/Preloader'
+import ProfileEdit from '../ProfileEditMode/ProfileEdit'
+import EditIcon from '@mui/icons-material/Edit';
 
-function UserInfo({ profile, status, setStatus, setPhoto }) {
+function UserInfo({ profile, status, setStatus, setPhoto,toggleEditMode,isEditModeOn }) {
   
   function changeAvatar(e) {
     let photo = e.target.files[0];
     setPhoto(photo);
   }
+
+function editOn() {
+  toggleEditMode(true)
+}
+
+
   if (!profile)
     return (
       <Preloader />
     );
-
   return (
     <>
+    {isEditModeOn && <ProfileEdit
+     backImg={profile.photos.large}
+      backImgDefault={backImg} 
+      avatar={profile.photo.small}
+      avatarDefault={avatar}
+      /> }
       <div className={styles.backImg}>
-        <img src={profile.photos.small || backImg} alt="" />
+        <img src={profile.photos.large || backImg} alt="" />
       </div>
-      <section className={styles.userInfo_container}>
-        <div className={styles.userInfo}>
+      <section className={styles.userData_container}>
+        <div className={styles.userData}>
           <div className={styles.userAvatar}>
             <img src={profile.photos.small || avatar} alt="" />
             <div className={styles.changeAvatar}>
               <input onChange={changeAvatar} type="file" />
             </div>
           </div>
-
-          <div className={styles.userBio}>
-            <div className={styles.user_name_status_container}>
+          <div className={styles.userInfo_container}>
+            <div className={styles.userInfo_major}>
               <h3>{profile.fullName}</h3>
+              <EditIcon onClick={editOn} className={styles.edit}
+              color="primary" fontSize='small'/>
+              </div>
+            <div className={styles.userStatus_container}>
               <UserStatus setStatus={setStatus} status={status} />
-            </div>
+              </div>
+            <div className={styles.userInfo_minor}>
             <p>Contacts:{profile.contacts.github}</p>
             <p>About:{profile.aboutMe}</p>
+            </div>
           </div>
         </div>
-        <div className={styles.userFriends_container}></div>
       </section>
     </>
   );

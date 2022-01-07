@@ -10,6 +10,8 @@ return <section>
       status = {props.status}
       setStatus={props.setStatus}
       setPhoto={props.setPhoto}
+      isEditModeOn={props.isEditModeOn}
+      toggleEditMode={props.toggleEditMode}
       />
       <PostsContainer/>
     </section> 

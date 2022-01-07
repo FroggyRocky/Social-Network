@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field } from 'redux-form'
-import { fieldRequired, maxLengthVal, minLengthVal, emailVal } from '../common/FormsValidation/FormsValidation'
+import { fieldRequired, maxLengthVal, minLengthVal, emailVal }
+from '../common/FormsValidation/FormsValidation'
 import { withReduxForm } from '../common/FormsValidation/FieldContainers'
 import LoginStyles from './LoginForm.module.css'
 import TextField from '@mui/material/TextField';
