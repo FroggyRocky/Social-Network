@@ -46,6 +46,6 @@ const addMessage = (message) => {
   return (dispatch) => {
    ///api request   
    dispatch(addMessageAC(message))
-   dispatch(reset('chat'))
+   dispatch(reset('Сhat'))
   }
 }

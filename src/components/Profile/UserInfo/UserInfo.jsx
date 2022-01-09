@@ -4,10 +4,9 @@ import UserStatus from "./UserStatus";
 import backImg from "../../../assets/imgs/backImg.jpg";
 import avatar from "../../../assets/imgs/userImg.jpg";
 import Preloader from '../../common/Preloader/Preloader'
-import ProfileEdit from '../ProfileEditMode/ProfileEdit'
 import EditIcon from '@mui/icons-material/Edit';
 
-function UserInfo({ profile, status, setStatus, setPhoto,toggleEditMode,isEditModeOn }) {
+function UserInfo({ profile, status, setStatus, setPhoto, toggleEditMode}) {
   
   function changeAvatar(e) {
     let photo = e.target.files[0];
@@ -25,12 +24,6 @@ function editOn() {
     );
   return (
     <>
-    {isEditModeOn && <ProfileEdit
-     backImg={profile.photos.large}
-      backImgDefault={backImg} 
-      avatar={profile.photo.small}
-      avatarDefault={avatar}
-      /> }
       <div className={styles.backImg}>
         <img src={profile.photos.large || backImg} alt="" />
       </div>

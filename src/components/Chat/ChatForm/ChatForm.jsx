@@ -11,7 +11,7 @@ function ChatForm(props) {
 }
 
 
-const WithReduxForm = reduxForm({form:'chat'})(ChatForm)
+const WithReduxForm = reduxForm({form:'Chat'})(ChatForm)
 
 
 class ChatFormContainer extends React.Component { 

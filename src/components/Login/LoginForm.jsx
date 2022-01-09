@@ -15,8 +15,6 @@ const Input = withReduxForm(TextField)
 
 export default function LoginForm(props) {
 
-
-
     return <form onSubmit={props.handleSubmit}>
         <div className={LoginStyles.email_input_container}>
             <Field type='text' placeholder='Email'

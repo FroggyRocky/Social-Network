@@ -5,7 +5,7 @@ import {TextArea} from '../../../common/FormsValidation/FieldContainers'
 import {maxLengthVal, minLengthVal} from '../../../common/FormsValidation/FormsValidation'
 
 const maxLength300 = maxLengthVal('post',300)
-const minLength1 = minLengthVal('post',1)
+const minLength1 = minLengthVal('post', 1)
 
 function PostForm(props) {
 
@@ -25,7 +25,7 @@ setIsExpanded(true)
   </form>
 }
 
-const WithReduxForm = reduxForm({form:'post'})(PostForm)
+const WithReduxForm = reduxForm({form:'Post'})(PostForm)
 
 
 

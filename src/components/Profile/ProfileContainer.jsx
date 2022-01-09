@@ -42,7 +42,6 @@ class ProfileContainer extends React.Component {
             status={this.props.status}
             profile={this.props.profile.currentUserProfileData}
             setPhoto={this.props.setPhoto}
-            isEditModeOn={this.props.profile.isEditModeOn}
             toggleEditMode={this.props.toggleEditMode}
           />
         )}
