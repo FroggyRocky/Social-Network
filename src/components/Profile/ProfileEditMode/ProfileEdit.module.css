@@ -1,6 +1,7 @@
 .modelWindow_content {
-    width: 30%;
-    height: 90%;
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
 }
 .backImg img {
     width: 100%;
@@ -9,17 +10,30 @@
 }
 .userAvatar {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 .userAvatar img {
     border-radius: 20px;
     width: 50px;
     height: 50px;
 }
-.changeAvatar_icon {
-    cursor: pointer;
-    position: absolute;
+.changeAvatar {
+margin-top: 30px;
 }
+
 .changeAvatar input {
     display: none;
-    position: absolute;
+}
+
+.changeBackImg input {
+    display: none;
+}
+.changeBackImg {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -25px;
+}
+.icon {
+    color:darkorange;
 }

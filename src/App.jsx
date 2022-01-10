@@ -19,17 +19,24 @@ const ChatContainer = React.lazy(() => {
 });
 
 function App(props) {
+
   useEffect(() => {
     props.initialize();
   }, []);
+
+useEffect(() => {
+if(props.isEditModeOn) {
+  document.body.style.overflow = 'hidden'
+} else if(!props.isEditModeOn) {
+  document.body.style.overflow = 'visible'
+}
+},[props.isEditModeOn])
+
   if (props.isInitialized)
     return (
       <Router>
-        <div
-          className={
-            props.isLogged ? "grid_container_logged" : "grid_container_unlogged"
-          }
-        >
+        <div 
+          className={props.isLogged ? "grid_container_logged" : "grid_container_unlogged"}>
           <HeaderContainer />
           {props.isLogged && <SideBar />}
           <div className="mainContent_container">
@@ -66,6 +73,7 @@ const mapStateToProps = (state) => {
   return {
     isInitialized: state.AppInitializer.isInitialized,
     isLogged: state.Auth.isLogged,
+    isEditModeOn:state.ProfilePage.isEditModeOn
   };
 };
 
