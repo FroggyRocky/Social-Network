@@ -6,7 +6,6 @@ import {
   loadCurrentProfile,
   getProfileStatus,
   setProfileStatus,
-  setPhoto,
   toggleEditMode
 } from "../../redux/reducers/profileReducer";
 import Profile from "./Profile";
@@ -15,15 +14,18 @@ import { getStatusS } from "../../redux/reducers/Selectors";
 import "../../App.css";
 
 class ProfileContainer extends React.Component {
+
   refreshProfile = () => {
+    
     let idParam = this.props.match.params.userId;
     if (!idParam) idParam = this.props.auth.id;
     this.props.loadCurrentProfile(idParam),
       this.props.getProfileStatus(idParam);
   };
 
-  componentDidMount() {
-    this.refreshProfile();
+async componentDidMount() { debugger;
+    const response = await this.refreshProfile();
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -41,7 +43,6 @@ class ProfileContainer extends React.Component {
             setStatus={this.props.setProfileStatus}
             status={this.props.status}
             profile={this.props.profile.currentUserProfileData}
-            setPhoto={this.props.setPhoto}
             toggleEditMode={this.props.toggleEditMode}
           />
         )}
@@ -62,7 +63,6 @@ const mapDispatchProps = {
   loadCurrentProfile,
   getProfileStatus,
   setProfileStatus,
-  setPhoto,
   toggleEditMode
 };
 

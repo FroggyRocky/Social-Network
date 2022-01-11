@@ -1,17 +1,21 @@
 import React from 'react'
 import UserInfo from './UserInfo/UserInfo';
 import PostsContainer from './Posts/Posts'
+import Preloader from '../common/Preloader/Preloader'
 
 export default function Profile(props) { 
 
-return <section>
+if(!props.profile) {
+  return <Preloader />
+} else return <section>
       <UserInfo 
       profile={props.profile}
       status = {props.status}
       setStatus={props.setStatus}
-      setPhoto={props.setPhoto}
       toggleEditMode={props.toggleEditMode}
       />
       <PostsContainer/>
     </section> 
   }
+
+  

@@ -1,5 +1,5 @@
 import { toAuth } from "./authReducer"
-
+import {loadCurrentProfile, getProfileStatus} from './profileReducer'
 const APP_INITIALIZE = 'APP-INITIALIZE'
 
 const initialState = {
@@ -31,5 +31,7 @@ const initializeAC = (isInitialized) => ({type:APP_INITIALIZE, isInitialized})
         
     }
 }
+
+
 
 export {initialize}

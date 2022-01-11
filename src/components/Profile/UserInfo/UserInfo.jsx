@@ -3,25 +3,31 @@ import styles from "./UserInfo.module.css";
 import UserStatus from "./UserStatus";
 import backImg from "../../../assets/imgs/backImg.jpg";
 import avatar from "../../../assets/imgs/userImg.jpg";
-import Preloader from '../../common/Preloader/Preloader'
-import EditIcon from '@mui/icons-material/Edit';
+import Preloader from "../../common/Preloader/Preloader";
+import EditIcon from "@mui/icons-material/Edit";
 
-function UserInfo({ profile, status, setStatus, setPhoto, toggleEditMode}) {
-  
-  function changeAvatar(e) {
-    let photo = e.target.files[0];
-    setPhoto(photo);
+function UserInfo({ profile, status, setStatus, toggleEditMode }) {
+
+
+
+  const contacts = Object.keys(profile.contacts).map((el) => {
+    if(profile.contacts[el]) {
+      return (
+        <div className={styles.contacts_container}>
+          <b>Contacts:</b>
+          <p>
+            {el}:{profile.contacts[el]}
+          </p>
+        </div>
+      );
+    }
+  });
+
+  function editOn() {
+    toggleEditMode(true);
   }
 
-function editOn() {
-  toggleEditMode(true)
-}
-
-
-  if (!profile)
-    return (
-      <Preloader />
-    );
+  if (!profile) return <Preloader />;
   return (
     <>
       <div className={styles.backImg}>
@@ -31,22 +37,22 @@ function editOn() {
         <div className={styles.userData}>
           <div className={styles.userAvatar}>
             <img src={profile.photos.small || avatar} alt="" />
-            <div className={styles.changeAvatar}>
-              <input onChange={changeAvatar} type="file" />
-            </div>
           </div>
           <div className={styles.userInfo_container}>
             <div className={styles.userInfo_major}>
               <h3>{profile.fullName}</h3>
-              <EditIcon onClick={editOn} className={styles.edit}
-              color="primary" fontSize='small'/>
-              </div>
+              <EditIcon
+                onClick={editOn}
+                className={styles.edit}
+                color="primary"
+                fontSize="small"
+              />
+            </div>
             <div className={styles.userStatus_container}>
               <UserStatus setStatus={setStatus} status={status} />
-              </div>
+            </div>
             <div className={styles.userInfo_minor}>
-            <p>Contacts:{profile.contacts.github}</p>
-            <p>About:{profile.aboutMe}</p>
+              {contacts}
             </div>
           </div>
         </div>

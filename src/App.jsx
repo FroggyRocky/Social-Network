@@ -55,7 +55,6 @@ if(props.isEditModeOn) {
                   <UsersContainer />
                 </Route>
               </React.Suspense>
-             
             </Switch>
           </div>
         </div>

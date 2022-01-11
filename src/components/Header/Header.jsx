@@ -31,6 +31,7 @@ export default function Header(props) {
       {isModelWindowOn && (
         <ModelWindow exitModelWindowFn={exitModelWindow} logOutFn={logOut} />
       )}
+      
       {props.isEditModeOn && (
         <ProfileEdit
           backImg={props.profile.photos.large}
