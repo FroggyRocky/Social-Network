@@ -31,15 +31,9 @@ function ProfileEdit(props) {
 
 
 
-  return (
-    <form
-      onSubmit={props.handleSubmit}
-      className={Modalstyles.modelWindow_container}
-    >
-      <div
-        className={`${Modalstyles.modelWindow_content}
-        ${styles.modelWindow_content}`}
-      >
+  return ( <div className={Modalstyles.modelWindow_container} >
+    <form className={styles.modelWindow_content}
+      onSubmit={props.handleSubmit}>
         <div className={styles.backImg}>
           <img src={props.backImg || backImgDefault} alt="backgroundImage" />
           <div className={styles.changeBackImg}>
@@ -113,8 +107,8 @@ function ProfileEdit(props) {
         <div className={styles.button}>
           <button>Submit</button>
         </div>
-      </div>
     </form>
+  </div>
   );
 }
 

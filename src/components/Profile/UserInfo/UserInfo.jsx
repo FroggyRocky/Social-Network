@@ -53,6 +53,10 @@ function UserInfo({ profile, status, setStatus, toggleEditMode }) {
             </div>
             <div className={styles.userInfo_minor}>
               {contacts}
+              {profile.aboutMe && <div>
+              <b>About Me</b>
+              <p>{profile.aboutMe}</p>
+              </div> }
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { compose } from "redux";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import {toAuth} from '../../redux/reducers/authReducer'
 import {
   loadCurrentProfile,
   getProfileStatus,
@@ -23,9 +24,9 @@ class ProfileContainer extends React.Component {
       this.props.getProfileStatus(idParam);
   };
 
-async componentDidMount() { debugger;
-    const response = await this.refreshProfile();
-    
+  
+ componentDidMount() { 
+  this.refreshProfile();
   }
 
   componentDidUpdate(prevProps, prevState) {
