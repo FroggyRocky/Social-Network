@@ -1,3 +1,6 @@
+textarea {
+    resize: none;
+}
 .modelWindow_content {
     width: 50%;
     height: 100%;
@@ -5,6 +8,12 @@
     background-color: wheat;
     border-radius: 15px;
 }
+
+.userInfo_container {
+padding:15px;
+}
+
+
 .backImg img {
     width: 100%;
     height: 100px;
@@ -38,4 +47,15 @@ margin-top: 30px;
 }
 .icon {
     color:darkorange;
+}
+.lookingForAJob_container {
+    display: flex;
+    align-items: center;
+}
+.lookingForAJob_container p {
+    margin-right:5px;
+}
+
+.contacts_header, .mySkills_header, .about_header {
+    padding:10px 0;
 }

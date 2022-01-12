@@ -111,6 +111,7 @@ import {ProfileAPI} from '../../api/api'
 }
 
 ///Action Creators
+
 const addPost = (postText) => ({type:ADD_POST, postText})
 
 const deletePostAC = (id) => ({type:DELETE_POST, id})
@@ -154,6 +155,15 @@ const getProfileStatus = (id) => {
   }
 }
 
+const setProfileData = (newData, getState) => {
+  return async (dispatch) => {
+  const response = await ProfileAPI.setProfileData(newData)
+  console.log(response);
+  if(response.data.resultCode === 0) {
+    dispatch(loadCurrentProfile(getState().Auth.id))
+  }
+}}
+
 const setProfileStatus = (status) => { 
   return (dispatch) => {
     ProfileAPI.setProfileStatus(status)
@@ -163,15 +173,12 @@ const setProfileStatus = (status) => {
   }
 }
 
-const setPhoto = (photo) => {
-  return async (dispatch) => {
+const setPhoto = (photo) => async (dispatch) => {
     let response = await ProfileAPI.setPhoto(photo)
     if(response.data.resultCode === 0) {
             dispatch(setPhotoSuccess(response.data.data.photos));
     }
   }
-}
-
 
 const deletePost = (id) => {
   return (dispatch) => {
@@ -187,8 +194,8 @@ const likeDislikePost = (isLiked,id) => {
     else if (isLiked) {
       dispatch(dislikePost(id))
     }
-}
-}
+}}
 
-export {loadCurrentProfile, getProfileStatus,setProfileStatus, setPhoto,
-addPost, likePost, dislikePost, likeDislikePost, deletePost, deletePostAC, toggleEditMode}
+export {loadCurrentProfile, getProfileStatus,setProfileStatus, setPhoto, addPost, 
+likePost, dislikePost, likeDislikePost, deletePost, deletePostAC, 
+toggleEditMode, setProfileData}

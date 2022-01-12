@@ -13,6 +13,7 @@ if(!props.profile) {
       status = {props.status}
       setStatus={props.setStatus}
       toggleEditMode={props.toggleEditMode}
+      isOwner={props.isOwner}
       />
       <PostsContainer/>
     </section> 

@@ -7,6 +7,7 @@ import styles from "./Header.module.css";
 
 
 export default function Header(props) {
+
   const [isModelWindowOn, toggleModelWindow] = useState(false);
 
   const logOut = () => {
@@ -37,6 +38,7 @@ export default function Header(props) {
           backImg={props.profile.photos.large}
           avatar={props.profile.photos.small}
           profile={props.profile}
+          setProfileData={props.setProfileData}
         />
       )}
       <header className={styles.header}>

@@ -2,7 +2,6 @@ import React from "react";
 import { compose } from "redux";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import {toAuth} from '../../redux/reducers/authReducer'
 import {
   loadCurrentProfile,
   getProfileStatus,
@@ -16,23 +15,30 @@ import "../../App.css";
 
 class ProfileContainer extends React.Component {
 
+  state = {
+    isOwner:false
+  }
+
+
   refreshProfile = () => {
-    
     let idParam = this.props.match.params.userId;
     if (!idParam) idParam = this.props.auth.id;
     this.props.loadCurrentProfile(idParam),
-      this.props.getProfileStatus(idParam);
+    this.props.getProfileStatus(idParam);
+    this.setState({isOwner:this.props.match.params.userId == this.props.auth.id})
   };
 
   
  componentDidMount() { 
   this.refreshProfile();
+ 
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.userId != this.props.match.params.userId)
       this.refreshProfile();
   }
+
   render() {
     if (!this.props.auth.isLogged) return <Redirect to="/login" />;
     return (
@@ -45,6 +51,7 @@ class ProfileContainer extends React.Component {
             status={this.props.status}
             profile={this.props.profile.currentUserProfileData}
             toggleEditMode={this.props.toggleEditMode}
+            isOwner={this.state.isOwner}
           />
         )}
       </>

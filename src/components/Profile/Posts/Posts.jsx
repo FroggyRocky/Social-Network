@@ -3,7 +3,7 @@ import styles from './Posts.module.css'
 import Post from './Post/Post'
 import {connect} from 'react-redux'
 import {reset} from 'redux-form'
-import {addPost,deletePost, likeDislikePost} from '../../../redux/reducers/profileReducer'
+import {addPost, deletePost, likeDislikePost} from '../../../redux/reducers/profileReducer'
 
 function Posts(props) { 
    

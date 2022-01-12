@@ -6,7 +6,7 @@ import avatar from "../../../assets/imgs/userImg.jpg";
 import Preloader from "../../common/Preloader/Preloader";
 import EditIcon from "@mui/icons-material/Edit";
 
-function UserInfo({ profile, status, setStatus, toggleEditMode }) {
+function UserInfo({ profile, status, setStatus, toggleEditMode,isOwner}) {
 
 
 
@@ -41,12 +41,12 @@ function UserInfo({ profile, status, setStatus, toggleEditMode }) {
           <div className={styles.userInfo_container}>
             <div className={styles.userInfo_major}>
               <h3>{profile.fullName}</h3>
-              <EditIcon
+              {isOwner && <EditIcon
                 onClick={editOn}
                 className={styles.edit}
                 color="primary"
                 fontSize="small"
-              />
+              />}
             </div>
             <div className={styles.userStatus_container}>
               <UserStatus setStatus={setStatus} status={status} />
@@ -61,6 +61,7 @@ function UserInfo({ profile, status, setStatus, toggleEditMode }) {
           </div>
         </div>
       </section>
+
     </>
   );
 }

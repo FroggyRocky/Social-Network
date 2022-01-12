@@ -1,5 +1,6 @@
 import { SettingsPhoneTwoTone } from '@mui/icons-material'
 import * as axios from 'axios'
+import { setProfileStatus } from '../redux/reducers/profileReducer'
 
 const instance = axios.create({
     baseURL:'https://social-network.samuraijs.com/api/1.0/',
@@ -56,6 +57,7 @@ getProfileStatus(id) {
 setProfileStatus(status){
     return instance.put('profile/status', {status})
 },
+
 setPhoto(photo) {
     const formData = new FormData()
     formData.append('image', photo)
@@ -64,6 +66,9 @@ setPhoto(photo) {
             'Content-Type':'multipart/form-data'
         }
     } )
+},
+setProfileData(data) {
+    return instance.put('profile', data)
 }
 }
 
