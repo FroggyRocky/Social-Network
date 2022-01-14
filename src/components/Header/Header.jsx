@@ -39,6 +39,8 @@ export default function Header(props) {
           avatar={props.profile.photos.small}
           profile={props.profile}
           setProfileData={props.setProfileData}
+          isEditModeOn={props.isEditModeOn}
+          toggleEditMode={props.toggleEditMode}
         />
       )}
       <header className={styles.header}>

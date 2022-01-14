@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import { reduxForm, Field } from "redux-form";
 import avatarDefault from "../../../assets/imgs/userImg.jpg";
 import backImgDefault from "../../../assets/imgs/backImg.jpg";
@@ -15,6 +16,16 @@ const maxLength = maxLengthVal("field", 200);
 const maxLengthTextArea = maxLengthVal("field", 300);
 
 function ProfileEdit(props) {
+
+
+  function exitModelWindow(e) {
+      const target = e.target.className
+    if(target === Modalstyles.modelWindow_container) {
+      props.toggleEditMode(false)
+    }
+  }
+
+
   function changeAvatar(e) {
     props.setPhoto(e.target.files[0]);
   }
@@ -34,10 +45,10 @@ function ProfileEdit(props) {
   });
 
   return (
-    <div className={Modalstyles.modelWindow_container}>
+    <div onClick={exitModelWindow} className={Modalstyles.modelWindow_container}>
       <form
         className={styles.modelWindow_content}
-        onSubmit={props.handleSubmit}
+        onSubmit={props.handleSubmit} 
       >
         <div className={styles.backImg}>
           <img src={props.backImg || backImgDefault} alt="backgroundImage" />

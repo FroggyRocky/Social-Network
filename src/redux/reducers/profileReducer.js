@@ -161,8 +161,22 @@ const setProfileData = (newData, getState) => {
   console.log(response);
   if(response.data.resultCode === 0) {
     dispatch(loadCurrentProfile(getState().Auth.id))
+  } else if(response.data.resultCode = 1 && response.data.messages.length > 0) {
+
+    console.log(response.data.messages)
+    const fields = response.data.messages.map(el => {
+      return el.match(/\((.*?)\)/)[1]
+    })
+      const messages = response.data.messages.map(el => {
+        return el.match(/^([^.]+)/)[0]
+      }) 
+
+    
+      console.log(fields)
+      console.log(messages)
   }
-}}
+}
+}
 
 const setProfileStatus = (status) => { 
   return (dispatch) => {
