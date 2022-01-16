@@ -31,15 +31,14 @@
   padding: 1px 0;
 }
 .userInfo_major h3 {
-  margin-right:5px;
+  margin-right: 5px;
 }
 .userInfo_minor {
-  margin-top:12px
+  margin-top: 12px;
 }
 .userInfo_minor div {
   padding: 5px 0;
 }
 .edit {
-  cursor:pointer;
+  cursor: pointer;
 }
-

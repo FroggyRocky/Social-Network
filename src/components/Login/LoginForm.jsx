@@ -19,12 +19,12 @@ export default function LoginForm(props) {
         <div className={LoginStyles.email_input_container}>
             <Field type='text' placeholder='Email'
                 validate={[fieldRequired, maxLengthEmail, minLengthEmail, emailVal]}
-                component={Input} name='email' />
+                component={Input} name='email' id={0} />
         </div>
         <div className={LoginStyles.password_input_container}>
             <Field type='password' placeholder='Password'
                 validate={[fieldRequired, maxLengthPass, minLengthPass]}
-                component={Input} name='pass' autoComplete='on' />
+                component={Input} name='pass' autoComplete='on' id={1} />
             <div className={LoginStyles.checkbox_container}>
                 <Field type='checkbox' component='input' name='rememberMe' /> Remember me
             </div>

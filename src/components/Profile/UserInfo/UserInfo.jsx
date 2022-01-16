@@ -6,12 +6,9 @@ import avatar from "../../../assets/imgs/userImg.jpg";
 import Preloader from "../../common/Preloader/Preloader";
 import EditIcon from "@mui/icons-material/Edit";
 
-function UserInfo({ profile, status, setStatus, toggleEditMode,isOwner}) {
-
-
-
+function UserInfo({ profile, status, setStatus, toggleEditMode, isOwner }) {
   const contacts = Object.keys(profile.contacts).map((el) => {
-    if(profile.contacts[el]) {
+    if (profile.contacts[el]) {
       return (
         <div className={styles.contacts_container}>
           <b>Contacts:</b>
@@ -40,37 +37,41 @@ function UserInfo({ profile, status, setStatus, toggleEditMode,isOwner}) {
           </div>
           <div className={styles.userInfo_container}>
             <div className={styles.userInfo_major}>
-                <div className={styles.edit_container}>
-              <h3>{profile.fullName}</h3>
-              {isOwner && <EditIcon
-                onClick={editOn}
-                className={styles.edit}
-                color="primary"
-                fontSize="small"
-              />}</div>
+              <div className={styles.edit_container}>
+                <h3>{profile.fullName}</h3>
+                {isOwner && (
+                  <EditIcon
+                    onClick={editOn}
+                    className={styles.edit}
+                    color="primary"
+                    fontSize="small"
+                  />
+                )}
+              </div>
               <div className={styles.userStatus_container}>
-              <UserStatus setStatus={setStatus} status={status} />
+                <UserStatus setStatus={setStatus} status={status} />
+              </div>
+              {profile.lookingForAJob && (
+                <div className={styles.openToWork_container}>
+                  <i>#OpenToWork</i>
+                </div>
+              )}
             </div>
-            {profile.lookingForAJob && <div className={styles.openToWork_container}>
-             <i>#OpenToWork</i>
-            </div>}
-            </div>
-           
+
             <div className={styles.userInfo_minor}>
               {contacts}
               <div className={styles.aboutMe_container}>
-              <b>About Me</b>
-              <p>{profile.aboutMe}</p>
-              </div> 
+                <b>About Me</b>
+                <p>{profile.aboutMe}</p>
+              </div>
               <div className={styles.skills_container}>
-              <b>Skills</b>
-              <p>{profile.lookingForAJobDescription}</p>
+                <b>Skills</b>
+                <p>{profile.lookingForAJobDescription}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-
     </>
   );
 }

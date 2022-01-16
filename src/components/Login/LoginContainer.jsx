@@ -10,7 +10,8 @@ import {Redirect} from 'react-router-dom'
 class Login extends React.Component {
 
 
-    onSubmit = (loginFormData) => { console.log('submit');
+    onSubmit = (loginFormData) => { 
+        
         const{email,pass,rememberMe} = loginFormData
         this.props.logIn(email,pass,rememberMe)
       

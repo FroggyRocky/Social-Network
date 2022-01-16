@@ -1,4 +1,4 @@
-import { authAPI } from "../../api/api";
+import { authAPI, securityAPI } from "../../api/api";
 import { stopSubmit } from "redux-form";
 
 const GET_LOGGED_USER_DATA = 'GET-LOGGED-USER-DATA';
@@ -7,7 +7,8 @@ const initialState = {
 email:null,
 id:null,
 login:null,
-isLogged:false
+isLogged:false,
+captchaURL:null
 }
 
 export default function authReducer (state = initialState, action) { 
@@ -31,22 +32,26 @@ const authUserData = (isLogged, email,id,login) =>
 
 
 const toAuth = () => async (dispatch) => {
-const response = await authAPI.auth() 
+                const response = await authAPI.auth() 
                 if (response.resultCode === 0) { 
                     let { email, id, login } = response.data
-                    dispatch(authUserData(true,email, id, login))
+             dispatch(authUserData(true,email, id, login))
                 }
              }
-
+//10
     const logIn = (email, pass, remember) => {
-        (dispatch) => {
+       return (dispatch) => {
             authAPI.login(email,pass,remember)
             .then((res) => { 
             if(res.data.resultCode === 0) {
                 dispatch(toAuth())
-            } else if(res.data.resultCode === 1 && res.data.messages.length > 0) {
-                dispatch(stopSubmit('Login',{_error:res.data.messages[0]}))
-            } else {
+            } else if(res.data.resultCode === 1 && res.data.messages.length > 0) { 
+                dispatch(stopSubmit('Login', {_error:res.data.messages[0]}))
+            } else if (res.data.resultCode === 10) {
+                
+            }
+            else {
+                console.log(res.data);
                 dispatch(stopSubmit('Login', {_error:'Something went wrong, try one more time'}))
             }
             })

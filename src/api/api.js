@@ -1,6 +1,6 @@
-import { SettingsPhoneTwoTone } from '@mui/icons-material'
+
 import * as axios from 'axios'
-import { setProfileStatus } from '../redux/reducers/profileReducer'
+
 
 const instance = axios.create({
     baseURL:'https://social-network.samuraijs.com/api/1.0/',
@@ -45,6 +45,7 @@ export const authAPI = {
 
 
 export const ProfileAPI = {
+
 getProfile (id) {
     return instance.get(`profile/${id}`)
     .then((response) => {
@@ -72,3 +73,8 @@ setProfileData(data) {
 }
 }
 
+export const SecurityAPI = {
+    getCaptchaURL() {
+        instance.get('security/get-captcha-url')
+    }
+}
