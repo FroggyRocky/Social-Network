@@ -23,18 +23,23 @@
 .changeAvatar {
   position: absolute;
 }
-.userInfo_container {
-  margin:10px 0 0 10px;
-}
-.userInfo_major {
+
+.edit_container {
   display: flex;
+}
+.userInfo_major div {
+  padding: 1px 0;
 }
 .userInfo_major h3 {
   margin-right:5px;
 }
 .userInfo_minor {
-  margin-top:10px
+  margin-top:12px
+}
+.userInfo_minor div {
+  padding: 5px 0;
 }
 .edit {
   cursor:pointer;
 }
+

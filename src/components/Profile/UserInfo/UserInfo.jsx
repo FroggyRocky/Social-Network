@@ -40,23 +40,32 @@ function UserInfo({ profile, status, setStatus, toggleEditMode,isOwner}) {
           </div>
           <div className={styles.userInfo_container}>
             <div className={styles.userInfo_major}>
+                <div className={styles.edit_container}>
               <h3>{profile.fullName}</h3>
               {isOwner && <EditIcon
                 onClick={editOn}
                 className={styles.edit}
                 color="primary"
                 fontSize="small"
-              />}
-            </div>
-            <div className={styles.userStatus_container}>
+              />}</div>
+              <div className={styles.userStatus_container}>
               <UserStatus setStatus={setStatus} status={status} />
             </div>
+            {profile.lookingForAJob && <div className={styles.openToWork_container}>
+             <i>#OpenToWork</i>
+            </div>}
+            </div>
+           
             <div className={styles.userInfo_minor}>
               {contacts}
-              {profile.aboutMe && <div>
+              <div className={styles.aboutMe_container}>
               <b>About Me</b>
               <p>{profile.aboutMe}</p>
-              </div> }
+              </div> 
+              <div className={styles.skills_container}>
+              <b>Skills</b>
+              <p>{profile.lookingForAJobDescription}</p>
+              </div>
             </div>
           </div>
         </div>

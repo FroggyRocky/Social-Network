@@ -5,8 +5,8 @@ import backImgDefault from "../../../assets/imgs/backImg.jpg";
 import styles from "./ProfileEdit.module.css";
 import Modalstyles from "../../Header/Header.module.css";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import { maxLengthVal } from "../../common/FormsValidation/FormsValidation";
-import { TextArea, Input } from "../../common/FormsValidation/FieldContainers";
+import { maxLengthVal, fieldRequired } from "../../common/FormsValidation/FormsValidation";
+import { TextArea, Input, editProileTextArea } from "../../common/FormsValidation/FieldContainers";
 
 // the Component is exported from Header, 
 // only method which is exported not from the header component but 
@@ -98,8 +98,9 @@ function ProfileEdit(props) {
               </p>
                 <Field
                   type="text"
-                  component={TextArea}
+                  component={editProileTextArea}
                   cols="50"
+                  validate={[fieldRequired]}
                   rows="5"
                   name="lookingForAJobDescription"
                 />
@@ -112,14 +113,15 @@ function ProfileEdit(props) {
               </p>
                 <Field
                   type="text"
-                  component={TextArea}
-                  validate={[maxLengthTextArea]}
+                  component={editProileTextArea}
+                  validate={[maxLengthTextArea, fieldRequired]}
                   name="aboutMe"
                   cols="50"
                   rows="5"
                 />
             </div>
           </div>
+          {props.error && <div>{props.error}</div>}
           <div className={styles.button}>
             <button>Submit</button>
           </div>
