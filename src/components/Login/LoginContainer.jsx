@@ -12,8 +12,8 @@ class Login extends React.Component {
 
     onSubmit = (loginFormData) => { 
         
-        const{email,pass,rememberMe} = loginFormData
-        this.props.logIn(email,pass,rememberMe)
+        const{email,pass,rememberMe, captcha} = loginFormData
+        this.props.logIn(email,pass,rememberMe, captcha)
       
     }
 
@@ -24,7 +24,7 @@ if(this.props.isLogged) return <Redirect to='/profile'/>
     <div className={LoginStyles.login_header}>
     <h2>Login</h2>
     </div>
-    <WithReduxForm onSubmit={this.onSubmit}/>
+    <WithReduxForm {...this.props} onSubmit={this.onSubmit}/>
     </div>
 }
 
@@ -33,7 +33,9 @@ if(this.props.isLogged) return <Redirect to='/profile'/>
 const WithReduxForm = reduxForm({form:'Login'})(LoginForm)
 
 const mapStateToProps = (state) => ({
-    isLogged: state.Auth.isLogged
+    isLogged: state.Auth.isLogged,
+    captchaURL: state.Auth.captchaURL
+
 })
 
 export default connect(mapStateToProps,{logIn})(Login)

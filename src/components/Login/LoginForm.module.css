@@ -63,3 +63,16 @@ input {
 .action_container a:hover {
     color:rgb(60, 122, 255); ;
 }
+.captcha_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+.captcha_validationInput input {
+ border-radius: 5px;
+ width: 200px;
+ height: 20px;
+ margin-bottom: 8px;
+}
